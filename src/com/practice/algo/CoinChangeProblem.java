@@ -8,9 +8,9 @@ public class CoinChangeProblem {
 		int coins[] = {7,3,2,6};
 		int totalCoins = coins.length;
 		
-		dynamicProgrammingMinNumberOfCoinsRequired(coins, totalCoins, sum);
-		//dynamicProgrammingNumberOfCombinationsOfCoins(s, 3, 5);
+		//dynamicProgrammingMinNumberOfCoinsRequired(coins, totalCoins, sum);
 		
+		//NumberOfCombinationsOfCoins
 		System.out.println(count(coins, totalCoins, sum));
 	}
 
@@ -36,12 +36,12 @@ public class CoinChangeProblem {
 
 	private static int count(int[] s, int m, int n) {
 		if(n == 0) {
-			return 1; // do not include any coin is the one solution
+			return 1; // do not include any coin is one solution
 		}
 		if(n < 0) {
 			return 0;
 		}
-		if(m <= 0 && n > 0) {
+		if(m <= 0) {
 			return 0;
 		}
 		return count(s, m-1, n) + count(s, m, n-s[m-1]);
