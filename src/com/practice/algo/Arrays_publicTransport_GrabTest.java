@@ -34,7 +34,7 @@ public class Arrays_publicTransport_GrabTest {
 					if(q == 1) {
 						matrix[p][q] = min(matrix[p-1][q], passCost[p]);
 					} else if(q < passPlans[p]) {
-						matrix[p][q] = min(); 
+						//matrix[p][q] = min();
 					}
 				}
 			}

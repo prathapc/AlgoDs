@@ -23,7 +23,7 @@ public class ShortestPathProblems {
 	}
 	
 	private static int findShortestPathForKnightUtil(int r, int c, int sr, int sc, int dr, int dc, boolean[][] visited) {
-		
+		return 0;
 	}
 
 	public static void main(String args[]) {

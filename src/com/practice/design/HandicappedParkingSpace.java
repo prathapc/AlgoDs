@@ -1,6 +1,6 @@
 package com.practice.design;
 
-public class HandicappedParkingSpace extends ParkingSpace {
+public abstract  class HandicappedParkingSpace extends ParkingSpace {
 
 	/**
 	 * returns discounted price

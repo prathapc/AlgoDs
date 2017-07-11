@@ -10,5 +10,14 @@ public class RegularParkingSpace extends ParkingSpace {
 		return 0;
 	}
 
+	@Override
+	public ParkingTicket issueParkingTicket() {
+		return null;
+	}
+
+	@Override
+	public int getParkingSpace() {return 0;}
+
+
 	
 }
