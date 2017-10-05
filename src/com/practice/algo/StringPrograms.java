@@ -1,5 +1,7 @@
 package com.practice.algo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StringPrograms {
@@ -10,8 +12,32 @@ public class StringPrograms {
 		//findSubstringsStartAndEndWithOne(); // wrong o/p
 		//checkIfStringCanBeRepeatedByTwoPlaces();
 		//romanCharacterToInteger();
-		decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
+		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
+		distinctOccurencesOfSubString();
+
 	
+	}
+
+	private static void distinctOccurencesOfSubString() {
+		System.out.print(distinctOccurencesOfSubStringUtil1("banana","ban"));
+	}
+
+	private static int distinctOccurencesOfSubStringUtil1(String S, String T) {
+		int[][] table = new int[S.length() + 1][T.length() + 1];
+
+		for (int i = 0; i < S.length(); i++)
+			table[i][0] = 1;
+
+		for (int i = 1; i <= S.length(); i++) {
+			for (int j = 1; j <= T.length(); j++) {
+				if (S.charAt(i - 1) == T.charAt(j - 1)) {
+					table[i][j] += table[i - 1][j] + table[i - 1][j - 1];
+				} else {
+					table[i][j] += table[i - 1][j];
+				}
+			}
+		}
+		return table[S.length()][T.length()];
 	}
 
 	private static void decodePatternLookAndSaySequence() {

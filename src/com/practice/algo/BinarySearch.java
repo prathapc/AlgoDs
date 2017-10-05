@@ -1,4 +1,4 @@
-package com.practice.ds;
+package com.practice.algo;
 
 public class BinarySearch {
 

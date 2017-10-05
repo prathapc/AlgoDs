@@ -2,7 +2,7 @@ package com.practive.util;
 
 import java.util.Scanner;
 
-import com.practice.ds.Node;
+import com.practice.ds.trees.Node;
 
 public class Utility {
 
@@ -33,6 +33,15 @@ public class Utility {
 		}
 	}
 
+	public static void printArray(int[][] a, int r, int c) {
+		for (int i = 0; i < r; i++) {
+			for(int j=0; j<c; j++) {
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
 	public static int max(int i, int j) {
 		if (i > j) {
 			return i;
@@ -47,6 +56,16 @@ public class Utility {
 		} else {
 			return j;
 		}
+	}
+
+	public static int min(int i, int j, int k) {
+		if (i < j) {
+			if(i < k) {
+				return i;
+			}
+			return k;
+		}
+		return j;
 	}
 
 	public static Scanner getScanner() {
@@ -139,6 +158,21 @@ public class Utility {
 		return root;
 	}
 
+	public static Node createSampleTree3() {
+		Node root = new Node(20);
+		Node left = new Node(8);
+		Node right = new Node(22);
+		root.setLeft(left);
+		root.setRight(right);
+		left.setLeft(new Node(4));
+		Node leftRight = new Node(12);
+		left.setRight(leftRight);
+		leftRight.setLeft(new Node(10));
+		leftRight.setRight(new Node(14));
+		right.setRight(new Node(22));
+		return root;
+	}
+
 	public static int max(int i, int j, int k) {
 		if (i > j) {
 			if (i > k) {
@@ -171,3 +205,4 @@ public class Utility {
 		return maxElement;
 	}
 }
+

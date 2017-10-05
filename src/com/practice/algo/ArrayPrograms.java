@@ -1,5 +1,8 @@
 package com.practice.algo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import com.practive.util.Utility;
@@ -9,7 +12,142 @@ public class ArrayPrograms {
 	public static void main(String[] args) throws Exception {
 		
 		//largestNumberWithMaxKSwipes();
-		find4ElementsWithSumEqualToK();
+		//find4ElementsWithSumEqualToK();
+		//commonElementsInTwoArrays();
+		//arrayAfterNRotations();
+		//printMatrixInSpiralOrder();
+		subArrayWithGivenSum();
+	}
+
+	private static void subArrayWithGivenSum() {
+		int a[] = {1,4};
+		int sum = 4;
+		int tempSum = a[0];
+		int start = 0, end = 0;
+		if(tempSum == sum) {
+			System.out.print("sub array from " + start + " to " + end + " has given sum");
+		}
+		for(int i=1; i<a.length; i++) {
+			tempSum += a[i];
+			end++;
+			if (tempSum == sum) {
+				System.out.print("sub array from " + start + " to " + end + " has given sum");
+				break;
+			} else if (tempSum > sum) {
+				while(start < end) {
+					tempSum -= a[start];
+					start++;
+					if (tempSum == sum) {
+						System.out.print("sub array from " + start + " to " + end + " has given sum");
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	private static void printMatrixInSpiralOrder() {
+		List<ArrayList<Integer>> aList = new ArrayList<>();
+		ArrayList<Integer> inner1 = new ArrayList<Integer>();
+		inner1.add(1);inner1.add(2);inner1.add(3);
+		aList.add(inner1);
+		ArrayList<Integer> inner2 = new ArrayList<Integer>();
+		inner2.add(4);inner2.add(5);inner2.add(6);
+		aList.add(inner2);
+		ArrayList<Integer> inner3 = new ArrayList<Integer>();
+		inner3.add(7);inner3.add(8);inner3.add(9);
+		aList.add(inner3);
+
+		int r = aList.size();
+		int c = aList.get(0).size();
+		int[][] a = new int[r][c];
+
+		for(int i=0; i<r; i++) {
+			for(int j=0; j<r; j++) {
+				a[i][j] = aList.get(i).get(j);
+				//System.out.print(a[i][j] + " ");
+			}
+		}
+
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		int i, k = 0, l = 0;
+        /*  k - starting row index
+        m - ending row index
+        l - starting column index
+        n - ending column index
+        i - iterator
+        */
+		int m=r, n=c;
+		while (k < m && l < n)
+		{
+			// Print the first row from the remaining rows
+			for (i = l; i < n; ++i)
+			{
+				result.add(a[k][i]);
+			}
+			k++;
+
+			// Print the last column from the remaining columns
+			for (i = k; i < m; ++i)
+			{
+				result.add(a[i][n-1]);
+			}
+			n--;
+
+			// Print the last row from the remaining rows */
+			if ( k < m)
+			{
+				for (i = n-1; i >= l; --i)
+				{
+					result.add(a[m-1][i]);
+				}
+				m--;
+			}
+
+			// Print the first column from the remaining columns */
+			if (l < n)
+			{
+				for (i = m-1; i >= k; --i)
+				{
+					result.add(a[i][l]);
+				}
+				l++;
+			}
+
+			for(Integer kk : result) {
+				System.out.print(kk + " ");
+			}
+		}
+
+
+	}
+
+	private static void arrayAfterNRotations() {
+		int B = 18;
+		Integer a[] = {44, 41, 12, 42, 71, 45, 28, 65, 75, 93, 66, 66, 37, 6, 24, 59 };
+		ArrayList<Integer> A = new ArrayList<>();
+		for(int i : a) {
+			A.add(i);
+		}
+		ArrayList<Integer> ret = new ArrayList<>();
+		if(B > A.size())
+			B = B%A.size();
+		for (int i = 0; i < A.size(); i++) {
+			if(i+B >= A.size())
+				break;
+			ret.add(A.get(i + B));
+		}
+		for(int j=0; j<B; j++) {
+			ret.add(A.get(j));
+		}
+		ret.forEach(System.out::println);
+	}
+
+	private static void commonElementsInTwoArrays() {
+		int a[] = new int[]{10, 2, 3, 4, 5, 9, 7, 8};
+		int b[] = new int[]{1, 20, 3, 6, 7};
+
+
 	}
 
 	private static void find4ElementsWithSumEqualToK() {
@@ -95,11 +233,11 @@ public class ArrayPrograms {
 	}
 
 	private static void largestNumberWithMaxKSwipes() {
-		//int a[] = {2,5,1,9,3,7,2,8,9,3};  //9 5 3 2 1 7 2 8 9 3 
-		//int k = 6;
+		int a[] = {2,5,1,9,3,7,2,8,9,3};  //9 5 3 2 1 7 2 8 9 3
+		int k = 6;
 		
-		int a[] = {9,9,9,9};
-		int k = 4;
+		//int a[] = {9,9,9,9};
+		//int k = 4;
 		largestNumberWithKSwipesUtil(a, 0, k);
 		Utility.printArray(a);
 		

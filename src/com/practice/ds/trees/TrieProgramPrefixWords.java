@@ -1,6 +1,7 @@
-package com.practice.ds;
+package com.practice.ds.trees;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TrieProgramPrefixWords {
 

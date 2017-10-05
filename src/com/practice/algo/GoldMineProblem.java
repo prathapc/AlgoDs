@@ -7,7 +7,7 @@ import com.practive.util.Utility;
 public class GoldMineProblem {
 
 	public static void main(String[] args) {
-		Scanner scanner = Utility.getScanner();
+		Scanner scanner = new Scanner(System.in);
 		int r = scanner.nextInt();
 		int c = scanner.nextInt();
 		int[][] a = Utility.readArray(r, c);

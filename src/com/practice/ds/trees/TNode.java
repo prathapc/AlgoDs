@@ -1,4 +1,4 @@
-package com.practice.ds;
+package com.practice.ds.trees;
 
 public class TNode {
 	char ch;

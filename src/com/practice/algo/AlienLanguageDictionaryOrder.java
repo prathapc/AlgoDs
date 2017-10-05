@@ -8,7 +8,9 @@ public class AlienLanguageDictionaryOrder {
 
 	public static void main(String[] args) {
 		String str[] = {"baa", "abcd", "abca", "cab", "cad"};
-		Graph graph = new Graph(26);
+		//String str[] = {"cb", "bc", "bb"};
+		//String str[] = {"caa", "aaa", "aab"};
+		Graph graph = new Graph(4);
 		for(int i=0; i<str.length-1; i++) {
 			constructGraph(str[i], str[i+1], graph);
 		}
@@ -29,7 +31,7 @@ public class AlienLanguageDictionaryOrder {
 	
 	private static void topologicalSort(Graph graph) {
 		Stack<Character> sortedCharacters = new Stack<>();
-		boolean[] visited = new boolean[26];
+		boolean[] visited = new boolean[4];
 		for(int i=0; i<4; i++) {
 			if(visited[i] == false) {
 				topologicalSortUtil(i, visited, sortedCharacters, graph);
@@ -42,19 +44,17 @@ public class AlienLanguageDictionaryOrder {
 
 	private static void topologicalSortUtil(int i, boolean[] visited, Stack<Character> sortedCharacters, Graph graph) {
 		int offset = (int)'a';
-		//if(graph.adj[i].size() > 0) {
-			Iterator<Character> iterator = graph.adj[i].iterator();
-			visited[i] = true;
-			int ch;
-			while (iterator.hasNext()) {
-				ch = iterator.next()-offset;
-				
-				if(!visited[ch]) {
-					topologicalSortUtil(ch, visited, sortedCharacters, graph);				
-				}
+		Iterator<Character> iterator = graph.adj[i].iterator();
+		visited[i] = true;
+		int ch;
+		while (iterator.hasNext()) {
+			ch = iterator.next()-offset;
+
+			if(!visited[ch]) {
+				topologicalSortUtil(ch, visited, sortedCharacters, graph);
 			}
-			sortedCharacters.push((char) (offset+i));
-		//}
+		}
+		sortedCharacters.push((char) (offset+i));
 	}
 
 }

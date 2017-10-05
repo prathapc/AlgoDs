@@ -1,8 +1,7 @@
-package com.practice.ds;
+package com.practice.ds.trees;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.practive.util.Utility;
 
@@ -11,13 +10,21 @@ public class BinarySearchTreePrograms {
 	public static void main(String args[]) {
 		Node root = Utility.createBinarySearchTree();
 		//System.out.println(isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
-		Scanner scanner = Utility.getScanner();
+		//Scanner scanner = Utility.getScanner();
 		//System.out.println(pathInTree(root, scanner.nextInt(), scanner.nextInt()));
 		
 		//List<Integer> sortedListUsingInOrderTraversal = new ArrayList<Integer>();
 		//inOrderTraversal(root, sortedListUsingInOrderTraversal);
 		//checkSumOfTwoNumbersInBSTMatchesInputNumber(sortedListUsingInOrderTraversal, 19);
-		
+
+	}
+
+	private static void inOrderTraversal(Node root, List<Integer> sortedListUsingInOrderTraversal) {
+		if(root == null)
+			return;
+		inOrderTraversal(root.getLeft(), sortedListUsingInOrderTraversal);
+		sortedListUsingInOrderTraversal.add(root.getData());
+		inOrderTraversal(root.getRight(), sortedListUsingInOrderTraversal);
 	}
 	
 	private static void checkSumOfTwoNumbersInBSTMatchesInputNumber(List<Integer> sortedListUsingInOrderTraversal, int sum) {
@@ -36,13 +43,7 @@ public class BinarySearchTreePrograms {
 		System.out.println(false);
 	}
 
-	private static void inOrderTraversal(Node root, List<Integer> sortedListUsingInOrderTraversal) {
-		if(root == null)
-			return;
-		inOrderTraversal(root.getLeft(), sortedListUsingInOrderTraversal);
-		sortedListUsingInOrderTraversal.add(root.getData());
-		inOrderTraversal(root.getRight(), sortedListUsingInOrderTraversal);
-	}
+
 
 	private static List<Integer> pathInTree(Node root, int src, int dest) {
 		List<Integer> result = new ArrayList<Integer>();

@@ -8,9 +8,9 @@ public class Arrays_publicTransport_GrabTest {
 	public static void main(String[] args) {
 		int days[] = {1,2,4,7,29,30};
 		int passPlans[] = {1,7,30};
-		int passCost[] = {2,7,25};
-		//System.out.println(solution(a));
-		System.out.println(mySolution(days, passPlans, passCost));
+		int passCost[] = {2,7,10};
+		System.out.println(solution(days));
+		//System.out.println(mySolution(days, passPlans, passCost));
 		
 	}
 	
@@ -46,20 +46,6 @@ public class Arrays_publicTransport_GrabTest {
 	private static int min(int i, int j) {
 		return i>=j ? j : i; 
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public static int solution(int[] A) {
 		return getNextTicketCost(0, A);
@@ -70,7 +56,7 @@ public class Arrays_publicTransport_GrabTest {
 		if(n< input.length){
 			int sevenDayCost =7 +getNextTicketCost(moveTo7thday(n,input),input);	
 			int onedayCost=2 +getNextTicketCost(n+1,input);	
-			
+			//int monthCost = 30 +getNextTicketCost(moveTo7thday(), input)
 				return Math.min(onedayCost,sevenDayCost);
 		}
 	return 0;
