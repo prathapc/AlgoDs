@@ -1,9 +1,6 @@
 package com.practice.algo;
 
-import com.practive.util.Utility;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.practice.util.Utility;
 
 public class ZeroOneKnapsackProblem {
 

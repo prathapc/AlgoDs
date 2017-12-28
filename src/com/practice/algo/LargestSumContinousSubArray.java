@@ -9,7 +9,9 @@ package com.practice.algo;
  */
 public class LargestSumContinousSubArray {
   public static void main(String args[]) {
-    int a[] = {100, -1, -100, 200};
+    //int a[] = {100, -1, -100, 200};
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3, -21, 22};
+
     int sum=a[0], tempSum=a[0];
     for(int i=1; i<a.length; i++) {
       tempSum += a[i];

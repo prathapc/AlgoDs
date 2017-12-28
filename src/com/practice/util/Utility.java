@@ -1,10 +1,107 @@
-package com.practive.util;
+package com.practice.util;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import com.practice.ds.trees.Node;
 
+/**
+ * Separate the integer into 4 digits.
+ If you don't have a 0, 1, or 2 then there is no answer.
+ Put the largest number that is <= 2 in the first spot in the time.
+ If the first digit was a 2, then put the largest remaining number that is <=3 in the second place. (If there isn't one, then there is no answer.) If the first digit was 1 or 0, then place the largest remaining number in the second place.
+ Put the largest remaining number that is <= 5 in the third place.
+ Put the only remaining number in the fourth place.
+ */
 public class Utility {
+
+	public static void main(String args[]) {
+		//System.out.print(solution(0,8,3,2,6,4));
+		System.out.print(solution(0,0,0,7,8,9));
+	}
+
+	public static String solution(int A, int B, int C, int D, int E, int F) {
+		int[] input = new int[]{A,B,C,D,E,F};
+		Arrays.sort(input);
+		String hh = getHour(input);
+		if(!hh.equals("NOT POSSIBLE")) {
+			String mm = getMini(input);
+			if(!mm.equals("NOT POSSIBLE")) {
+				String ss = getSec(input);
+				if(!ss.equals("NOT POSSIBLE")) {
+					return hh+":"+mm+":"+ss;
+				}
+			}
+		}
+		return "NOT POSSIBLE";
+	}
+
+	public static String getHour(int[] input){
+
+		String hour;
+		if(input[0]>3){
+			return "NOT POSSIBLE";
+		}
+		hour=input[0]+"";
+		if(input[0]==2 && input[1]>4){
+			return "NOT POSSIBLE";
+		}
+		hour =hour+input[1];
+		return hour;
+	}
+
+
+	public static String getMini(int[] input){
+
+		String min;
+
+		if(input[2]>5){
+			return "NOT POSSIBLE";
+		}
+		min=input[2]+"";
+
+		if(input[4]<6 ){
+			min=min+input[3];
+		}
+		else if( input [3]<6 ){
+			min=min+input[4];
+		}
+		else {
+			return "NOT POSSIBLE";
+		}
+		return min;
+
+	}
+
+	public static String getSec(int[] input){
+
+		String sec;
+
+		if(input[4]<6 ){
+			sec=input[4]+""+input[5]+"";
+			return sec;
+		}
+		else if( input [3]<6 ){
+			sec=input[3]+""+input[5]+"";
+		}
+		else {
+			return "NOT POSSIBLE";
+		}
+		return sec;
+	}
+
+
+
+
+
+
+
+
+
 
 	public static void geeksforgeeksInputFormat() {
 		Scanner scanner = new Scanner(System.in);
@@ -59,8 +156,8 @@ public class Utility {
 	}
 
 	public static int min(int i, int j, int k) {
-		if (i < j) {
-			if(i < k) {
+		if (i <= j) {
+			if(i <= k) {
 				return i;
 			}
 			return k;
@@ -141,6 +238,13 @@ public class Utility {
 		return root;
 	}
 
+	/**
+	 * 			1
+	 * 				2
+	 * 					3
+	 * 				5		4
+	 * 					  7	   8
+	 */
 	public static Node createSampleTree2() {
 		Node root = new Node(1);
 		Node right = new Node(2);
@@ -158,6 +262,13 @@ public class Utility {
 		return root;
 	}
 
+	/**
+	 * 					20
+	 * 			8				22
+	 * 		4		12				22
+	 *
+	 * 			10		14
+	 */
 	public static Node createSampleTree3() {
 		Node root = new Node(20);
 		Node left = new Node(8);
@@ -169,7 +280,7 @@ public class Utility {
 		left.setRight(leftRight);
 		leftRight.setLeft(new Node(10));
 		leftRight.setRight(new Node(14));
-		right.setRight(new Node(22));
+		right.setRight(new Node(23));
 		return root;
 	}
 

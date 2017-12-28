@@ -3,7 +3,7 @@ package com.practice.ds.arrays;
 /**
  * Created by prathap on 26/09/17.
  */
-public class QueuePrograms {
+public class QueueImplementation {
   public static void main(String args[]) {
     Queue queue = new Queue(1);
     queue.push(1);

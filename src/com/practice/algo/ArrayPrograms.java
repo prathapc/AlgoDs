@@ -1,22 +1,98 @@
 package com.practice.algo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.Stack;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 public class ArrayPrograms {
 
 	public static void main(String[] args) throws Exception {
 		
 		//largestNumberWithMaxKSwipes();
+		//arangeNumbersInArrayToFormLargestNumber();
 		//find4ElementsWithSumEqualToK();
 		//commonElementsInTwoArrays();
 		//arrayAfterNRotations();
 		//printMatrixInSpiralOrder();
-		subArrayWithGivenSum();
+		//subArrayWithGivenSum();
+		//maximumSumPathInTwoArrays();
+		//sortSubArray();
+		nearestSmallerElement();
+	}
+
+	public static ArrayList<Integer> nearestSmallerElement() {
+		ArrayList<Integer> arr = new ArrayList<>();
+		arr.add(34);arr.add(35);arr.add(27);arr.add(42);arr.add(5);arr.add(28);arr.add(39);arr.add(20);arr.add(28);
+
+		ArrayList<Integer> result = new ArrayList<>();
+		java.util.Stack<Integer> st = new Stack<>();
+
+		for(int i=0; i<arr.size(); i++) {
+			while(!st.empty()&&st.peek()>=arr.get(i)) {
+				st.pop();
+			}
+			if(st.empty()) {
+				result.add(-1);
+			} else if(st.peek() < arr.get(i)) {
+				result.add(st.peek());
+			}
+			st.push(arr.get(i));
+		}
+		return result;
+	}
+
+	private static void sortSubArray() {
+		ArrayList<Integer> input = new ArrayList<>();
+		input.add(1);input.add(1);input.add(10);
+		input.add(10);input.add(15);input.add(10);
+		input.add(15);input.add(10);input.add(10);
+		input.add(15);input.add(10);input.add(15);
+		System.out.print(subUnsort(input));
+	}
+
+	private static ArrayList<Integer> subUnsort(ArrayList<Integer> A) {
+		ArrayList<Integer> result = new ArrayList<>();
+		int i=0, j=1;
+		for(i=0; i<A.size(); i++) {
+			while(j < A.size()) {
+				if(A.get(j) < A.get(i)) {
+					break;
+				}
+				i++;
+				j++;
+			}
+			int start=0;
+			while(++j < A.size()) {
+				if(start > 0) {
+					if(A.get(j) < A.get(j-1)) {
+						start = j;
+					}
+				}
+				if(A.get(j) > A.get(i)) {
+					start = i;
+				}
+				if((start>0 && (j==A.size()-1))) {
+					result.add(i);
+					result.add(j-1);
+					return result;
+				}
+			}
+		}
+		result.add(-1);
+		return result;
+	}
+
+	private static void arangeNumbersInArrayToFormLargestNumber() {
+		List<Integer> input = new ArrayList<>(Arrays.asList(3,30,34));
+		Collections.sort(input, new DigitComarator());
+		StringBuffer sbf = new StringBuffer("");
+		for(Integer n : input) {
+			if(n == 0) {
+				continue;
+			}
+			sbf.append(n);
+		}
 	}
 
 	private static void subArrayWithGivenSum() {
@@ -151,8 +227,9 @@ public class ArrayPrograms {
 	}
 
 	private static void find4ElementsWithSumEqualToK() {
-		int a[] = new int[]{10, 2, 3, 4, 5, 9, 7, 8};
-		int x = 23;
+		//int a[] = new int[]{10, 2, 3, 4, 5, 9, 7, 8};
+		int a[] = new int[]{3,2,1,6,4,5};
+		int x = 12;
 		
 		find4ElementsWithSumEqualToKUtil(a, x);
 	}
@@ -525,4 +602,14 @@ public class ArrayPrograms {
 		scanner.close();
 	}
 
+}
+
+class DigitComarator implements Comparator<Integer> {
+	public int compare(Integer n1, Integer n2) {
+		String x = n1.toString();
+		String y = n2.toString();
+		String xy = x+y;
+		String yx = y+x;
+		return xy.compareTo(yx) > 0 ? -1 : 1;
+	}
 }

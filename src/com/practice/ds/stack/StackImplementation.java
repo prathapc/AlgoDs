@@ -4,7 +4,7 @@ package com.practice.ds.stack;
 /**
  * Created by prathap on 13/07/17.
  */
-public class StackPrograms {
+public class StackImplementation {
 
   public static void main(String args[]) {
     Stack stack = new Stack(1);

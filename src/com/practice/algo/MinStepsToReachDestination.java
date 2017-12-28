@@ -1,6 +1,6 @@
 package com.practice.algo;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
 package com.practice.algo.backtracking;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 /**
  * Created by prathap on 04/08/17.

@@ -2,7 +2,7 @@ package com.practice.ds.trees;
 
 import java.util.Scanner;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 public class HeapTree {
 
@@ -18,12 +18,13 @@ public class HeapTree {
 		for(int i=0; i<n; i++) {
 			a[i] = scanner.nextInt();
 		}
+		scanner.close();
 		for(int i=1; i<a.length; i++) {
 			buildHeap(a, i);
 		}
-		for(int j=0; j<a.length; j++) {
+		/*for(int j=0; j<a.length; j++) {
 			System.out.print(a[j] + " ");
-		}
+		}*/
 		return a;
 	}
 

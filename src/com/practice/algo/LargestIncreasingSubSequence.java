@@ -1,8 +1,13 @@
 package com.practice.algo;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class LargestIncreasingSubSequence {
 
 	public static void main(String[] args) {
+		Queue<Integer> queue = new LinkedList<>();queue.poll();
+
 		int a[] = new int[]{10, 22, 9, 33, 21, 50, 41, 60};
 		/*int[] temp = new int[a.length];
 		int[] result = new int[a.length];

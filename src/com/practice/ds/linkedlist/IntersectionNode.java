@@ -1,7 +1,5 @@
 package com.practice.ds.linkedlist;
 
-import java.util.Map;
-
 /**
  * Created by prathap on 04/10/17.
  */

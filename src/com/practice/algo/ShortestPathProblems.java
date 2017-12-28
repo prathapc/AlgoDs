@@ -2,8 +2,6 @@ package com.practice.algo;
 
 import java.util.Scanner;
 
-import com.practive.util.Utility;
-
 /**
  * Given a chess board of order NxM and source points (s1,s2) and destination points (d1,d2), 
  * Your task to find min number of moves required by the Knight to go to the destination cell. 

@@ -1,4 +1,4 @@
-package com.practice.ds.arrays;
+package com.practice.ds.linkedlist;
 
 /**
  * Created by prathap on 02/09/17.

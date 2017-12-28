@@ -1,6 +1,6 @@
 package com.practice.algo;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 public class SortingPrograms {
 
@@ -8,8 +8,8 @@ public class SortingPrograms {
 	static int a[] = { 34, 56, 23, 55, 12, 60 };
 
 	public static void main(String[] args) {
-		mergeSort(a);
-		//quickSort(a, 0, a.length-1);
+		//mergeSort(a);
+		quickSort(a, 0, a.length-1);
 		
 		Utility.printArray(a);
 	}

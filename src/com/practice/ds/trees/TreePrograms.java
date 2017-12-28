@@ -11,16 +11,16 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 public class TreePrograms {
 
 	public static void main(String args[]) {
 
-		 mirrorTrees();
-		 mirrorTreesDynamicInput();
+		mirrorTrees();
+		mirrorTreesDynamicInput();
 
-		levelOrder(com.practive.util.Utility.createMaxHeapTree());
+		levelOrder(Utility.createMaxHeapTree());
 		levelOrderWithAlternateReverse(Utility.createSampleTree2());
 
 		leftView(Utility.createSampleTree());
@@ -297,7 +297,10 @@ public class TreePrograms {
 		printTree(root.getLeft());
 		System.out.println(root.getData() + " ");
 		printTree(root.getRight());
+
 	}
+
+
 }
 
 class TopBottomViewNode {

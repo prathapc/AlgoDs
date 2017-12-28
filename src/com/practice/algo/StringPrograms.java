@@ -1,7 +1,9 @@
 package com.practice.algo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class StringPrograms {
@@ -13,9 +15,114 @@ public class StringPrograms {
 		//checkIfStringCanBeRepeatedByTwoPlaces();
 		//romanCharacterToInteger();
 		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
-		distinctOccurencesOfSubString();
+		//distinctOccurencesOfSubString();
+
+		//deleteCharactersToMakeAnagrams();
+		//sherlockStrings();
+
+		alphaNumericPalindrom("A man, a plan, a canal: Panama");
 
 	
+	}
+
+	private static int alphaNumericPalindrom(String a) {
+		a = a.toLowerCase();
+		char[] c = a.toCharArray();
+
+		int start = 0, end = c.length-1;
+
+		while(start<end) {
+			int startAsciiValue = (int) c[start];
+			int endAsciiValue = (int) c[end];
+
+			if(!((startAsciiValue >= 48 && startAsciiValue<=57) || (startAsciiValue>= 65 && startAsciiValue<=90) || (startAsciiValue >= 97 && startAsciiValue<= 122))) {
+				start++;
+				continue;
+			}
+
+			if(!((endAsciiValue >= 48 && endAsciiValue<=57) || (endAsciiValue>= 65 && endAsciiValue<=90) || (endAsciiValue >= 97 && endAsciiValue<= 122))) {
+				end--;
+				continue;
+			}
+
+			if(startAsciiValue != endAsciiValue) {
+				return 0;
+			}
+			start++;
+			end--;
+
+		}
+		return 1;
+	}
+
+	//Note:: Output is wrong for "abcccc"
+	private static void sherlockStrings() {
+		Scanner scan = new Scanner(System.in);
+		String watson = scan.nextLine();
+		Map<Character, Integer> countChar = new HashMap<>();
+		Map<Integer, Integer> countCount = new HashMap<>();
+		int length = watson.length();
+		int i;
+		for (i = 0; i < length; i++) {
+			char c = watson.charAt(i);
+			if (countChar.containsKey(c)) {
+				countChar.put(c, countChar.get(c) + 1);
+			} else {
+				countChar.put(c, 1);
+			}
+		}
+
+		for(Map.Entry<Character, Integer> entry : countChar.entrySet()){
+			if(countCount.containsKey(entry.getValue())){
+				countCount.put(entry.getValue(), countCount.get(entry.getValue())+1);
+			}
+			else{
+				countCount.put(entry.getValue(), 1);
+			}
+
+		}
+		if(countCount.size() == 1){
+			System.out.println("YES");
+		}
+		else if(countCount.size() == 2){
+			if(countCount.containsValue(1)){
+				System.out.println("YES");
+			}
+			else{
+				System.out.println("NO");
+			}
+		}
+		else{
+			System.out.println("NO");
+		}
+	}
+
+	private static void deleteCharactersToMakeAnagrams() {
+		Scanner s = new Scanner(System.in);
+		String str1 = s.next().toLowerCase();
+		String str2 = s.next().toLowerCase();
+
+		int a[] = new int[26];
+		int b[] = new int[26];
+
+		int result = 0;
+		for (int i = 0; i < str1.length(); i++) {
+			a[str1.charAt(i)-'a']++;
+		}
+
+		for (int i = 0; i < str2.length(); i++) {
+			b[str2.charAt(i)-'a']++;
+		}
+
+		for(int j = 0; j<26; j++) {
+			result += Math.abs(a[j] - b[j]);
+		}
+
+		if(result != 0) {
+			System.out.println(result);
+		}else {
+			System.out.println("TWO STRINGS ARE ALREADY ANAGRAMS");
+		}
 	}
 
 	private static void distinctOccurencesOfSubString() {

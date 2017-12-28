@@ -1,6 +1,6 @@
 package com.practice.algo;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 /**
  * There is a bug in the program with given input; need to debug and fix

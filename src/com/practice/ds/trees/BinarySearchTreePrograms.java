@@ -3,7 +3,7 @@ package com.practice.ds.trees;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.practive.util.Utility;
+import com.practice.util.Utility;
 
 
 public class BinarySearchTreePrograms {
