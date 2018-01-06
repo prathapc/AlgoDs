@@ -1,14 +1,66 @@
 package com.practice.ds.linkedlist;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by prathap on 05/10/17.
  */
 public class ReverseLinkedList {
 
+  private static int elevatorSuperstition(int input) {
+    int output = 0;
+    for(int i=1; i<= input; i++) {
+      if(String.valueOf(i).contains("4") || String.valueOf(i).contains("13")) {
+        output = output+2;
+      } else {
+        output++;
+      }
+    }
+
+    while (true) {
+      if(String.valueOf(output).contains("4") || String.valueOf(output).contains("13")) {
+        output = output+1;
+        continue;
+      }
+      break;
+    }
+    return output;
+  }
+
+  private static String[] packNeighbouringNumbers(int[] a) {
+    List<String> result = new ArrayList<>();
+
+    int prev = a[0];
+    int count = 1;
+    for(int i=1; i<a.length; i++) {
+      if(a[i] == prev) {
+        count++;
+      } else {
+        if(count == 1) {
+          result.add(String.valueOf(prev));
+        } else {
+          result.add(prev+":"+count);
+        }
+        count = 1;
+        prev = a[i];
+      }
+    }
+
+    if(count == 1) {
+      result.add(String.valueOf(prev));
+    } else {
+      result.add(prev+":"+count);
+    }
+
+    return result.toArray(new String[0]);
+  }
+
   public static void main(String args[]) {
-    Node head = new Node(1);
+
+    /*Node head = new Node(1);
     head.next = new Node(1);
     head.next.next = new Node(3);
     head.next.next.next = new Node(4);
@@ -21,7 +73,20 @@ public class ReverseLinkedList {
     //printList(reverseLinkedList(head));
     //printList(pairwiseSwap(head));
     printList(reverseLinkedListInGroups(head, 1));
-    //printList(removeDuplicates(head));
+    //printList(removeDuplicates(head));*/
+    //int a[] = {5,5,5,7,7,3,4,7};
+    int a[] = {5};
+    //packNeighbouringNumbers(a);
+
+    elevatorSuperstition(12);
+  }
+
+  private int getDecimalNumber(String str) {
+    int result = 0;
+    for(int i=str.length()-1; i>=0; i--) {
+      result += Math.pow(2, Character.getNumericValue(str.charAt(i)));
+    }
+    return result;
   }
 
   private static Node removeDuplicates(Node node) {
