@@ -1,4 +1,4 @@
-package com.practice.algo;
+package com.practice.algo.dp;
 
 import java.util.Scanner;
 
