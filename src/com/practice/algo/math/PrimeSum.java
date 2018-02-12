@@ -11,7 +11,7 @@ public class PrimeSum {
 
   public static void main(String args[]) {
     PrimeSum ps = new PrimeSum();
-    //ps.primesum(10);
+    ps.primesum(10);
 
   }
 

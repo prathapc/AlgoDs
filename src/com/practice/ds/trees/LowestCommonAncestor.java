@@ -9,11 +9,11 @@ public class LowestCommonAncestor {
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
 
-    //Node lca = lowestCommonAncestor(root, 12, 13);
-    //System.out.print(lca.getData());
+    Node lca = lowestCommonAncestor(root, 12, 23);
+    System.out.print(lca.getData());
   }
 
-  /*private static Node lowestCommonAncestor(Node node, int n1, int n2) {
+  private static Node lowestCommonAncestor(Node node, int n1, int n2) {
     if(node != null) {
       if(node.getData() == n1 || node.getData() == n2) {
         return node;
@@ -37,7 +37,7 @@ public class LowestCommonAncestor {
 
 
 
-  TreeNode root;
+  /*TreeNode root;
   static boolean v1 = false, v2 = false;
 
   // This function returns pointer to LCA of two given

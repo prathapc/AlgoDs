@@ -7,7 +7,6 @@ public class BinaryTreeLinkedList {
 	static Node2 prev = null;
 
 	public static void main(String[] args) {
-		// Let us create the tree as shown in above diagram
 		BinaryTreeLinkedList tree = new BinaryTreeLinkedList();
 		root = new Node2(10);
 		root.left = new Node2(12);

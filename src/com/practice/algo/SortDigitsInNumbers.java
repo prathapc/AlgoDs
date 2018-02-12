@@ -27,7 +27,7 @@ public class SortDigitsInNumbers {
 
         // Now see which of the two formed numbers
         // is greater
-        return XY.compareTo(YX) > 0 ? -1:1;
+        return XY.compareTo(YX) > 0 ? -1 : 1;
       }
     });
 

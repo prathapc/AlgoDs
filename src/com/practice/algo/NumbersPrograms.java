@@ -5,7 +5,7 @@ public class NumbersPrograms {
 	public static void main(String[] args) {
 		randomNumber();
 		
-		heighestNumberWithKSwipesWithGivenDigitsOfANumber();
+		heighestNumberWithKSwipesWithGivenDigitsOfANumber();//i/p --> 2345, k=2 o/p -> 4235
 		
 		nextHeighestNumberWithGivenDigitsInANumber();  //i/p --> 234 o/p -> 243
 		

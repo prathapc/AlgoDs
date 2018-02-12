@@ -40,5 +40,4 @@ class Trie {
     this.data = data;
     children = new HashMap<>();
   }
-
 }

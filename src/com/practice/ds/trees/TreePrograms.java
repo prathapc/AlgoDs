@@ -17,7 +17,7 @@ public class TreePrograms {
 
 	public static void main(String args[]) {
 
-		mirrorTrees();
+		/*mirrorTrees();
 		mirrorTreesDynamicInput();
 
 		levelOrder(Utility.createMaxHeapTree());
@@ -30,7 +30,7 @@ public class TreePrograms {
 
 		topViewOfTree(Utility.createSampleTree2());
 
-		System.out.println(heightOfTree(Utility.createSampleTree2()));
+		System.out.println(heightOfTree(Utility.createSampleTree2()));*/
 
 		System.out.println(diameterOfTree(Utility.createSampleTree())[1]);
 
@@ -74,6 +74,7 @@ public class TreePrograms {
 			int[] rHeightAndDiameter = diameterOfTree(root.getRight());
 
 			heightAndDiameterArray[0] = Utility.max(lHeightAndDiameter[0], rHeightAndDiameter[0]) + 1;
+
 			int leftDiameter = lHeightAndDiameter[1];
 			int rightDiameter = rHeightAndDiameter[1];
 			int rootDiameter = lHeightAndDiameter[0] + rHeightAndDiameter[0] + 1;

@@ -37,7 +37,6 @@ public class MaxSumPathBetweenTwoLeaves {
       maxSumPathInBinaryTreeRes.res = Math.max(maxSumPathInBinaryTreeRes.res, ls+rs+node.getData());
       return Math.max(ls, rs)+node.getData();
     }
-
     return node.getLeft() == null ? rs+node.getData() : ls+node.getData();
   }
 }

@@ -6,7 +6,7 @@ package com.practice.algo;
 public class LongestPalindromeSubString {
 
   public static void main(String args[]) {
-    //System.out.print(longestPalindromeRecursion("aabaacd"));
+    System.out.print(longestPalindromeRecursion("aabaacd"));
 
     //TO-DO ;;  fill 1 then 2 then k length substring pal in matrix
     System.out.print(longestPalindromeDp("aabaacd"));

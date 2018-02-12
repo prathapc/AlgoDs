@@ -4,6 +4,10 @@ import com.practice.util.Utility;
 
 /**
  * Created by prathap on 07/10/17.
+ *
+ * Other way:-
+ * 1. find sum
+ * 2. solve like coin change problem with sum/2
  */
 public class PartitionArray {
 

@@ -46,7 +46,9 @@ public class BinarySearchTreePrograms {
 	}
 
 
-
+	/*
+	Not a clean way, there is another way using recursion.
+	 */
 	private static List<Integer> pathInTree(Node root, int src, int dest) {
 		List<Integer> result = new ArrayList<Integer>();
 		if(src == root.getData()) {

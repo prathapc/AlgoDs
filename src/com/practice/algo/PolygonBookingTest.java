@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class PolygonBookingTest {
   public static void main(String args[] ) throws Exception {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     int[] input = new int[args.length];
     for(int i=0;i<args.length;i++) {
       input[i] = Integer.parseInt(args[i]);
