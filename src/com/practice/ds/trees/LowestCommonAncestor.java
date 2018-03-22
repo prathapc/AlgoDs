@@ -2,6 +2,9 @@ package com.practice.ds.trees;
 
 import com.practice.util.Utility;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by prathap on 29/12/17.
  */
@@ -9,7 +12,7 @@ public class LowestCommonAncestor {
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
 
-    Node lca = lowestCommonAncestor(root, 12, 23);
+    Node lca = lowestCommonAncestor(root, 12, 14);
     System.out.print(lca.getData());
   }
 

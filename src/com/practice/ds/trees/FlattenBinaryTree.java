@@ -8,10 +8,10 @@ import com.practice.util.Utility;
  * Given
 
 
- 1
- / \
- 2   5
- / \   \
+     1
+    / \
+   2   5
+  / \   \
  3   4   6
  The flattened tree should look like:
 

@@ -264,7 +264,7 @@ public class Utility {
 
 	/**
 	 * 					20
-	 * 			8				22
+	 * 			8				20
 	 * 		4		12				23
 	 *
 	 * 			10		14
@@ -272,7 +272,7 @@ public class Utility {
 	public static Node createSampleTree3() {
 		Node root = new Node(20);
 		Node left = new Node(8);
-		Node right = new Node(22);
+		Node right = new Node(20);
 		root.setLeft(left);
 		root.setRight(right);
 		left.setLeft(new Node(4));

@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by prathap on 07/10/17.
  */
-public class MdeiaFilesAndSizes {
+public class MediaFilesAndSizes {
 
   public static void main(String args[]) {
     /*String S = "my.song.mp3 11b\n" +

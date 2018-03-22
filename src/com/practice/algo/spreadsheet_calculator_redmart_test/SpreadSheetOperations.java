@@ -21,19 +21,6 @@ public class SpreadSheetOperations {
 		}
 	}
 
-	/**
-	 * 
-	 * @param n
-	 * @param m
-	 * @param spreadsheet
-	 * @return
-	 * 
-	 * 		{@inheritDoc } this is recursion function use Death fast search
-	 *         concept
-	 * 
-	 * 
-	 * 
-	 */
 	public boolean hasCyclicDependencies(int n, int m, String[][] spreadsheet, Set<String> VisitedCell) {
 		if (cyclicMem[n][m] == -1) {
 			if (spreadsheet[n][m].matches(".*[A-Z]+.*")) {

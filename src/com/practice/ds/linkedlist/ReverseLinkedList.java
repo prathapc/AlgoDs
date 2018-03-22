@@ -19,11 +19,12 @@ public class ReverseLinkedList {
     head.next.next.next.next = new Node(4);
     head.next.next.next.next.next = new Node(4);
     head.next.next.next.next.next.next = new Node(7);
-    head.next.next.next.next.next.next.next = new Node(8);
+    //head.next.next.next.next.next.next.next = new Node(8);
     printList(head);
 
     //printList(reverseLinkedList(head));
-    //printList(pairwiseSwap(head));
+    printList(pairwiseSwap(head));
+    printList(pairwiseSwap_ChangePointers(head));
     //printList(reverseLinkedListInGroups(head, 1));
     //printList(removeDuplicates(head));
     //int a[] = {5,5,5,7,7,3,4,7};
@@ -60,6 +61,17 @@ public class ReverseLinkedList {
       curr = curr.next.next;
     }
     return node;
+  }
+
+  //TO-DO:-
+  private static Node pairwiseSwap_ChangePointers(Node node) {
+    Node prev = node, curr = node.next, next = null;
+    while(curr != null) {
+      next = curr.next;
+
+      curr.next = prev;
+    }
+    return curr;
   }
 
   private static Node reverseLinkedListInGroups(Node node, int k) {

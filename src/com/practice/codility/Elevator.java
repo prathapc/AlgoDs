@@ -20,7 +20,49 @@ public class Elevator {
     System.out.print(solution(A, B, M, X, Y));
   }
 
-  public static int solution(int[] A, int[] B, int M, int X, int Y) {
+  public static int solution(int[] A, int[] B, int M, int X, int Y)
+  {
+    // initialize variables
+    /*int totalStops = 0;
+    long totalWeightPerRound = 0;
+    int maxPersonsCount = 0;
+    List<int> lstFloors = new List<int>();
+    int currPerson = 0;
+    bool startLift = false;
+    while (currPerson < A.Length)
+    {
+      //Should current person be considered?
+      if ((totalWeightPerRound + A[currPerson]) <= Y && (maxPersonsCount+1) <= X)
+      {
+        totalWeightPerRound += A[currPerson];
+        maxPersonsCount++;
+        lstFloors.Add(B[currPerson]);
+        //If curr person is last person then start the lift
+        if (currPerson == A.Length - 1)
+          startLift = true;
+
+        currPerson++;
+      }
+      else
+      {
+        startLift = true;
+      }
+
+      if (startLift)
+      {
+        totalStops += lstFloors.Distinct().Count() + 1;
+        //reset variable
+        lstFloors.Clear();
+        maxPersonsCount = 0;
+        totalWeightPerRound = 0;
+        startLift = false;
+      }
+    }*/
+
+    return 0;
+  }
+
+  /*public static int solution(int[] A, int[] B, int M, int X, int Y) {
     if (A == null || B == null || A.length == 0 || B.length == 0 || X < 1 || Y < 1) {
       return 0;
     }

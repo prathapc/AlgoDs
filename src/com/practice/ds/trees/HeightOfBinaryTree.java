@@ -18,15 +18,17 @@ public class HeightOfBinaryTree {
   private static int heightOfTree(Node node) {
     if(node == null) {
       return 0;
-    }
-
-    int lh = heightOfTree(node.getLeft());
-    int rh = heightOfTree(node.getRight());
-
-    if(rh > lh) {
-      return rh+1;
+    } else if (node.getLeft() == null && node.getRight() == null) {
+      return 0;
     } else {
-      return lh+1;
+      int lh = heightOfTree(node.getLeft());
+      int rh = heightOfTree(node.getRight());
+
+      if(rh > lh) {
+        return rh+1;
+      } else {
+        return lh+1;
+      }
     }
   }
 

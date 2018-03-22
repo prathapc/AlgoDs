@@ -12,7 +12,7 @@ public class QueueImplementation {
   }
 }
 
-class Queue {
+class  Queue {
   int size;
   int a[];
   int front;

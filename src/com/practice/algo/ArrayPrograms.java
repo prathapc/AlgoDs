@@ -18,9 +18,14 @@ public class ArrayPrograms {
 		//subArrayWithGivenSum();
 		//maximumSumPathInTwoArrays();
 		//sortSubArray();
-		nearestSmallerElement();
+		System.out.print(nearestSmallerElement());
 	}
 
+	/**
+	 * find nearest smaller element for every element such that the smaller element is on left side.
+	 * i/p:- {1,6,4,10,2,5}
+	 * o/p:- {-,1,1,4,1,2}
+	 */
 	public static ArrayList<Integer> nearestSmallerElement() {
 		ArrayList<Integer> arr = new ArrayList<>();
 		arr.add(34);arr.add(35);arr.add(27);arr.add(42);arr.add(5);arr.add(28);arr.add(39);arr.add(20);arr.add(28);
@@ -42,6 +47,7 @@ public class ArrayPrograms {
 		return result;
 	}
 
+	//sort sub array that entire array gets sorted
 	private static void sortSubArray() {
 		ArrayList<Integer> input = new ArrayList<>();
 		input.add(1);input.add(1);input.add(10);
@@ -50,7 +56,7 @@ public class ArrayPrograms {
 		input.add(15);input.add(10);input.add(15);
 		System.out.print(subUnsort(input));
 	}
-
+	//1,1,10,10,15,10,15,10,10,15,10,15
 	private static ArrayList<Integer> subUnsort(ArrayList<Integer> A) {
 		ArrayList<Integer> result = new ArrayList<>();
 		int i=0, j=1;
@@ -95,6 +101,16 @@ public class ArrayPrograms {
 		}
 	}
 
+	/**
+	 * Input: arr[] = {1, 4, 20, 3, 10, 5}, sum = 33
+	 Ouptut: Sum found between indexes 2 and 4
+
+	 Input: arr[] = {1, 4, 0, 0, 3, 10, 5}, sum = 7
+	 Ouptut: Sum found between indexes 1 and 4
+
+	 Input: arr[] = {1, 4}, sum = 0
+	 Output: No subarray found
+	 */
 	private static void subArrayWithGivenSum() {
 		int a[] = {1,4};
 		int sum = 4;
