@@ -86,7 +86,8 @@ public class BinarySearchTreePrograms {
 	}
 
 	private static List<Integer> findPathToANode(Node root, int dest) {
-		List<Integer> pathOfElements = new ArrayList<Integer>();
+		List<Integer> pathOfElements;
+		pathOfElements = new ArrayList<Integer>();
 		while(true) {
 			pathOfElements.add(root.getData());
 			if(root == null || root.getData() == dest) {

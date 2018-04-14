@@ -18,7 +18,6 @@ public class TreePrograms {
 	public static void main(String args[]) {
 
 		mirrorTrees();
-		mirrorTreesDynamicInput();
 
 		levelOrder(Utility.createMaxHeapTree());
 		levelOrderWithAlternateReverse(Utility.createSampleTree2());
@@ -137,19 +136,6 @@ public class TreePrograms {
 		for (Integer i : hds) {
 			System.out.print(mapOfDistAndNodes.get(i).get(0) + " ");
 		}
-	}
-
-	private static void mirrorTreesDynamicInput() {
-		Scanner scanner = new Scanner(System.in);
-		int tc = scanner.nextInt();
-		for (int i = 0; i < tc; i++) {
-			int n = scanner.nextInt();
-			int e = scanner.nextInt();
-			Node root1 = readInput(e);
-			Node root2 = readInput(e);
-			System.out.println(isMirrorTree(root1, root2) == true ? 1 : 0);
-		}
-
 	}
 
 	private static boolean isMirrorTree(Node root1, Node root2) {

@@ -17,4 +17,4 @@ bin/
 .project
 .idea/
 AlgoDs.iml
-
+out/

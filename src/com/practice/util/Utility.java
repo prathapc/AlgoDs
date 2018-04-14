@@ -169,6 +169,12 @@ public class Utility {
 		return new Scanner(System.in);
 	}
 
+	/**
+	 * 			 9
+	 * 		 5		  18
+	 * 	  1    7   10 	  20
+	 *
+	 */
 	public static Node createBinarySearchTree() {
 		Node root = new Node(9);
 		Node left = new Node(5);
@@ -224,6 +230,19 @@ public class Utility {
 		left.setRight(leftRight);
 		leftRight.setLeft(new Node(4));
 		right.setRight(new Node(20));
+		return root;
+	}
+
+	public static Node createSampleSumTree() {
+		Node root = new Node(28);
+		Node left = new Node(11);
+		Node right = new Node(3);
+		root.setLeft(left);
+		root.setRight(right);
+		left.setLeft(new Node(5));
+		Node leftRight = new Node(6);
+		left.setRight(leftRight);
+		right.setRight(new Node(3));
 		return root;
 	}
 
