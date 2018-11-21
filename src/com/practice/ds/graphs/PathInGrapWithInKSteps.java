@@ -1,10 +1,8 @@
 package com.practice.ds.graphs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by prathap on 05/08/17.
@@ -59,23 +57,23 @@ public class PathInGrapWithInKSteps {
     graph.addEdge('C','B');
     return graph;
   }
-}
 
-class Graph {
-  int v;
-  LinkedList<Character> adj[];
+  static class Graph {
+    int v;
+    LinkedList<Character> adj[];
 
-  Graph(int v) {
-    this.v = v;
-    adj = new LinkedList[v];
+    Graph(int v) {
+      this.v = v;
+      adj = new LinkedList[v];
 
-    for(int i=0; i<v; i++) {
-      adj[i] = new LinkedList<>();
+      for(int i=0; i<v; i++) {
+        adj[i] = new LinkedList<>();
+      }
     }
-  }
 
-  void addEdge(char c, char w) {
-    int offset = (int) 'A';
-    adj[c-offset].add(w);
+    void addEdge(char c, char w) {
+      int offset = (int) 'A';
+      adj[c-offset].add(w);
+    }
   }
 }

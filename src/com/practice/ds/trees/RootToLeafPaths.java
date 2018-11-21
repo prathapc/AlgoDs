@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class RootToLeafPaths {
         for(Integer i : data) {
           System.out.print(i + " -> ");
         }
-        System.out.print("null ");
+        System.out.print("null \n");
       } else {
         printAllRootToLeafPaths(node.getLeft(), data);
         printAllRootToLeafPaths(node.getRight(), data);

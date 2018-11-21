@@ -2,23 +2,21 @@ package com.practice.ds.trees;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 
 public class BinarySearchTreePrograms {
 	public static void main(String args[]) {
 		Node root = Utility.createBinarySearchTree();
-		System.out.println(isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+		//System.out.println(isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 		//Scanner scanner = Utility.getScanner();
-		//System.out.println(pathInTree(root, scanner.nextInt(), scanner.nextInt()));
+		System.out.println(pathInTree(root, 5, 20));
 		
 		//List<Integer> sortedListUsingInOrderTraversal = new ArrayList<Integer>();
 		//inOrderTraversal(root, sortedListUsingInOrderTraversal);
 		//checkSumOfTwoNumbersInBSTMatchesInputNumber(sortedListUsingInOrderTraversal, 19);
-
 	}
 
 	private static void inOrderTraversal(Node root, List<Integer> sortedListUsingInOrderTraversal) {

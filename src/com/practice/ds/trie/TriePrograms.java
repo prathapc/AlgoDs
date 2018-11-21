@@ -29,15 +29,15 @@ public class TriePrograms {
     }
     crawl.isEnd = true;
   }
-}
 
-class Trie {
-  int data;
-  boolean isEnd;
-  Map<Integer, Trie> children;
+  static class Trie {
+    int data;
+    boolean isEnd;
+    Map<Integer, Trie> children;
 
-  public Trie(int data) {
-    this.data = data;
-    children = new HashMap<>();
+    public Trie(int data) {
+      this.data = data;
+      children = new HashMap<>();
+    }
   }
 }

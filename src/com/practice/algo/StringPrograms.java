@@ -1,27 +1,47 @@
 package com.practice.algo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class StringPrograms {
 
 	public static void main(String[] args) {
-		// noOfSubstringsStartAndEndWithOne(); //count no of 1's and nc2 formula
-		// i.e n(n-1)/2
+		//noOfSubstringsStartAndEndWithOne("00100101"); //count no of 1's and nc2 formula i.e n(n-1)/2
 		//findSubstringsStartAndEndWithOne(); // wrong o/p
 		//checkIfStringCanBeRepeatedByTwoPlaces();
 		//romanCharacterToInteger();
 		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
-		distinctOccurencesOfSubString();
-
+		//distinctOccurencesOfSubString();
 		//deleteCharactersToMakeAnagrams();
 		//sherlockStrings();
-		//alphaNumericPalindrom("A man, a plan, a canal: Panama");
+		alphaNumericPalindrom("A man, a plan, a canal: Panama");
+	}
 
-	
+	/**
+	 * Given a binary string, count number of substrings that start and end with 1.
+	 * For example, if the input string is “00100101”, then there are three substrings “1001”, “100101” and “101”.
+	 */
+	private static void noOfSubstringsStartAndEndWithOne(String str) {
+		noOfSubstringsStartAndEndWithOneUtil(str, "", 0);
+	}
+
+	private static void noOfSubstringsStartAndEndWithOneUtil(String str, String temp, int i) {
+		if (i < str.length()) {
+			if (str.charAt(i) == '1') {
+				if (temp != "") {
+					temp += "1";
+					System.out.println(temp);
+					noOfSubstringsStartAndEndWithOneUtil(str, temp, i+1);
+				}
+				noOfSubstringsStartAndEndWithOneUtil(str, "1", i+1);
+			} else {
+				if (temp != "") {
+					temp += "0";
+				}
+				noOfSubstringsStartAndEndWithOneUtil(str, temp, i+1);
+			}
+		}
 	}
 
 	private static int alphaNumericPalindrom(String a) {
@@ -54,6 +74,7 @@ public class StringPrograms {
 		return 1;
 	}
 
+	//https://github.com/RyanFehr/HackerRank/blob/master/Algorithms/Strings/Sherlock%20and%20Valid%20String/Solution.java
 	//Note:: Output is wrong for "abcccc"
 	private static void sherlockStrings() {
 		Scanner scan = new Scanner(System.in);
@@ -135,23 +156,49 @@ public class StringPrograms {
 	}
 
 	private static int distinctOccurencesOfSubStringUtil1(String S, String T) {
-		int[][] table = new int[S.length() + 1][T.length() + 1];
+      int m = T.length(), n = S.length();
 
-		for (int i = 0; i < S.length(); i++)
-			table[i][0] = 1;
+      // T can't appear as a subsequence in S
+      if (m > n)
+        return 0;
 
-		for (int i = 1; i <= S.length(); i++) {
-			for (int j = 1; j <= T.length(); j++) {
-				if (S.charAt(i - 1) == T.charAt(j - 1)) {
-					table[i][j] += table[i - 1][j] + table[i - 1][j - 1];
-				} else {
-					table[i][j] += table[i - 1][j];
-				}
-			}
-		}
-		return table[S.length()][T.length()];
+      // mat[i][j] stores the count of occurrences of
+      // T(1..i) in S(1..j).
+      int[][] mat = new int[m + 1][n + 1];
+
+      // Initializing first column with all 0s. An empty
+      // string can't have another string as suhsequence
+      for (int i = 1; i <= m; i++)
+        mat[i][0] = 0;
+
+      // Initializing first row with all 1s. An empty
+      // string is subsequence of all.
+      for (int j = 0; j <= n; j++)
+        mat[0][j] = 1;
+
+      // Fill mat[][] in bottom up manner
+      for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+          // If last characters don't match, then value
+          // is same as the value without last character
+          // in S.
+          if (T.charAt(i - 1) != S.charAt(j - 1))
+            mat[i][j] = mat[i][j - 1];
+
+            // Else value is obtained considering two cases.
+            // a) All substrings without last character in S
+            // b) All substrings without last characters in
+            // both.
+          else
+            mat[i][j] = mat[i][j - 1] + mat[i - 1][j - 1];
+        }
+      }
+
+      Utility.printArray(mat, m+1, n+1);
+      return mat[m][n];
 	}
 
+	// 1 11 21 1211 111221 ?
 	private static void decodePatternLookAndSaySequence() {
 		int k = 6; //find 5th number in the sequence i.e 312211 
 		String result = "";
@@ -237,7 +284,7 @@ public class StringPrograms {
 	}
 
 	private static void findSubstringsStartAndEndWithOne() {
-		String str = "001001010101";
+		String str = "00100101";
 		int count = 0;
 		int n = str.length();
 		System.out.println(findSubstringsStartAndEndWithOneUtil(str, 0, n - 1, count));

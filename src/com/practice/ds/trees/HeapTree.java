@@ -2,7 +2,7 @@ package com.practice.ds.trees;
 
 import java.util.Scanner;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 public class HeapTree {
 

@@ -1,7 +1,5 @@
 package com.practice.algo;
 
-import com.practice.util.Utility;
-
 /**
  * Created by prathap on 06/08/17.
  */

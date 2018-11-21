@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,6 @@ import java.util.List;
  */
 public class MaxSumPathBetweenTwoLeaves {
 
-  static class MaxSumPathInBinaryTreeRes {
-    int res;
-  }
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
     List<Integer> data = new ArrayList<>();
@@ -38,5 +35,9 @@ public class MaxSumPathBetweenTwoLeaves {
       return Math.max(ls, rs)+node.getData();
     }
     return node.getLeft() == null ? rs+node.getData() : ls+node.getData();
+  }
+
+  static class MaxSumPathInBinaryTreeRes {
+    int res;
   }
 }

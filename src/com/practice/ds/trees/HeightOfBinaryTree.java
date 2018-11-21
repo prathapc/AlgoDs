@@ -1,9 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.practice.algo.Utility;
 
 /**
  * Created by prathap on 21/12/17.
@@ -12,7 +9,7 @@ public class HeightOfBinaryTree {
 
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
-    System.out.print(heightOfTree(root));
+    System.out.print(heightOfTree1(root));
   }
 
   private static int heightOfTree(Node node) {
@@ -20,6 +17,20 @@ public class HeightOfBinaryTree {
       return 0;
     } else {
       return (1 + Utility.max(heightOfTree(node.getLeft()), heightOfTree(node.getRight())));
+    }
+  }
+
+  private static int heightOfTree1(Node node) {
+    if(node == null) {
+      return 0;
+    }
+    int l = heightOfTree(node.getLeft());
+    int r = heightOfTree(node.getRight());
+
+    if (l > r) {
+      return 1 + l;
+    } else {
+      return 1 + r;
     }
   }
 

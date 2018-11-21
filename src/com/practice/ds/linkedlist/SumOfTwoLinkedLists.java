@@ -4,8 +4,6 @@ package com.practice.ds.linkedlist;
  * Created by prathap on 02/09/17.
  */
 
-import com.practice.util.Utility;
-
 /**
  * i/p:
  * 1 -> 2 -> 3
@@ -22,7 +20,7 @@ public class SumOfTwoLinkedLists {
     Node node2 = new Node(4);
     node2.next = new Node(5);*/
 
-    Node node1 = new Node(2);
+    Node node1 = new Node(12);
     node1.next = new Node(4);
     node1.next.next = new Node(3);
 
@@ -77,16 +75,17 @@ public class SumOfTwoLinkedLists {
     System.out.print("null");
     System.out.println();
   }
-}
 
-class Node {
-  public int data;
-  public Node next;
-  public Node random;
+  static class Node {
+    public int data;
+    public Node next;
+    public Node random;
 
-  public Node(int data) {
-    super();
-    this.data = data;
+    public Node(int data) {
+      super();
+      this.data = data;
+    }
+
   }
-
 }
+

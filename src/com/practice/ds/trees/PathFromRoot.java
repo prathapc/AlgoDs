@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class PathFromRoot {
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
     List<Integer> data = new ArrayList<>();
-    printPathFromRoot1(root, data, 23);
+    printPathFromRoot(root, data, 23);
   }
 
   private static void printPathFromRoot(Node node, List<Integer> data, int k) {

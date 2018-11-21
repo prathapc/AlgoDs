@@ -1,8 +1,5 @@
 package com.practice.algo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * Created by prathap on 09/12/17.
  *

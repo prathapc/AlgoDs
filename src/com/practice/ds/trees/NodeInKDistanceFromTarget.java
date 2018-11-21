@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 /**
  * Created by prathap on 02/09/17.
@@ -10,7 +10,7 @@ import com.practice.util.Utility;
 public class NodeInKDistanceFromTarget {
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
-    Node target = root.getLeft();
+    Node target = root.getLeft().getRight();
     findNodesInKDistanceFromTarget(root, target, 2);
   }
 
@@ -26,7 +26,7 @@ public class NodeInKDistanceFromTarget {
     //if target present in left sub tree
     int d1 = findNodesInKDistanceFromTarget(node.getLeft(), target, k);
     if(d1 != -1) {
-      //print root if in k distnace from target
+      //print root if in k distance from target
       if(d1+1 == k) {
         System.out.println(node.getData());
       } else {

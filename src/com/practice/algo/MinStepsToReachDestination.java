@@ -1,9 +1,5 @@
 package com.practice.algo;
 
-import com.practice.util.Utility;
-
-import java.util.Scanner;
-
 /**
  * Created by prathap on 05/10/17.
  *
@@ -11,20 +7,31 @@ import java.util.Scanner;
  */
 public class MinStepsToReachDestination {
   public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
-    int n = scanner.nextInt();
-    System.out.print(minStepsToReachN_Recursion(n, 0, 0));
+    int dest = 11;
+    System.out.println("No. of steps required"+
+        " to reach " + dest +
+        " is " + minStepsToReachN_Recursion(0, 0, dest));
   }
 
-  private static int minStepsToReachN_Recursion(int n, int i, int move) {
-    if(n == i)
-      return move;
-    else if(Math.abs(i) > n)
+  private static int minStepsToReachN_Recursion(int source, int step, int dest) {
+    // base cases
+    if (Math.abs(source) > (dest))
       return Integer.MAX_VALUE;
-    else {
-      return Utility.min(
-          minStepsToReachN_Recursion(n, i-(move+1), move+1) ,
-          minStepsToReachN_Recursion(n, i+(move+1), move+1));
-    }
+
+    if (source == dest)
+      return step;
+
+    // at each point we can go either way
+
+    // if we go on positive side
+    int pos = minStepsToReachN_Recursion(source + step + 1,
+        step + 1, dest);
+
+    // if we go on negative side
+    int neg = minStepsToReachN_Recursion(source - step - 1,
+        step + 1, dest);
+
+    // minimum of both cases
+    return Math.min(pos, neg);
   }
 }

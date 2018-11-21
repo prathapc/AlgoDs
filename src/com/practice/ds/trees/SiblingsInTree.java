@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 /**
  * Created by prathap on 22/08/17.

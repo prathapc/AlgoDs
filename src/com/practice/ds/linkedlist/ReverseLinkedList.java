@@ -23,7 +23,7 @@ public class ReverseLinkedList {
     printList(head);
 
     //printList(reverseLinkedList(head));
-    printList(pairwiseSwap(head));
+    //printList(pairwiseSwap(head));
     printList(pairwiseSwap_ChangePointers(head));
     //printList(reverseLinkedListInGroups(head, 1));
     //printList(removeDuplicates(head));
@@ -63,15 +63,16 @@ public class ReverseLinkedList {
     return node;
   }
 
-  //TO-DO:-
   private static Node pairwiseSwap_ChangePointers(Node node) {
-    Node prev = node, curr = node.next, next = null;
-    while(curr != null) {
-      next = curr.next;
-
-      curr.next = prev;
+    if (node == null || node.next == null) {
+      return node;
     }
-    return curr;
+
+    Node remaining = node.next.next;
+    Node newHead = node.next;
+    node.next.next = node;
+    node.next = pairwiseSwap(remaining);
+    return newHead;
   }
 
   private static Node reverseLinkedListInGroups(Node node, int k) {

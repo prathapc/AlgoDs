@@ -2,7 +2,7 @@ package com.practice.algo.dp;
 
 import java.util.Scanner;
 
-import com.practice.util.Utility;
+import com.practice.algo.Utility;
 
 public class GoldMineProblem {
 

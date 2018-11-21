@@ -12,52 +12,52 @@ public class StackImplementation {
     stack.push(3);
     stack.pop();
   }
-}
 
-class Stack {
-  int len;
-  int top;
-  int a[];
+  static class Stack {
+    int len;
+    int top;
+    int a[];
 
-  Stack(int size) {
-    this.len = size;
-    a = new int[size];
-    top = -1;
-  }
+    Stack(int size) {
+      this.len = size;
+      a = new int[size];
+      top = -1;
+    }
 
-  public int size() {
-    return len;
-  }
+    public int size() {
+      return len;
+    }
 
-  public boolean isEmpty() {
-    return top==-1;
-  }
+    public boolean isEmpty() {
+      return top==-1;
+    }
 
-  public boolean isFull() {
-    return top==len-1;
-  }
+    public boolean isFull() {
+      return top==len-1;
+    }
 
-  public void push(int i) {
-    ensureCapacity();
-    a[++top] = i;
-  }
+    public void push(int i) {
+      ensureCapacity();
+      a[++top] = i;
+    }
 
-  public int pop() {
-    return a[--top];
-  }
+    public int pop() {
+      return a[--top];
+    }
 
-  public int peek() {
-    return a[top];
-  }
+    public int peek() {
+      return a[top];
+    }
 
-  private void ensureCapacity() {
-    if(top+1 >= len) {
-      int b[] = new int[len*2];
-      for(int i=0; i<len; i++) {
-        b[i] = a[i];
+    private void ensureCapacity() {
+      if(top+1 >= len) {
+        int b[] = new int[len*2];
+        for(int i=0; i<len; i++) {
+          b[i] = a[i];
+        }
+        a = b;
+        len *= 2;
       }
-      a = b;
-      len *= 2;
     }
   }
 }

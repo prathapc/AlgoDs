@@ -1,9 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.util.Utility;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import com.practice.algo.Utility;
 
 /**
  * Created by prathap on 29/12/17.

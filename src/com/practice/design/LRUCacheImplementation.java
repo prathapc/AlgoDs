@@ -67,9 +67,11 @@ public class LRUCacheImplementation {
       map.put(key, keyValueNode);
     }
   }
+
+  static class KeyValueNode {
+    int key;
+    int value;
+  }
 }
 
-class KeyValueNode {
-  int key;
-  int value;
-}
+

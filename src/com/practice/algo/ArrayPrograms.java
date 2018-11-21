@@ -3,22 +3,128 @@ package com.practice.algo;
 import java.util.*;
 import java.util.Stack;
 
-import com.practice.util.Utility;
-
 public class ArrayPrograms {
 
 	public static void main(String[] args) throws Exception {
 		
-		//largestNumberWithMaxKSwipes();
-		//arangeNumbersInArrayToFormLargestNumber();
 		//find4ElementsWithSumEqualToK();
-		//commonElementsInTwoArrays();
-		//arrayAfterNRotations();
+		arrayAfterNRotations();
 		//printMatrixInSpiralOrder();
 		//subArrayWithGivenSum();
-		//maximumSumPathInTwoArrays();
+		//noOfSubArraysWlithGivenSum();
+		maximumSumPathInTwoArrays();
 		//sortSubArray();
-		System.out.print(nearestSmallerElement());
+		//System.out.print(nearestSmallerElement());
+
+		//maxProfitByBuySellStockAtMost2Times();
+		maxProfitByBuySellStockAtMostKTimes();
+	}
+
+	private static void maxProfitByBuySellStockAtMostKTimes() {
+
+		int k = 3;
+		int price[] = {12, 14, 17, 10, 14, 13, 12, 15};
+
+		int n = price.length;
+
+		// table to store results of subproblems
+		// profit[t][i] stores maximum profit
+		// using atmost t transactions up to day
+		// i (including day i)
+		int profit[][] = new int[k + 1][ n + 1];
+
+		// For day 0, you can't earn money
+		// irrespective of how many times you trade
+		for (int i = 0; i <= k; i++)
+			profit[i][0] = 0;
+
+		// profit is 0 if we don't do any
+		// transation (i.e. k =0)
+		for (int j = 0; j <= n; j++)
+			profit[0][j] = 0;
+
+		// fill the table in bottom-up fashion
+		for (int i = 1; i <= k; i++)
+		{
+			int prevDiff = Integer.MIN_VALUE;
+			for (int j = 1; j < n; j++)
+			{
+				prevDiff = Math.max(prevDiff,
+						profit[i - 1][j - 1] -
+								price[j - 1]);
+				profit[i][j] = Math.max(profit[i][j - 1],
+						price[j] + prevDiff);
+			}
+		}
+
+		System.out.println(profit[k][n - 1]);
+	}
+
+	private static void maxProfitByBuySellStockAtMost2Times() {
+		int price[] = {2, 30, 15, 10, 8, 25, 80};
+		int n = price.length;
+
+		// Create profit array and initialize it as 0
+		int profit[] = new int[n];
+		for (int i=0; i<n; i++)
+			profit[i] = 0;
+
+        /* Get the maximum profit with only one transaction
+           allowed. After this loop, profit[i] contains maximum
+           profit from price[i..n-1] using at most one trans. */
+		int max_price = price[n-1];
+		for (int i=n-2;i>=0;i--)
+		{
+			// max_price has maximum of price[i..n-1]
+			if (price[i] > max_price)
+				max_price = price[i];
+
+			// we can get profit[i] by taking maximum of:
+			// a) previous maximum, i.e., profit[i+1]
+			// b) profit by buying at price[i] and selling at
+			//    max_price
+			profit[i] = Math.max(profit[i+1], max_price-price[i]);
+		}
+
+        /* Get the maximum profit with two transactions allowed
+           After this loop, profit[n-1] contains the result */
+		int min_price = price[0];
+		for (int i=1; i<n; i++)
+		{
+			// min_price is minimum price in price[0..i]
+			if (price[i] < min_price)
+				min_price = price[i];
+
+			// Maximum profit is maximum of:
+			// a) previous maximum, i.e., profit[i-1]
+			// b) (Buy, Sell) at (min_price, price[i]) and add
+			//    profit of other trans. stored in profit[i]
+			profit[i] = Math.max(profit[i-1], profit[i] +
+					(price[i]-min_price) );
+		}
+		System.out.print(profit[n-1]);
+	}
+
+	/**
+	 * we know the key to solve this problem is SUM[i, j].
+	 * So if we know SUM[0, i - 1] and SUM[0, j], then we can easily get SUM[i, j].
+	 * To achieve this, we just need to go through the array,
+	 * calculate the current sum and save number of all seen PreSum to a HashMap
+	 */
+	private static void noOfSubArraysWlithGivenSum() {
+		int nums[] = {10, 2, -2, -20, 10};
+		int k = -10;
+		int sum = 0, result = 0;
+		Map<Integer, Integer> preSum = new HashMap<>();
+		preSum.put(0, 1);
+		for (int i=1; i<nums.length; i++) {
+			sum += nums[i];
+			if (preSum.containsKey(sum - k)) {
+				result += preSum.get(sum - k);
+			}
+			preSum.put(sum, preSum.getOrDefault(sum, 0) + 1);
+		}
+		System.out.print(result);
 	}
 
 	/**
@@ -89,18 +195,6 @@ public class ArrayPrograms {
 		return result;
 	}
 
-	private static void arangeNumbersInArrayToFormLargestNumber() {
-		List<Integer> input = new ArrayList<>(Arrays.asList(3,30,34));
-		Collections.sort(input, new DigitComarator());
-		StringBuffer sbf = new StringBuffer("");
-		for(Integer n : input) {
-			if(n == 0) {
-				continue;
-			}
-			sbf.append(n);
-		}
-	}
-
 	/**
 	 * Input: arr[] = {1, 4, 20, 3, 10, 5}, sum = 33
 	 Ouptut: Sum found between indexes 2 and 4
@@ -109,11 +203,11 @@ public class ArrayPrograms {
 	 Ouptut: Sum found between indexes 1 and 4
 
 	 Input: arr[] = {1, 4}, sum = 0
-	 Output: No subarray found
+	 Output: No sub array found
 	 */
 	private static void subArrayWithGivenSum() {
-		int a[] = {1,4};
-		int sum = 4;
+		int a[] = {1, 4, 20, 3, 10, 5};
+		int sum = 33;
 		int tempSum = a[0];
 		int start = 0, end = 0;
 		if(tempSum == sum) {
@@ -235,13 +329,6 @@ public class ArrayPrograms {
 		ret.forEach(System.out::println);
 	}
 
-	private static void commonElementsInTwoArrays() {
-		int a[] = new int[]{10, 2, 3, 4, 5, 9, 7, 8};
-		int b[] = new int[]{1, 20, 3, 6, 7};
-
-
-	}
-
 	private static void find4ElementsWithSumEqualToK() {
 		//int a[] = new int[]{10, 2, 3, 4, 5, 9, 7, 8};
 		int a[] = new int[]{3,2,1,6,4,5};
@@ -323,43 +410,6 @@ public class ArrayPrograms {
 		int j;
 		int sum;
 		
-	}
-
-	private static void largestNumberWithMaxKSwipes() {
-		int a[] = {2,5,1,9,3,7,2,8,9,3};  //9 5 3 2 1 7 2 8 9 3
-		int k = 6;
-		
-		//int a[] = {9,9,9,9};
-		//int k = 4;
-		largestNumberWithKSwipesUtil(a, 0, k);
-		Utility.printArray(a);
-		
-	}
-
-	private static void largestNumberWithKSwipesUtil(int[] a, int start, int k) {
-		if(k > 0 && start < a.length-1) {
-			int max = a[start];
-			int maxIndex = start;
-			for(int i=start; i<=k; i++) {
-				if(i+1 < a.length) {
-					if(a[start+i] > max) {
-						max = a[start+i];
-						maxIndex = start+i;
-					}
-				}
-			}
-			if(maxIndex > start) {
-				swapUtil(a, start, maxIndex);	
-			}
-			k -= (maxIndex-start);
-			largestNumberWithKSwipesUtil(a, ++start, k);
-		}
-	}
-
-	private static void swapUtil(int[] a, int start, int maxIndex) {
-		for(int i=maxIndex; i>start; i--) {
-			Utility.swapElementsInArray(a, i, i-1);
-		}
 	}
 
 	private static void maximumSumPathInTwoArrays() {
@@ -618,14 +668,4 @@ public class ArrayPrograms {
 		scanner.close();
 	}
 
-}
-
-class DigitComarator implements Comparator<Integer> {
-	public int compare(Integer n1, Integer n2) {
-		String x = n1.toString();
-		String y = n2.toString();
-		String xy = x+y;
-		String yx = y+x;
-		return xy.compareTo(yx) > 0 ? -1 : 1;
-	}
 }
