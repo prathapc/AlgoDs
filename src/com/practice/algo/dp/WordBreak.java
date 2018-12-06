@@ -1,5 +1,6 @@
 package com.practice.algo.dp;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +21,9 @@ public class WordBreak {
 
     //System.out.print(wordBreakUtil_recursion(word, dictionary));
 
-    System.out.print(wordBreakUtil_dp(word, dictionary));
+    //System.out.print(wordBreakUtil_dp(word, dictionary));
+
+    System.out.print(wordBreakBottomUp(word, Arrays.asList(dictionary)));
 
   }
 

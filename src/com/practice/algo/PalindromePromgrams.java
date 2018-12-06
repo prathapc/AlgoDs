@@ -6,13 +6,20 @@ import java.util.TreeMap;
 public class PalindromePromgrams {
 
   public static void main(String args[]) {
-    //distinctPalindromicStubStrings("abaaa");
+    distinctPalindromicStubStrings("abaaa");
 
     String str = "abaab";
-    //countPalindromicSubStrings(str.toCharArray(), str.length());
+    countPalindromicSubStrings(str.toCharArray(), str.length());
 
-    //System.out.print(longestPalindromeRecursion("aabaacd"));
+    System.out.print(longestPalindromeRecursion("aabaacd"));
     System.out.print(longestPalindromeDp("ccc"));
+
+    distinctPalindromicStubStringsDp("abaaa");
+  }
+
+  private static void distinctPalindromicStubStringsDp(String abaaa) {
+
+
   }
 
   //https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/

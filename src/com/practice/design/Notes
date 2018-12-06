@@ -1,0 +1,31 @@
+Sources:
+--------
+https://github.com/donnemartin/system-design-primer
+
+tech dummies youtube channel
+interviewbit design questions
+famous tech companies engineering blogs
+
+Design cache system:
+http://blog.gainlo.co/index.php/2016/05/17/design-a-cache-system/
+
+https://medium.com/@Pinterest_Engineering/sharding-pinterest-how-we-scaled-our-mysql-fleet-3f341e96ca6f
+
+https://www.interviewbit.com/problems/highly-available-database/
+
+Design logging system
+https://thispointer.com/designing-a-configurable-logging-framework-using-observer-design-pattern/
+
+Design authentication and authorisation system
+https://medium.com/tech-tajawal/microservice-authentication-and-authorization-solutions-e0e5e74b248a
+
+Consistent hashing:
+https://akshatm.svbtle.com/consistent-hash-rings-theory-and-implementation
+
+Common design problems to exlpore:
+1. Movie/bus/restaurant booking
+2. Gaming system
+3. Social networking design
+4. Recommendation engine
+5. Oauth system desing
+6. Chat application design

@@ -1,4 +1,4 @@
-package com.practice.algo;
+package com.practice.algo.arrays;
 
 /**
  * Created by prathap on 28/12/17.

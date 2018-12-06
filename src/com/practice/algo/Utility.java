@@ -1,22 +1,10 @@
 package com.practice.algo;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 import com.practice.ds.trees.Node;
 
-/**
- * Separate the integer into 4 digits.
- If you don't have a 0, 1, or 2 then there is no answer.
- Put the largest number that is <= 2 in the first spot in the time.
- If the first digit was a 2, then put the largest remaining number that is <=3 in the second place. (If there isn't one, then there is no answer.) If the first digit was 1 or 0, then place the largest remaining number in the second place.
- Put the largest remaining number that is <= 5 in the third place.
- Put the only remaining number in the fourth place.
- */
 public class Utility {
 
 	public static void main(String args[]) {
@@ -93,15 +81,6 @@ public class Utility {
 		}
 		return sec;
 	}
-
-
-
-
-
-
-
-
-
 
 	public static void geeksforgeeksInputFormat() {
 		Scanner scanner = new Scanner(System.in);
@@ -282,16 +261,16 @@ public class Utility {
 	}
 
 	/**
-	 * 					20
-	 * 			8				20
+	 * 					10
+	 * 			8			  12
 	 * 		4		12				23
 	 *
 	 * 			10		14
 	 */
 	public static Node createSampleTree3() {
-		Node root = new Node(20);
+		Node root = new Node(10);
 		Node left = new Node(8);
-		Node right = new Node(20);
+		Node right = new Node(12);
 		root.setLeft(left);
 		root.setRight(right);
 		left.setLeft(new Node(4));

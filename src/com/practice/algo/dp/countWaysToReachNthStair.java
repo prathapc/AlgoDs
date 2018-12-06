@@ -6,8 +6,10 @@ public class countWaysToReachNthStair {
   public static void main(String args[]) {
 
     int input = 4;
-    countWaysToReachNthStair_maxTwoSteps(input);
-    countWaysToReachNthStair_mSteps(4, 4);
+    //countWaysToReachNthStair_maxTwoSteps(input);
+    countWaysToReachNthStair_mSteps(6, 6);
+
+    System.out.println(noOfWaysToReachGivenScore(20)); //reach 20 with [3,5,10]
 
   }
 
@@ -34,12 +36,34 @@ public class countWaysToReachNthStair {
   private static void countWaysToReachNthStair_mSteps(int n, int m) {
     int res[] = new int[n];
     res[0] = 1; res[1] = 1;
-    for (int i=2; i<n; i++)
-    {
+    for (int i=2; i<n; i++) {
       res[i] = 0;
       for (int j=1; j<=m && j<=i; j++)
         res[i] += res[i-j];
     }
-    System.out.print(res[n-1]);
+    System.out.println(res[n-1]);
+  }
+
+  private static int noOfWaysToReachGivenScore(int n) {
+    // table[i] will store count of solutions for
+    // value i.
+    int table[] = new int[n + 1], i;
+
+    // Base case (If given value is 0)
+    table[0] = 1;
+
+    // One by one consider given 3
+    // moves and update the table[]
+    // values after the index greater
+    // than or equal to the value of
+    // the picked move
+    for (i = 3; i <= n; i++)
+      table[i] += table[i - 3];
+    for (i = 5; i <= n; i++)
+      table[i] += table[i - 5];
+    for (i = 10; i <= n; i++)
+      table[i] += table[i - 10];
+
+    return table[n];
   }
 }

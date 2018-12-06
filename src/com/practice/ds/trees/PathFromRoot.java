@@ -16,15 +16,18 @@ public class PathFromRoot {
   }
 
   private static void printPathFromRoot(Node node, List<Integer> data, int k) {
-    if(node == null)
-      return;
-    data.add(node.getData());
-    if(node.getData() == k) {
-      data.forEach(System.out::println);
+    if(node != null) {
+
+      data.add(node.getData());
+      if(node.getData() == k) {
+        data.forEach(System.out::println);
+      }
+
+      printPathFromRoot(node.getLeft(), data, k);
+      printPathFromRoot(node.getRight(), data, k);
+
+      data.remove(data.size()-1);
     }
-    printPathFromRoot(node.getLeft(), data, k);
-    printPathFromRoot(node.getRight(), data, k);
-    data.remove(data.size()-1);
   }
 
   private static boolean printPathFromRoot1(Node node, List<Integer> data, int k) {

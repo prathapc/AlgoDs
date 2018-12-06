@@ -6,9 +6,7 @@ import java.util.List;
 
 public class CombinationOfWordsFormedFromMobileKeypad {
 
-  public static void findCombinations(List<List<Character>> keypad,
-                                      int[] input)
-  {
+  public static void findCombinations(List<List<Character>> keypad, int[] input) {
     // list to store combinations of all possible words
     List<String> outputList = new ArrayList<>();
 
@@ -18,15 +16,13 @@ public class CombinationOfWordsFormedFromMobileKeypad {
     }
 
     // start from second digit
-    for (int i = 1; i < input.length; i++)
-    {
+    for (int i = 1; i < input.length; i++) {
       // create a temporary list and clear contents of output list
       List<String> prevList = new ArrayList<>(outputList);
       outputList.clear();
 
       // for each character associated with current digit in the keypad
-      for (Character ch: keypad.get(input[i]))
-      {
+      for (Character ch: keypad.get(input[i])) {
         // append current character to each word in the output list
         for (String s: prevList) {
           outputList.add(s + ch);

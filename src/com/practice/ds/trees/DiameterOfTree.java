@@ -4,13 +4,6 @@ import com.practice.algo.Utility;
 
 public class DiameterOfTree {
 
-  static class Ans {
-    int ans;
-    Ans(int ans) {
-      this.ans = ans;
-    }
-  }
-
   public static void main(String args[]) {
     //diameterOfTree(Utility.createSampleTree(), new Ans(Integer.MIN_VALUE));
     System.out.println(diameterOfTree(Utility.createSampleTree())[1]);
@@ -52,6 +45,7 @@ public class DiameterOfTree {
 
       int[] lHeightAndDiameter = diameterOfTree(root.getLeft());
       int[] rHeightAndDiameter = diameterOfTree(root.getRight());
+
       heightAndDiameterArray[0] = Utility.max(lHeightAndDiameter[0], rHeightAndDiameter[0]) + 1;
 
       int leftDiameter = lHeightAndDiameter[1];

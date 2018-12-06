@@ -23,8 +23,10 @@ public class NodeInKDistanceFromTarget {
       return 0;
     }
 
-    //if target present in left sub tree
     int d1 = findNodesInKDistanceFromTarget(node.getLeft(), target, k);
+    int d2 = findNodesInKDistanceFromTarget(node.getRight(), target, k);
+
+    //if target present in left sub tree
     if(d1 != -1) {
       //print root if in k distance from target
       if(d1+1 == k) {
@@ -36,7 +38,6 @@ public class NodeInKDistanceFromTarget {
     }
 
     //if target present in right sub tree
-    int d2 = findNodesInKDistanceFromTarget(node.getRight(), target, k);
     if(d2 != -1) {
       //print root if in k distnace from target
       if(d2+1 == k) {
@@ -46,7 +47,6 @@ public class NodeInKDistanceFromTarget {
       }
       return 1+d2;
     }
-
     return -1;
   }
 

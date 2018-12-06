@@ -33,7 +33,7 @@ public class AlienLanguageDictionaryOrder {
 		Stack<Character> sortedCharacters = new Stack<>();
 		boolean[] visited = new boolean[4];
 		for(int i=0; i<4; i++) {
-			if(!!visited[i]) {
+			if(!visited[i]) {
 				topologicalSortUtil(i, visited, sortedCharacters, graph);
 			}
 		}

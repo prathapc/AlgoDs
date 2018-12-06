@@ -1,6 +1,6 @@
-package com.practice.design.deliveryfleetapp.models;
+package com.practice.design.questions.deliveryfleetapp.models;
 
-import com.practice.design.deliveryfleetapp.enums.EmployeePosition;
+import com.practice.design.questions.deliveryfleetapp.enums.EmployeePosition;
 
 public class DeliveryExecutive extends Employee {
 

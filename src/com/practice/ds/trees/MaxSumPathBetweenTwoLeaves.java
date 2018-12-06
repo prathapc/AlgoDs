@@ -12,7 +12,6 @@ public class MaxSumPathBetweenTwoLeaves {
 
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
-    List<Integer> data = new ArrayList<>();
     MaxSumPathInBinaryTreeRes maxSumPathInBinaryTreeRes = new MaxSumPathInBinaryTreeRes();
     maxSumPathInBinaryTreeRes.res = Integer.MIN_VALUE;
     maxSumPathBwLeaves(root, maxSumPathInBinaryTreeRes);
@@ -32,6 +31,7 @@ public class MaxSumPathBetweenTwoLeaves {
 
     if(node.getLeft() != null && node.getRight() != null) {
       maxSumPathInBinaryTreeRes.res = Math.max(maxSumPathInBinaryTreeRes.res, ls+rs+node.getData());
+
       return Math.max(ls, rs)+node.getData();
     }
     return node.getLeft() == null ? rs+node.getData() : ls+node.getData();

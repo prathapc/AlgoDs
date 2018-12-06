@@ -2,7 +2,7 @@ package com.practice.ds.trees;
 
 import com.practice.algo.Utility;
 
-public class MaxSumPathBetweenAnyTwoNores {
+public class MaxSumPathBetweenAnyTwoNodes {
 
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();

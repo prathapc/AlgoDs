@@ -13,7 +13,7 @@ public class CoinChangeProblem {
 		int coins[] = {2,5,3,6};
 		int totalCoins = coins.length;
 
-		System.out.println(count(coins, totalCoins, sum));
+		//System.out.println(count(coins, totalCoins, sum));
 		System.out.println(dynamicProgrammingNumberOfWaysToMakeChange(coins, totalCoins, sum));
 	}
 

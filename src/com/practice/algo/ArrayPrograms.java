@@ -115,7 +115,7 @@ public class ArrayPrograms {
 		int nums[] = {10, 2, -2, -20, 10};
 		int k = -10;
 		int sum = 0, result = 0;
-		Map<Integer, Integer> preSum = new HashMap<>();
+		HashMap<Integer, Integer> preSum = new HashMap<>();
 		preSum.put(0, 1);
 		for (int i=1; i<nums.length; i++) {
 			sum += nums[i];

@@ -1,4 +1,4 @@
-package com.practice.design;
+package com.practice.design.questions;
 
 import java.util.Deque;
 import java.util.HashMap;

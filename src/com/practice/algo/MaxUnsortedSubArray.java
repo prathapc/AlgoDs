@@ -1,7 +1,5 @@
 package com.practice.algo;
 
-import java.util.List;
-
 /**
  * Created by prathap on 10/12/17.
  */
@@ -10,7 +8,7 @@ public class MaxUnsortedSubArray {
     //int[] a = new int[]{10,12,20,30,25,40,32,31,35,50};
     //int[] a = new int[]{10,12,20,30,35,50};
     //int[] a = new int[]{0, 1, 15, 25, 6, 7, 30, 40, 50};
-    int[] a = new int[]{1,2,3};
+    int[] a = new int[]{1,3,2,2,2};
     int s=-1, e=-1;
     for(int i=0; i<a.length-1; i++) {
       if(s==-1 && a[i] > a[i+1]) {

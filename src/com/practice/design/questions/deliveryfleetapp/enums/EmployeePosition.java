@@ -1,4 +1,4 @@
-package com.practice.design.deliveryfleetapp.enums;
+package com.practice.design.questions.deliveryfleetapp.enums;
 
 public enum EmployeePosition {
   CITY_MANAGER,

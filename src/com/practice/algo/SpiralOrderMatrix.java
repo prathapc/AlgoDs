@@ -5,9 +5,9 @@ package com.practice.algo;
  */
 public class SpiralOrderMatrix {
   // Function print matrix in spiral form
-  static void spiralPrint(int m, int n, int a[][])
+  static void spiralPrint(int rowEnd, int colEnd, int a[][])
   {
-    int i, k = 0, l = 0;
+    int i, rowStart = 0, colStart = 0;
         /*  k - starting row index
         m - ending row index
         l - starting column index
@@ -15,40 +15,40 @@ public class SpiralOrderMatrix {
         i - iterator
         */
 
-    while (k < m && l < n)
+    while (rowStart < rowEnd && colStart < colEnd)
     {
       // Print the first row from the remaining rows
-      for (i = l; i < n; ++i)
+      for (i = colStart; i < colEnd; ++i)
       {
-        System.out.print(a[k][i]+" ");
+        System.out.print(a[rowStart][i]+" ");
       }
-      k++;
+      rowStart++;
 
       // Print the last column from the remaining columns
-      for (i = k; i < m; ++i)
+      for (i = rowStart; i < rowEnd; ++i)
       {
-        System.out.print(a[i][n-1]+" ");
+        System.out.print(a[i][colEnd-1]+" ");
       }
-      n--;
+      colEnd--;
 
       // Print the last row from the remaining rows */
-      if ( k < m)
+      if ( rowStart < rowEnd)
       {
-        for (i = n-1; i >= l; --i)
+        for (i = colEnd-1; i >= colStart; --i)
         {
-          System.out.print(a[m-1][i]+" ");
+          System.out.print(a[rowEnd-1][i]+" ");
         }
-        m--;
+        rowEnd--;
       }
 
       // Print the first column from the remaining columns */
-      if (l < n)
+      if (colStart < colEnd)
       {
-        for (i = m-1; i >= k; --i)
+        for (i = rowEnd-1; i >= rowStart; --i)
         {
-          System.out.print(a[i][l]+" ");
+          System.out.print(a[i][colStart]+" ");
         }
-        l++;
+        colStart++;
       }
     }
   }

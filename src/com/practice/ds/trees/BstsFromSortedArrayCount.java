@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-public class CountNoOfBstFromSortedArray {
+public class BstsFromSortedArrayCount {
 
   public static void main(String args[]) {
     int a[] = {2,4,5};

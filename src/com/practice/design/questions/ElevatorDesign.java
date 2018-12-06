@@ -1,4 +1,4 @@
-package com.practice.design;
+package com.practice.design.questions;
 
 /**
  * Created by prathap on 14/04/18.

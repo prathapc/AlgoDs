@@ -46,10 +46,6 @@ public class ShortestPathProblems {
 		return false;
 	}
 
-	private static int findShortestPathForKnightUtil(int r, int c, int sr, int sc, int dr, int dc, boolean[][] visited) {
-		return 0;
-	}
-
 	public static void main(String args[]) {
 		int n = 30;
 		int[] knightPoistion = {1, 1};

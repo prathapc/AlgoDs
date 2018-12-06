@@ -1,17 +1,15 @@
 package com.practice.ds.trie;
 
 public class TNode {
+
 	char ch;
-
 	TNode[] child;
-
 	boolean isWord;
 
 	public TNode(char ch) {
 		this.ch = ch;
 		child = new TNode[26];
 		isWord = false;
-
 	}
 
 	public static void insert(TNode troot, String s) {

@@ -1,4 +1,4 @@
-package com.practice.algo;
+package com.practice.algo.perm_combinations;
 
 /**
  * Created by prathap on 06/01/18.
@@ -14,9 +14,9 @@ public class PermutationsOfGivenString {
       System.out.println(str);
     } else {
       for(int i=l; i<=r; i++) {
-        str = swap(str, l, i);
+        str = swap(str, i, l);
         permute(str, l+1, r);
-        str = swap(str, l, i);
+        str = swap(str, i, l);
       }
     }
   }

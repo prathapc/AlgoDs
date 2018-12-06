@@ -1,4 +1,4 @@
-package com.practice.algo;
+package com.practice.algo.arrays;
 
 import java.util.ArrayList;
 

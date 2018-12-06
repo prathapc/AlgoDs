@@ -35,8 +35,7 @@ public class NQueenProblem {
     return false;
   }
 
-  private static boolean isSafe(int board[][], int n, int row, int col)
-  {
+  private static boolean isSafe(int board[][], int n, int row, int col) {
     int i, j;
 
     /* Check this row on left side */
@@ -56,5 +55,4 @@ public class NQueenProblem {
 
     return true;
   }
-
 }

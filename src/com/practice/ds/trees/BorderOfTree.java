@@ -35,7 +35,7 @@ public class BorderOfTree {
     if (node == null) {
       return;
     }
-    if (node.getRight() != null){
+    if (node.getRight() != null) {
       rightView(node.getRight());
       System.out.print(node.getData() + " ");
     } else if(node.getLeft() != null) {
@@ -44,7 +44,6 @@ public class BorderOfTree {
     } else {
       //leaf node; do nothing
     }
-
   }
 
   private static void leftView(Node node) {

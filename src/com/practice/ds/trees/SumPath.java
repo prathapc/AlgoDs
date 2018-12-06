@@ -14,7 +14,8 @@ import java.util.List;
  * 2. Find if path exist from root to leaf with given sum
  *
  */
-public class RootLeafSumIsK {
+public class SumPath {
+
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
     List<Integer> path = new ArrayList<>();

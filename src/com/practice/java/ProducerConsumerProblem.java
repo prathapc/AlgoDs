@@ -1,7 +1,5 @@
 package com.practice.java;
 
-import com.sun.tools.internal.jxc.ap.Const;
-
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -18,40 +16,41 @@ public class ProducerConsumerProblem {
     consumer.start();
   }
 
-}
+  static class Producer extends Thread {
+    BlockingDeque sharedQueue;
+    Producer(BlockingDeque sharedQueue) {
+      this.sharedQueue = sharedQueue;
+    }
 
-class Producer extends Thread {
-  BlockingDeque sharedQueue;
-  Producer(BlockingDeque sharedQueue) {
-    this.sharedQueue = sharedQueue;
+    public void run() {
+      for(int i=0; i<10; i++) {
+        System.out.println("Producing: "+i);
+        sharedQueue.add(i);
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
-  public void run() {
-    for(int i=0; i<10; i++) {
-      System.out.println("Producing: "+i);
-      sharedQueue.add(i);
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
+  static class Consumer extends Thread {
+    BlockingDeque sharedQueue;
+    Consumer(BlockingDeque sharedQueue) {
+      this.sharedQueue = sharedQueue;
+    }
+
+    public void run() {
+      while(true) {
+        try {
+          System.out.println("Consuming: "+sharedQueue.take());
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
       }
     }
   }
 }
 
-class Consumer extends Thread {
-  BlockingDeque sharedQueue;
-  Consumer(BlockingDeque sharedQueue) {
-    this.sharedQueue = sharedQueue;
-  }
 
-  public void run() {
-    while(true) {
-      try {
-        System.out.println("Consuming: "+sharedQueue.take());
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }
-  }
-}

@@ -1,10 +1,10 @@
-package com.practice.design.deliveryfleetapp;
+package com.practice.design.questions.deliveryfleetapp;
 
-import com.practice.design.deliveryfleetapp.enums.EmployeePosition;
-import com.practice.design.deliveryfleetapp.models.CityEmployee;
-import com.practice.design.deliveryfleetapp.models.DeliveryExecutive;
-import com.practice.design.deliveryfleetapp.models.Employee;
-import com.practice.design.deliveryfleetapp.models.Manager;
+import com.practice.design.questions.deliveryfleetapp.enums.EmployeePosition;
+import com.practice.design.questions.deliveryfleetapp.models.CityEmployee;
+import com.practice.design.questions.deliveryfleetapp.models.DeliveryExecutive;
+import com.practice.design.questions.deliveryfleetapp.models.Employee;
+import com.practice.design.questions.deliveryfleetapp.models.Manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
