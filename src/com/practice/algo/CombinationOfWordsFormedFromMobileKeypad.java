@@ -56,7 +56,7 @@ public class CombinationOfWordsFormedFromMobileKeypad {
 
     // input number in the form of an array
     // (number can't start from 0 or 1)
-    int[] input = { 2, 3, 4 };
+    int[] input = { 2, 3, 4, 5 };
 
     // find all combinations
     findCombinations(keypad, input);

@@ -6,8 +6,14 @@ public class StaticSynchronization {
     Person p1 =new Person();
     p1.start();
 
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
     Person p2 =new Person();
-    p2.drink();
+    p1.drink();
   }
 
   static class Person extends Thread {
@@ -15,7 +21,7 @@ public class StaticSynchronization {
     public static synchronized void eat() {
       try {
         System.out.println("eat");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -24,7 +30,7 @@ public class StaticSynchronization {
     public void drink() {
       try {
         System.out.println("drink");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

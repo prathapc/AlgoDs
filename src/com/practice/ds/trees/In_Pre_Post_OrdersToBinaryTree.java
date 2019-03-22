@@ -33,5 +33,10 @@ public class In_Pre_Post_OrdersToBinaryTree {
    *  To construct the left subtree, set the range as {INT_MIN …root->data}.
    *
    *
+   *
+   * From In and Pre order:-
+   * take first ele from pre and build node and recursively call for left building left and right subtrees by finding
+   * new root ele position in in order array (0 to poistion for left and position to end for right tree recursive calls)
+   *
    */
 }
