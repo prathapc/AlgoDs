@@ -3,6 +3,7 @@ package com.practice.ds.trie;
 /**
  * Created by prathap on 13/07/17.
  */
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -75,6 +76,7 @@ public class TriePgmPrefixWordCount {
     int noOfWordsDown;
 
     public TrieNode1(char ch) {
+      BigInteger max = BigInteger.valueOf(Integer.MAX_VALUE);
       this.ch = ch;
       this.children = new HashMap<>();
       isEnd = false;

@@ -1,13 +1,17 @@
 package com.practice.ds.trees;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import com.practice.algo.Utility;
 
 
 public class BinarySearchTreePrograms {
 	public static void main(String args[]) {
+		Queue<Integer> q = new LinkedList<>();
+
 		Node root = Utility.createBinarySearchTree();
 		System.out.println(isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 

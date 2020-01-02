@@ -19,6 +19,7 @@ public class PathFromRoot {
     if(node != null) {
 
       data.add(node.getData());
+
       if(node.getData() == k) {
         data.forEach(System.out::println);
       }

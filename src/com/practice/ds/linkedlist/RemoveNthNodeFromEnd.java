@@ -16,6 +16,26 @@ public class RemoveNthNodeFromEnd {
     printList(node);
   }
 
+  //single pass alogrithm
+  public static Node removeNthFromEnd1(Node A, int n) {
+    Node dummy = new Node(0);
+    dummy.next = A;
+    Node first = dummy, second = dummy;
+    for (int i=0; i<=n; i++) {
+      first = first.next;
+    }
+
+    while (first != null) {
+      first = first.next;
+      second = second.next;
+    }
+
+    second.next = second.next.next;
+    return dummy.next;
+  }
+
+
+  //two pass algorithm
   public static Node removeNthFromEnd(Node A, int B) {
     int len = lengthOfLinkedList(A);
     int n = len-B;

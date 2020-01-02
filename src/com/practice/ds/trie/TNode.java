@@ -3,12 +3,12 @@ package com.practice.ds.trie;
 public class TNode {
 
 	char ch;
-	TNode[] child;
+	TNode[] children;
 	boolean isWord;
 
 	public TNode(char ch) {
 		this.ch = ch;
-		child = new TNode[26];
+		children = new TNode[26];
 		isWord = false;
 	}
 
@@ -17,17 +17,17 @@ public class TNode {
 		if (troot == null)
 			return;
 		TNode root = troot;
-		TNode[] children = root.child;
+		TNode[] children = root.children;
 		for (i = 0; i < s.length(); i++) {
 			if (children[s.charAt(i) - 'A'] == null) {
-				// child does not exist
+				// children does not exist
 				TNode node = new TNode(s.charAt(i));
 				children[s.charAt(i) - 'A'] = node;
 				root = node;
-				children = node.child;
+				children = node.children;
 			} else {
 				root = children[s.charAt(i) - 'A'];
-				children = children[s.charAt(i) - 'A'].child;
+				children = children[s.charAt(i) - 'A'].children;
 			}
 
 		}

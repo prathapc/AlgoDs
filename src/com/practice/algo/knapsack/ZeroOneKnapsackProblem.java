@@ -14,6 +14,7 @@ public class ZeroOneKnapsackProblem {
 		
 	}
 
+	//recursion
 	private static int recursiveSolution_KnapsackWeight(int weight, int[] weights, int[] values, int n) {
 		if(weight == 0 || n == 0) {
 			return 0;
@@ -28,6 +29,7 @@ public class ZeroOneKnapsackProblem {
 		}
 	}
 
+	//dp
 	private static int knapsackWeight(int[] values, int[] weights, int n, int W) {
 		int i, w;
 		int K[][] = new int[n+1][W+1];

@@ -7,18 +7,18 @@ public class PalindromePromgrams {
 
   public static void main(String args[]) {
     distinctPalindromicStubStrings("abaaa");
+    distinctPalindromicStubStringsDp("abaaa");
 
     String str = "abaab";
     countPalindromicSubStrings(str.toCharArray(), str.length());
 
     System.out.print(longestPalindromeRecursion("aabaacd"));
     System.out.print(longestPalindromeDp("ccc"));
-
-    distinctPalindromicStubStringsDp("abaaa");
   }
 
   private static void distinctPalindromicStubStringsDp(String abaaa) {
 
+    //easy one with a table formation (dp)
 
   }
 

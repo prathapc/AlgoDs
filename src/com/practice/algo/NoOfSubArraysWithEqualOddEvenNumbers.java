@@ -7,6 +7,8 @@ import java.util.Scanner;
 /**
  * Wrong output for few test cases
  * https://www.hackerearth.com/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/practice-problems/algorithm/odd-even-subarrays-72ad69db/
+ *
+ * can we solve with largest palindrom subsequence way?
  */
 public class NoOfSubArraysWithEqualOddEvenNumbers {
 

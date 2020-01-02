@@ -10,6 +10,7 @@ public class NQueenProblem {
     int[][] sol = new int[r][c];
     if (!nQueenUtil(sol, n, 0)) {
       System.out.print("Solution does not exist");
+
     } else {
       Utility.printArray(sol, n, n);
     }
@@ -27,9 +28,10 @@ public class NQueenProblem {
 
         if (nQueenUtil(sol, n, col+1)) {
           return true;
+        } else {
+          //backtrack
+          sol[i][col] = 0;
         }
-
-        sol[i][col] = 0;
       }
     }
     return false;

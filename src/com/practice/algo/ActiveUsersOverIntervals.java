@@ -23,10 +23,10 @@ public class ActiveUsersOverIntervals {
     }
     quickSort(start, 0, start.length-1);
     quickSort(end, 0, end.length-1);
-    findEexecutivesRequired(start, end);
+    findExecutivesRequired(start, end);
     }
 
-    private static void findEexecutivesRequired(int[] start, int[] end) {
+    private static void findExecutivesRequired(int[] start, int[] end) {
       int requiredAgents = 1, result = 1;
       int i=1, j=0;
       while(i<start.length && j<end.length) {

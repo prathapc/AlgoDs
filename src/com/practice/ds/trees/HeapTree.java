@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.practice.algo.Utility;
 
+//Application -> top k small or largest elements
 public class HeapTree {
 
 	public static void main(String[] args) {

@@ -61,10 +61,10 @@ public class TrieProgramPrefixWords {
 				HashMap<Character, TrieNode> child = crawl.getChildren();
 				char ch = word.charAt(level);
 
-				// If there is already a child for current character of given word
+				// If there is already a children for current character of given word
 				if (child.containsKey(ch))
 					crawl = child.get(ch);
-				else // Else create a child
+				else // Else create a children
 				{
 					TrieNode temp = new TrieNode(ch);
 					child.put(ch, temp);

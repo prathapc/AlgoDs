@@ -8,20 +8,8 @@ public class DiameterOfTree {
     //diameterOfTree(Utility.createSampleTree(), new Ans(Integer.MIN_VALUE));
     System.out.println(diameterOfTree(Utility.createSampleTree())[1]);
     System.out.println(diameterOfTree1(Utility.createSampleTree()));
-  }
 
-  //time complexity O(n^2)
-  private static int diameterOfTree1(Node node) {
-    if (node == null) {
-      return 0;
-    }
-    int lHeight = height(node.getLeft());
-    int rHeight = height(node.getRight());
-
-    int lDiameter = diameterOfTree1(node.getLeft());
-    int rDiameter = diameterOfTree1(node.getRight());
-
-    return Utility.max(1 + lHeight + rHeight, Utility.max(lDiameter, rDiameter));
+    //height(Utility.createSampleTree());
   }
 
   private static int height(Node node) {
@@ -35,6 +23,20 @@ public class DiameterOfTree {
     } else {
       return 1 + r;
     }
+  }
+
+  //time complexity O(n^2)
+  private static int diameterOfTree1(Node node) {
+    if (node == null) {
+      return 0;
+    }
+    int lHeight = height(node.getLeft());
+    int rHeight = height(node.getRight());
+
+    int lDiameter = diameterOfTree1(node.getLeft()); //diameter of left subtree
+    int rDiameter = diameterOfTree1(node.getRight());  //diameter of right subtree
+
+    return Utility.max(1 + lHeight + rHeight, Utility.max(lDiameter, rDiameter));
   }
 
   //time complexity O(n)
@@ -51,8 +53,32 @@ public class DiameterOfTree {
       int leftDiameter = lHeightAndDiameter[1];
       int rightDiameter = rHeightAndDiameter[1];
       int rootDiameter = lHeightAndDiameter[0] + rHeightAndDiameter[0] + 1;
+
       heightAndDiameterArray[1] = Utility.max(rootDiameter, leftDiameter, rightDiameter);
     }
     return heightAndDiameterArray;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

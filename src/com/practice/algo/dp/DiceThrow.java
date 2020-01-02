@@ -9,16 +9,17 @@ package com.practice.algo.dp;
 public class DiceThrow {
 
   public static void main(String args[]) {
-    System.out.println(findWays(6, 2, 6));
+    System.out.println(findWays(6, 25, 100));
   }
 
-  private static int findWays(int m, int n, int x) {
+  private static long findWays(int m, int n, int x) {
     // Create a table to store results of subproblems.  One extra
     // row and column are used for simplicity (Number of dice
     // is directly used as row index and sum is directly used
     // as column index).  The entries in 0th row and 0th column
     // are never used.
-    int table[][] = new int[n + 1][x + 1];
+
+    long table[][] = new long[n + 1][x + 1];
 
     // Table entries for only one dice
     for (int j = 1; j <= m && j <= x; j++)

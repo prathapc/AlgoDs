@@ -1,5 +1,6 @@
 package com.practice.algo.dp;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LongestCommonSubSequece {
@@ -10,7 +11,7 @@ public class LongestCommonSubSequece {
 		String str2 = scanner.nextLine();
 		System.out.println(longestCommonSubSequence(str1, str2));
 	}
-	
+
 	private static String longestCommonSubSequence(String str1, String str2) {
 		int[][] m = new int[str2.length()+1][str1.length()+1];
 		StringBuffer sb = new StringBuffer("");
@@ -23,10 +24,11 @@ public class LongestCommonSubSequece {
 					m[i][j] = max(m[i-1][j], m[i][j-1]);
 				}
 			}
+			List<String> wordDict = null; wordDict.contains("");
 		}
 		return sb.toString();
 	}
-	
+
 	private static int max(int i, int j) {
 		if(i > j) {
 			return i;

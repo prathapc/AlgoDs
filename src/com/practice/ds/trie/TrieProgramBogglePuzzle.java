@@ -29,7 +29,7 @@ public class TrieProgramBogglePuzzle {
 			for (j = 0; j < n; j++)
 				vis[i][j] = false;
 		}
-		TNode[] child = root.child;
+		TNode[] child = root.children;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				char ch = boggle[i][j];
@@ -47,7 +47,7 @@ public class TrieProgramBogglePuzzle {
 		if (child.isWord) {
 			System.out.println(str);
 		}
-		TNode[] node = child.child;
+		TNode[] node = child.children;
 		vis[i][j] = true;
 		int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
 		int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };

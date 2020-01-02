@@ -9,7 +9,7 @@ public class HeightOfBinaryTree {
 
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
-    System.out.print(heightOfTree1(root));
+    System.out.print("height of tree is " + heightOfTree1(root));
   }
 
   private static int heightOfTree(Node node) {

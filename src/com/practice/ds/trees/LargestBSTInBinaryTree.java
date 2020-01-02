@@ -34,7 +34,7 @@ public class LargestBSTInBinaryTree {
 
     //if we reach this point means subtree with this node as root is BST.
     //Set isBST as true. Then set size as size of left + size of right + 1.
-    //Set min and max to be returned to parent.
+    //Set min and max to be returned to parent
     m.isBST = true;
     m.size = leftMinMax.size + rightMinMax.size + 1;
 

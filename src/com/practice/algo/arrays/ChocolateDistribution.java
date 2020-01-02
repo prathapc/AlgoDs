@@ -10,6 +10,13 @@ import java.util.Arrays;
  * 1. Each student gets one packet.
  * 2. The difference between the number of chocolates in packet with maximum chocolates
  *    and packet with minimum chocolates given to the students is minimum.
+ *
+ * i/p: {7,3,2,4,9,12,56}
+ * We have seven packets of chocolates and
+ * we need to pick three packets for 3 students
+ * If we pick 2, 3 and 4, we get the minimum
+ * difference between maximum and minimum packet
+ * sizes.
  */
 public class ChocolateDistribution {
 

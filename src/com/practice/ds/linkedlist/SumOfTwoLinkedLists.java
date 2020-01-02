@@ -67,6 +67,43 @@ public class SumOfTwoLinkedLists {
     return res;
   }
 
+  //Leetcode
+  public Node addTwoNumbers(Node l1, Node l2) {
+
+    int sum = 0, carry = 0;
+    Node curr = null, prev = null, res = null;
+    while (l1 != null || l2 != null) {
+      sum = carry + (l1 == null ? 0 : l1.data) + (l2 == null ? 0 : l2.data);
+      carry = sum >=10 ? 1 : 0;
+
+      sum %= 10;
+      curr = new Node(sum);
+
+      if (res == null) {
+        res = curr;
+      } else {
+        prev.next = curr;
+      }
+
+      prev= curr;
+
+      if (l1 != null) {
+        l1 = l1.next;
+      }
+      if (l2 != null) {
+        l2 = l2.next;
+      }
+
+    }
+
+    if (carry > 0) {
+      curr.next = new Node(carry);
+    }
+
+    return res;
+  }
+
+
   static void printList(Node node) {
     while (node != null) {
       System.out.print(node.data + " -> ");

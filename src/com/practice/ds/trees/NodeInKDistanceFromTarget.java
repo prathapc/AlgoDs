@@ -12,7 +12,42 @@ public class NodeInKDistanceFromTarget {
     Node root = Utility.createSampleTree3();
     Node target = root.getLeft().getRight();
     findNodesInKDistanceFromTarget(root, target, 2);
+
+
+    Result result = new Result();
   }
+
+
+  static class Result {
+    boolean lFound;
+    int distFromRoot;
+
+  }
+  private static void findNodes(Node node, Node target, int k, Result result) {
+    if (node == null) {
+      return;
+    }
+
+    if (node.getData() == target.getData()) {
+      findKnodesDown(node, k);
+    } else {
+
+    }
+  }
+
+  private static void findKnodesDown(Node node, int k) {
+    if (node == null) {
+      return;
+    }
+    if (k == 0) {
+      System.out.println(node.getData() + " ");
+    }
+
+    findKnodesDown(node.getLeft(), k-1);
+    findKnodesDown(node.getRight(), k-1);
+
+  }
+
 
   private static int findNodesInKDistanceFromTarget(Node  node, Node target, int k) {
     if(node == null) {

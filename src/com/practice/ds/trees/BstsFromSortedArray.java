@@ -6,7 +6,7 @@ import java.util.List;
 public class BstsFromSortedArray {
 
   public static void main(String args[]) {
-    int n = 5; //if n=5 then input array is [1,2,3,4,5]
+    int n = 5; //if n=5 then assume input array as [1,2,3,4,5]
     List<Node> bsts = bsts(1,n);
   }
 
@@ -32,4 +32,23 @@ public class BstsFromSortedArray {
 
     return result;
   }
+
+  //Not efficient
+  //try dp -> https://medium.com/@aashray/daily-code-1-dynamic-programming-157883622808
+
+  /*
+  int numTrees(int n){
+     vector<int> res(n+1, 0);
+     res[0] = res[1] = 1;
+     int i, j;
+     for(i = 2; i <= n; i++){
+          int sum = 0;
+          for(j = 1; j <= i; j++){
+               sum += res[j - 1] * res[i - j];
+          }
+          res[i] = sum;
+     }
+     return res[n];
+  }
+  */
 }

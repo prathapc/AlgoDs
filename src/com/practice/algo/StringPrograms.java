@@ -1,21 +1,20 @@
 package com.practice.algo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class StringPrograms {
 
 	public static void main(String[] args) {
-		//noOfSubstringsStartAndEndWithOne("00100101"); //count no of 1's and nc2 formula i.e n(n-1)/2
-		//findSubstringsStartAndEndWithOne(); // wrong o/p
+		//noOfSubstringsStartAndEndWithOne("1100010101"); //efficient way:- count no of 1's and nc2 formula i.e n(n-1)/2
+		//findSubstringsStartAndEndWithOne("1100010101"); // wrong o/p?
+
 		//checkIfStringCanBeRepeatedByTwoPlaces();
 		//romanCharacterToInteger();
 		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
 		//distinctOccurencesOfSubString();
 		//deleteCharactersToMakeAnagrams();
 		//sherlockStrings();
-		alphaNumericPalindrom("A man, a plan, a canal: Panama");
+		//alphaNumericPalindrom("A man, a plan, a canal: Panama");
 	}
 
 	/**
@@ -42,6 +41,28 @@ public class StringPrograms {
 				noOfSubstringsStartAndEndWithOneUtil(str, temp, i+1);
 			}
 		}
+	}
+
+	private static void findSubstringsStartAndEndWithOne(String str) {
+		int count = 0;
+		int n = str.length();
+		System.out.println(findSubstringsStartAndEndWithOneUtil(str, 0, n - 1, count));
+	}
+
+	private static int findSubstringsStartAndEndWithOneUtil(String str, int start, int end, int count) {
+		if (start == end)
+			return count;
+		if (str.charAt(start) == '0') {
+			return findSubstringsStartAndEndWithOneUtil(str, start + 1, end, count);
+		} else if (str.charAt(end) == '0') {
+			return findSubstringsStartAndEndWithOneUtil(str, start, end - 1, count);
+		} else {
+			count++;
+			System.out.println(str.substring(start, end + 1) + " start:" + start + "end:" + end);
+			findSubstringsStartAndEndWithOneUtil(str, start + 1, end, count);
+			findSubstringsStartAndEndWithOneUtil(str, start, end - 1, count);
+		}
+		return count;
 	}
 
 	private static int alphaNumericPalindrom(String a) {
@@ -227,9 +248,40 @@ public class StringPrograms {
 		System.out.println(result);
 	}
 
+	private static void numberToRoman() {
+		int number = 1453;
+
+		HashMap<Integer, String> map = new HashMap<>();
+		map.put(1, "I");
+		map.put(4, "IV");
+		map.put(5, "V");
+		map.put(9, "IX");
+		map.put(10, "X");
+		map.put(40, "XL");
+		map.put(50, "L");
+		map.put(90, "XC");
+		map.put(100, "C");
+		map.put(400, "CD");
+		map.put(500, "D");
+		map.put(900, "CM");
+		map.put(1000, "M");
+		int[] bases = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+
+		List<String> stringNumbers = new ArrayList<>();
+
+		String stringNumber = "";
+		for (int i : bases) {
+			while (number >= i) {
+				stringNumber = stringNumber + map.get(i);
+				number = number - i;
+			}
+		}
+		System.out.println(stringNumber);
+	}
 
 	private static void romanCharacterToInteger() {
-		String str = "MMCMLXXXV";
+		//String str = "MMCMLXXXV";
+		String str = "CDMX";
 		int result = 0;
 		for(int i=str.length()-1; i>=0; i--) {
 			if(i==str.length()-1) {
@@ -281,28 +333,5 @@ public class StringPrograms {
 		// check if any of them is equal to string1
 		return (str1.equals(clock_rot) ||
 				str1.equals(anticlock_rot));
-	}
-
-	private static void findSubstringsStartAndEndWithOne() {
-		String str = "00100101";
-		int count = 0;
-		int n = str.length();
-		System.out.println(findSubstringsStartAndEndWithOneUtil(str, 0, n - 1, count));
-	}
-
-	private static int findSubstringsStartAndEndWithOneUtil(String str, int start, int end, int count) {
-		if (start == end)
-			return count;
-		if (str.charAt(start) == '0') {
-			return findSubstringsStartAndEndWithOneUtil(str, start + 1, end, count);
-		} else if (str.charAt(end) == '0') {
-			return findSubstringsStartAndEndWithOneUtil(str, start, end - 1, count);
-		} else {
-			count++;
-			System.out.println(str.substring(start, end + 1) + " start:" + start + "end:" + end);
-			findSubstringsStartAndEndWithOneUtil(str, start + 1, end, count);
-			findSubstringsStartAndEndWithOneUtil(str, start, end - 1, count);
-		}
-		return count;
 	}
 }

@@ -2,11 +2,11 @@ package com.practice.ds.trees;
 
 import com.practice.algo.Utility;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
+/**p
  * Created by prathap on 06/01/18.
+ *
+ * https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
+ *
  */
 public class MaxSumPathBetweenTwoLeaves {
 

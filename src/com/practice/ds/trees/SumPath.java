@@ -47,9 +47,38 @@ public class SumPath {
     }
   }
 
+  //solved by me in leetcode [Path Sum]
+  /*public boolean hasPathSum(TreeNode root, int sum) {
+    if (root == null) {
+      return false;
+    }
+    return hasPathSumUtil(root, sum-root.val);
+  }
+
+  private boolean hasPathSumUtil(TreeNode root, int sum) {
+
+    if (root.left == null && root.right == null) {
+      if (sum == 0) {
+        return true;
+      }
+      return false;
+    }
+
+    if (root.left != null && root.right != null) {
+      return hasPathSumUtil(root.left, sum-root.left.val) || hasPathSumUtil(root.right, sum-root.right.val);
+    } else if (root.left != null) {
+      return hasPathSumUtil(root.left, sum-root.left.val);
+    } else {
+      return hasPathSumUtil(root.right, sum-root.right.val);
+    }
+  }*/
+
+
+
   private static void rootToLeafSum(Node node, int k, List<Integer> path) {
     if(node == null)
       return;
+
     path.add(node.getData());
     if(node.getData() == k) {
       path.forEach(System.out:: println);

@@ -40,5 +40,11 @@ left and right shit:
 left shift has effect of multipying number by 2 and right shift of dividing number by 2 with some truncation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+x >>= 1 nothing but x = x/2;
+x <<= 1 nothing but x = x*2;
+
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 Bit masking:-
 

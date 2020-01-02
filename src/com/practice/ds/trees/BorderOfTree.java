@@ -3,7 +3,7 @@ package com.practice.ds.trees;
 import com.practice.algo.Utility;
 
 /**
- * One more way is to print left,right and bottom views by level order traersing with a queue.
+ * One more way is to print left,right and bottom views by level order traversing with a queue.
  */
 public class BorderOfTree {
 
@@ -42,7 +42,7 @@ public class BorderOfTree {
       rightView(node.getLeft());
       System.out.print(node.getData() + " ");
     } else {
-      //leaf node; do nothing
+      //leaf node, do nothing
     }
   }
 
@@ -57,7 +57,7 @@ public class BorderOfTree {
       System.out.print(node.getData() + " ");
       leftView(node.getRight());
     } else {
-      //leaf node; do nothing
+      //leaf node, do nothing
     }
   }
 }

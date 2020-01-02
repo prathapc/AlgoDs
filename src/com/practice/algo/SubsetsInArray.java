@@ -4,6 +4,9 @@ package com.practice.algo;
  * Created by prathap on 09/12/17.
  *
  * CS DOJO
+ *
+ * Another sol: https://www.youtube.com/watch?v=LdtQAYdYLcE
+ *
  */
 public class SubsetsInArray {
   public static void main(String args[]) {

@@ -2,6 +2,9 @@ package com.practice.ds.trees;
 
 import com.practice.algo.Utility;
 
+/**
+ * https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+ */
 public class MaxSumPathBetweenAnyTwoNodes {
 
   public static void main(String args[]) {

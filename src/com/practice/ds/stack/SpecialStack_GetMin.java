@@ -55,22 +55,21 @@ public class SpecialStack_GetMin {
     // Removes the top element from MyStack
     void pop()
     {
-      if (s.isEmpty())
-      {
+      if (s.isEmpty()) {
         System.out.println("Stack is empty");
         return;
       }
 
       System.out.print("Top Most Element Removed: ");
-      Integer t = s.pop();
+      Integer x = s.pop();
 
       // Minimum will change as the minimum element
       // of the stack is being removed.
-      if (t < minEle) {
+      if (x < minEle) {
         System.out.println(minEle);
-        minEle = 2*minEle - t;
+        minEle = 2*minEle - x;
       } else {
-        System.out.println(t);
+        System.out.println(x);
       }
     }
 
@@ -87,9 +86,8 @@ public class SpecialStack_GetMin {
         minEle = x;
       } else
         s.push(x);
-
-      System.out.println("Number Inserted: " + x);
-    }
+        System.out.println("Number Inserted: " + x);
+      }
   }
 }
 

@@ -198,6 +198,12 @@ public class Utility {
 		return root;
 	}
 
+	/**
+	 * 			  8
+	 * 		5		  18
+	 * 	1		6  			20
+	 * 		4
+	 */
 	public static Node createSampleTree() {
 		Node root = new Node(8);
 		Node left = new Node(5);

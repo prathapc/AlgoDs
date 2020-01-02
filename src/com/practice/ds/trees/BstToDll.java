@@ -21,6 +21,7 @@ public class BstToDll {
   }
 
   static Node prev = null;
+  //inorder traversal and then build ll
   private static void convertToDllUtil(Node node) {
 
     if (node == null)

@@ -11,7 +11,7 @@ public class MaxSumWithNonAdjacentElements {
   }
 
   private static void forPasitiveIntegers() {
-    int a[]= {5,5,10,40,50,35};
+    int a[]= {5,5,10,40,50,35,25};
     int sum1 = a[0];
     int sum2 = 0;
     for (int i=1; i<a.length; i++) {

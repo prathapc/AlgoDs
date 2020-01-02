@@ -13,12 +13,12 @@ public class ReverseLinkedList {
   public static void main(String args[]) {
 
     Node head = new Node(1);
-    head.next = new Node(1);
+    head.next = new Node(2);
     head.next.next = new Node(3);
     head.next.next.next = new Node(4);
-    head.next.next.next.next = new Node(4);
-    head.next.next.next.next.next = new Node(4);
-    head.next.next.next.next.next.next = new Node(7);
+    //head.next.next.next.next = new Node(4);
+    //head.next.next.next.next.next = new Node(4);
+    //head.next.next.next.next.next.next = new Node(7);
     //head.next.next.next.next.next.next.next = new Node(8);
     printList(head);
 
@@ -29,7 +29,7 @@ public class ReverseLinkedList {
     //printList(removeDuplicates(head));
     //int a[] = {5,5,5,7,7,3,4,7};
     int a[] = {5};
-    //packNeighbouringNumbers(a);
+    //packNeighbouringNumbers(a);*/
   }
 
   private static Node removeDuplicates(Node node) {
@@ -64,15 +64,37 @@ public class ReverseLinkedList {
   }
 
   private static Node pairwiseSwap_ChangePointers(Node node) {
-    if (node == null || node.next == null) {
+    if (node == null) {
+      return null;
+    }
+    if (node.next == null) {
       return node;
     }
 
     Node remaining = node.next.next;
     Node newHead = node.next;
     node.next.next = node;
-    node.next = pairwiseSwap(remaining);
+    node.next = pairwiseSwap_ChangePointers(remaining);
     return newHead;
+  }
+
+  //#lletcode #iterative #linkedlist #swappairs
+  public Node swapPairs(Node head) {
+    Node dummy = new Node(0);
+    dummy.next = head;
+    Node p1 = dummy;
+    Node p2 = dummy.next;
+
+    while (p2 !=null && p2.next != null) {
+      p1.next = p2.next;
+      p2.next = p1.next.next;
+      p1.next.next = p2;
+
+      p1 = p2;
+      p2 = p2.next;
+    }
+
+    return dummy.next;
   }
 
   private static Node reverseLinkedListInGroups(Node node, int k) {
