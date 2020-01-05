@@ -5,6 +5,18 @@ package com.practice.algo;
  */
 public class CanJumpInArray {
 
+    //accepted solution
+    public boolean canJump1(int[] nums) {
+        int lastPos = nums.length - 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (i + nums[i] >= lastPos) {
+                lastPos = i;
+            }
+        }
+        return lastPos == 0;
+    }
+
+    //other solution
     public static void main(String args[]) {
 
         //Works but memory limit exceeded in leetcode submission:
