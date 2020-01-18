@@ -1,5 +1,4 @@
 package com.practice.algo;
-
 import java.util.*;
 
 /**
@@ -8,6 +7,9 @@ import java.util.*;
 public class Test {
 
     public static void main(String args[]) {
+
+        TreeMap<Character, Integer> map = new TreeMap<>();
+        map.firstEntry();
 
 
     }

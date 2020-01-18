@@ -1,14 +1,24 @@
 package com.practice.algo.arrays;
 
-//https://www.hackerrank.com/challenges/almost-sorted/problem
 import java.util.*;
 
+/**
+ * Given an array of integers, determine whether the array can be sorted in ascending order using only one of the following operations one time.
+ *
+ * Swap two elements.
+ * Reverse one sub-segment.
+ * Determine whether one, both or neither of the operations will complete the task. If both work, choose swap.
+ * For instance, given an array  either swap the  and , or reverse them to sort the array. Choose swap
+ *
+ * https://www.hackerrank.com/challenges/almost-sorted/problem
+ *
+ */
 public class AlmostSortedArray {
 
   private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    almostSorted(new int[]{1,5,4,3,2,6});
+    almostSorted(new int[]{1, 5, 4, 3, 2, 6});
   }
 
   static void almostSorted(int[] arr) {
@@ -40,6 +50,7 @@ public class AlmostSortedArray {
       System.out.println("yes\nreverse " + (i+1) + " " + (j+1));
       return;
     }
+
     System.out.println("no");
 
   }

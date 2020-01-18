@@ -11,14 +11,14 @@ public class QueueImplementation {
     queue.pop();
   }
 
-  static class  Queue {
+  static class Queue {
     int size;
     int a[];
     int front;
     int rear;
 
     public Queue(int initialSize) {
-      a= new int[initialSize];
+      a = new int[initialSize];
       size = initialSize;
       front = 0;
       rear = -1;

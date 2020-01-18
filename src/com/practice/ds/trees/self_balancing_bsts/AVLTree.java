@@ -1,4 +1,4 @@
-package com.practice.ds.trees.sel_balancing_bsts;
+package com.practice.ds.trees.self_balancing_bsts;
 
 /**
  * Created by Prathap on 05 Dec, 2019

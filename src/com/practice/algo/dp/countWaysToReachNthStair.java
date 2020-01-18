@@ -5,11 +5,9 @@ public class countWaysToReachNthStair {
 
   public static void main(String args[]) {
 
-    int input = 4;
-    //countWaysToReachNthStair_maxTwoSteps(input);
-    countWaysToReachNthStair_mSteps(6, 6);
-
-    System.out.println(noOfWaysToReachGivenScore(20)); //reach 20 with [3,5,10]
+    countWaysToReachNthStair_maxTwoSteps(4);
+    countWaysToReachNthStair_uptoMSteps(6, 6);
+    noOfWaysToReachGivenScore(20); //reach 20 with [3,5,10]
 
   }
 
@@ -18,22 +16,22 @@ public class countWaysToReachNthStair {
    * The person can climb either 1 stair or 2 stairs at a time.
    * Count the number of ways, the person can reach the top.
    */
-  private static void countWaysToReachNthStair_maxTwoSteps(int input) {
-    input = input + 1;
-    int[] dp = new int[input + 1];
+  private static void countWaysToReachNthStair_maxTwoSteps(int n) {
+    n = n + 1;
+    int[] dp = new int[n + 1];
     dp[0] = 0;
     dp[1] = 1;
-    for (int i=2; i <= input; i++) {
+    for (int i=2; i <= n; i++) {
       dp[i] = dp[i-1] + dp[i - 2];
     }
-    System.out.print(dp[input]);
+    System.out.print(dp[n]);
   }
 
   /**
    * count number of ways if the person can climb up to m stairs for a given value m?
    * For example if m is 4, the person can climb 1 stair or 2 stairs or 3 stairs or 4 stairs at a time.
    */
-  private static void countWaysToReachNthStair_mSteps(int n, int m) {
+  private static void countWaysToReachNthStair_uptoMSteps(int n, int m) {
     int res[] = new int[n];
     res[0] = 1; res[1] = 1;
     for (int i=2; i<n; i++) {
@@ -44,7 +42,12 @@ public class countWaysToReachNthStair {
     System.out.println(res[n-1]);
   }
 
-  private static int noOfWaysToReachGivenScore(int n) {
+  /**
+   * count number of ways to reach a target with given steps
+   * @param n
+   * @return
+   */
+  private static void noOfWaysToReachGivenScore(int n) {
     // table[i] will store count of solutions for
     // value i.
     int table[] = new int[n + 1], i;
@@ -64,6 +67,6 @@ public class countWaysToReachNthStair {
     for (i = 10; i <= n; i++)
       table[i] += table[i - 10];
 
-    return table[n];
+    System.out.println(table[n]);
   }
 }

@@ -1,5 +1,10 @@
 package com.practice.algo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by prathap on 12/07/17.
  */
@@ -7,7 +12,8 @@ public class AnagramStrings {
 
   public static void main(String[] args) {
     //areAnagrams();
-    delteCharsToMakeStringsAnagrams();
+    //delteCharsToMakeStringsAnagrams();
+    findAllAnagramsInString("cbaebabacd", "abc");
   }
 
   private static void areAnagrams() {
@@ -52,5 +58,33 @@ public class AnagramStrings {
       result += Math.abs(firstCharCount[i] - secondCharCount[i]);
     }
     System.out.print(result);
+  }
+
+  private static List<Integer> findAllAnagramsInString(String s, String p) {
+    Map<Character, Integer> m = new HashMap<>();
+    for (char c : p.toCharArray())
+      m.put(c, m.getOrDefault(c, 0) + 1);
+
+    int fast = 0, slow = 0, diff = m.size();
+    List<Integer> res = new ArrayList<>();
+    while(fast < s.length()) {
+      char c = s.charAt(fast++);
+      if(m.containsKey(c)){
+        if (m.get(c) - 1 == 0)
+          diff--;
+        m.put(c, m.get(c) - 1 );
+      }
+      if (fast >  p.length()) {
+        char d = s.charAt(slow++);
+        if (m.containsKey(d)){
+          if (m.get(d) == 0)
+            diff++;
+          m.put(d, m.get(d) + 1);
+        }
+      }
+      if (diff == 0)
+        res.add(slow);
+    }
+    return res;
   }
 }

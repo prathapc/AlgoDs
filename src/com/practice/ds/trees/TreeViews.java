@@ -23,7 +23,7 @@ public class TreeViews {
 	private static void bottomViewOfTree(Node node) {
 		Map<Integer, Integer> map = new TreeMap<>();
 		bottomViewOfTreeUtil(node, map, 0);
-		map.forEach((k, v) -> System.out.print(map.get(k) + " "));
+		map.forEach((k, v) -> System.out.print(v + " "));
  	}
 
  	private static void bottomViewOfTreeUtil(Node node, Map<Integer, Integer> map, int hd) {

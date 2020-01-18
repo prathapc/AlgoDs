@@ -12,10 +12,8 @@ public class ArrayPrograms {
 		find4ElementsWithSumEqualToK();
 		arrayAfterNRotations();
 		printMatrixInSpiralOrder();
-		subArrayWithGivenSum();
-		noOfSubArraysWlithGivenSum();
+
 		maximumSumPathInTwoArrays();
-		sortSubArray();
 
 		System.out.print(nearestSmallerElement());
 
@@ -109,75 +107,6 @@ public class ArrayPrograms {
 	}
 
 	/**
-	 * we know the key to solve this problem is SUM[i, j].
-	 * So if we know SUM[0, i - 1] and SUM[0, j], then we can easily get SUM[i, j].
-	 * To achieve this, we just need to go through the array,
-	 * calculate the current sum and save number of all seen PreSum to a HashMap
-	 */
-	private static void noOfSubArraysWlithGivenSum() {
-		int nums[] = {10, 2, -2, -20, 10};
-		int k = -10;
-		int sum = 0, result = 0;
-		HashMap<Integer, Integer> preSum = new HashMap<>();
-		//preSum.put(0, 1);
-		for (int i=0; i<nums.length; i++) {
-			sum += nums[i];
-			if (preSum.containsKey(sum - k)) {
-				result += preSum.get(sum - k);
-			}
-			preSum.put(sum, preSum.getOrDefault(sum, 0) + 1);
-		}
-		System.out.print(result);
-
-		//another way of solving
-		findSubarraySum(nums, 5, k);
-	}
-
-	static int findSubarraySum(int arr[], int n, int sum)
-	{
-		// HashMap to store number of subarrays
-		// starting from index zero having
-		// particular value of sum.
-		HashMap <Integer, Integer> prevSum = new HashMap<>();
-
-		int res = 0;
-
-		// Sum of elements so far.
-		int currsum = 0;
-
-		for (int i = 0; i < n; i++) {
-
-			// Add current element to sum so far.
-			currsum += arr[i];
-
-			// If currsum is equal to desired sum,
-			// then a new subarray is found. So
-			// increase count of subarrays.
-			if (currsum == sum)
-				res++;
-
-			// currsum exceeds given sum by currsum
-			//  - sum. Find number of subarrays having
-			// this sum and exclude those subarrays
-			// from currsum by increasing count by
-			// same amount.
-			if (prevSum.containsKey(currsum - sum))
-				res += prevSum.get(currsum - sum);
-
-
-			// Add currsum value to count of
-			// different values of sum.
-			Integer count = prevSum.get(currsum);
-			if (count == null)
-				prevSum.put(currsum, 1);
-			else
-				prevSum.put(currsum, count+1);
-		}
-
-		return res;
-	}
-
-	/**
 	 * find nearest smaller element for every element such that the smaller element is on left side.
 	 * i/p:- {1,6,4,10,2,5}
 	 * o/p:- {-,1,1,4,1,2}
@@ -201,85 +130,6 @@ public class ArrayPrograms {
 			st.push(arr.get(i));
 		}
 		return result;
-	}
-
-	//sort sub array that entire array gets sorted
-	private static void sortSubArray() {
-		ArrayList<Integer> input = new ArrayList<>();
-		input.add(1);input.add(1);input.add(10);
-		input.add(10);input.add(15);input.add(10);
-		input.add(15);input.add(10);input.add(10);
-		input.add(15);input.add(10);input.add(15);
-		System.out.print(subUnsort(input));
-	}
-	//1,1,10,10,15,10,15,10,10,15,10,15
-	private static ArrayList<Integer> subUnsort(ArrayList<Integer> A) {
-		ArrayList<Integer> result = new ArrayList<>();
-		int i=0, j=1;
-		for(i=0; i<A.size(); i++) {
-			while(j < A.size()) {
-				if(A.get(j) < A.get(i)) {
-					break;
-				}
-				i++;
-				j++;
-			}
-			int start=0;
-			while(++j < A.size()) {
-				if(start > 0) {
-					if(A.get(j) < A.get(j-1)) {
-						start = j;
-					}
-				}
-				if(A.get(j) > A.get(i)) {
-					start = i;
-				}
-				if((start>0 && (j==A.size()-1))) {
-					result.add(i);
-					result.add(j-1);
-					return result;
-				}
-			}
-		}
-		result.add(-1);
-		return result;
-	}
-
-	/**
-	 * Input: arr[] = {1, 4, 20, 3, 10, 5}, sum = 33
-	 Ouptut: Sum found between indexes 2 and 4
-
-	 Input: arr[] = {1, 4, 0, 0, 3, 10, 5}, sum = 7
-	 Ouptut: Sum found between indexes 1 and 4
-
-	 Input: arr[] = {1, 4}, sum = 0
-	 Output: No sub array found
-	 */
-	private static void subArrayWithGivenSum() {
-		int a[] = {1, 4, 20, 3, 10, 5};
-		int sum = 33;
-		int tempSum = a[0];
-		int start = 0, end = 0;
-		if(tempSum == sum) {
-			System.out.print("sub array from " + start + " to " + end + " has given sum");
-		}
-		for(int i=1; i<a.length; i++) {
-			tempSum += a[i];
-			end++;
-			if (tempSum == sum) {
-				System.out.print("sub array from " + start + " to " + end + " has given sum");
-				break;
-			} else if (tempSum > sum) {
-				while(start < end) {
-					tempSum -= a[start];
-					start++;
-					if (tempSum == sum) {
-						System.out.print("sub array from " + start + " to " + end + " has given sum");
-						break;
-					}
-				}
-			}
-		}
 	}
 
 	private static void printMatrixInSpiralOrder() {
@@ -354,8 +204,6 @@ public class ArrayPrograms {
 				System.out.print(kk + " ");
 			}
 		}
-
-
 	}
 
 	private static void arrayAfterNRotations() {

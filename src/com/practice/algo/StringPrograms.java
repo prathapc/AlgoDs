@@ -12,7 +12,6 @@ public class StringPrograms {
 		//romanCharacterToInteger();
 		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
 		//distinctOccurencesOfSubString();
-		//deleteCharactersToMakeAnagrams();
 		//sherlockStrings();
 		//alphaNumericPalindrom("A man, a plan, a canal: Panama");
 	}
@@ -135,34 +134,6 @@ public class StringPrograms {
 		}
 		else{
 			System.out.println("NO");
-		}
-	}
-
-	private static void deleteCharactersToMakeAnagrams() {
-		Scanner s = new Scanner(System.in);
-		String str1 = s.next().toLowerCase();
-		String str2 = s.next().toLowerCase();
-
-		int a[] = new int[26];
-		int b[] = new int[26];
-
-		int result = 0;
-		for (int i = 0; i < str1.length(); i++) {
-			a[str1.charAt(i)-'a']++;
-		}
-
-		for (int i = 0; i < str2.length(); i++) {
-			b[str2.charAt(i)-'a']++;
-		}
-
-		for(int j = 0; j<26; j++) {
-			result += Math.abs(a[j] - b[j]);
-		}
-
-		if(result != 0) {
-			System.out.println(result);
-		}else {
-			System.out.println("TWO STRINGS ARE ALREADY ANAGRAMS");
 		}
 	}
 
