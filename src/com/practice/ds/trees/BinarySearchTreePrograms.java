@@ -1,11 +1,10 @@
 package com.practice.ds.trees;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 
 public class BinarySearchTreePrograms {

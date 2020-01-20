@@ -1,6 +1,6 @@
 package com.practice.algo.backtracking;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 public class NQueenProblem {
 

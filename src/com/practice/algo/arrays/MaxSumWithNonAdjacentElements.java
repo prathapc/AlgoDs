@@ -1,6 +1,6 @@
 package com.practice.algo.arrays;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 //works for non-nagative integers
 public class MaxSumWithNonAdjacentElements {

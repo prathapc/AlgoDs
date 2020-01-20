@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

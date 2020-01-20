@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 /**
  * One more way is to print left,right and bottom views by level order traversing with a queue.

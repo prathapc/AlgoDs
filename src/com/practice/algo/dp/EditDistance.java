@@ -1,6 +1,6 @@
 package com.practice.algo.dp;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 /**
  * Created by prathap on 05/10/17.

@@ -1,6 +1,6 @@
 package com.practice.algo.dp;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 //https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
 public class RodCutProblem {

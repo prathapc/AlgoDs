@@ -1,6 +1,6 @@
 package com.practice.algo.sorting;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 import java.util.Arrays;
 

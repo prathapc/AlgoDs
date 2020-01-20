@@ -1,6 +1,6 @@
 package com.practice.ds.trees;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 //https://leetcode.com/problems/subtree-of-another-tree/
 public class SubTreeOfAnotherTree {

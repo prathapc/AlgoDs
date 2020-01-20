@@ -2,7 +2,7 @@ package com.practice.ds.trees;
 
 import java.util.Scanner;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 //Application -> top k small or largest elements
 public class HeapTree {

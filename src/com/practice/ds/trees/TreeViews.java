@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 public class TreeViews {
 

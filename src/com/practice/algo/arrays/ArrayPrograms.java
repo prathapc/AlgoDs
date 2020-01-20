@@ -1,6 +1,6 @@
 package com.practice.algo.arrays;
 
-import com.practice.algo.Utility;
+import com.practice.ps.Utility;
 
 import java.util.*;
 import java.util.Stack;
@@ -17,10 +17,43 @@ public class ArrayPrograms {
 
 		System.out.print(nearestSmallerElement());
 
+		maxProfitByBuySellStockAnyNoOfTimes();
 		maxProfitByBuySellStockAtMost2Times();
 		maxProfitByBuySellStockAtMostKTimes();
 
 		rainWaterStorageOnBuildings();
+	}
+
+	private static void maxProfitByBuySellStockAnyNoOfTimes() {
+		int prices[] = {100, 180, 260, 310, 40, 535, 695};
+		int n = prices.length;
+		List<Interval> transactions = new ArrayList<>();
+		int i=0;
+		while (i < n-1) {
+			//find local minima
+			while (i < n-1 && prices[i] >= prices[i+1]) {
+				i++;
+			}
+			if (i == n-1) {
+				break;
+			}
+			Interval e = new Interval();
+			e.buy = i++;
+
+			//find local maxima
+			while (i < n && prices[i-1] <= prices[i]) {
+				i++;
+			}
+			e.sell = i-1;
+			transactions.add(e);
+		}
+
+		transactions.forEach(e -> System.out.println(e.buy + ":" + e.sell));
+	}
+
+	static class Interval {
+		int buy;
+		int sell;
 	}
 
 	//https://www.youtube.com/watch?v=oDhu5uGq_ic&t=293s
