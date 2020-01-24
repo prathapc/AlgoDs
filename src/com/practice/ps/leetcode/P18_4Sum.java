@@ -21,7 +21,7 @@ import java.util.List;
  * https://leetcode.com/problems/4sum/
  *
  */
-public class L18_4Sum {
+public class P18_4Sum {
 
     public List<List<Integer>> fourSum(int[] nums, int target) {
         HashSet<List<Integer>> set = new HashSet<>();

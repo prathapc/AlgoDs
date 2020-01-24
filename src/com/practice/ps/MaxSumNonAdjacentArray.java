@@ -14,17 +14,21 @@ public class MaxSumNonAdjacentArray {
         System.out.println(rob(new int[]{1,5,3,1,7}));
     }
 
-    public static int rob(int[] nums) {
+    private static int rob(int[] nums) {
         if (nums.length == 0) {
             return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        } else if (nums.length == 2) {
+            return Math.max(nums[0], nums[1]);
         }
-        int result = nums[0], prevResult = 0;
-        int temp = 0;
-        for (int i=1; i<nums.length; i++) {
-            temp = result;
-            result = Math.max(result, nums[i]+prevResult);
-            prevResult = temp;
+
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i=2; i<nums.length; i++) {
+            dp[i] = Math.max(nums[i] + dp[i-2], dp[i-1]);
         }
-        return result;
+        return dp[nums.length-1];
     }
 }

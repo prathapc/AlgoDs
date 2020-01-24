@@ -19,7 +19,8 @@ public class LargestContinousSubArrayPrograms    {
     largestSubArrayWithZeroSum();
 
     subArrayWithGivenSum();
-    noOfSubArraysWlithGivenSum();
+    noOfSubArraysWithGivenSum();
+    subarraysDivByK();
 
     sortSubArray();
   }
@@ -67,12 +68,12 @@ public class LargestContinousSubArrayPrograms    {
    * To achieve this, we just need to go through the array,
    * calculate the current sum and save number of all seen PreSum to a HashMap
    */
-  private static void noOfSubArraysWlithGivenSum() {
-    int nums[] = {10, 2, -2, -20, 10};
-    int k = -10;
+  private static void noOfSubArraysWithGivenSum() {
+    int nums[] = {10, 3, 2, 4, 1};
+    int k = 5;
     int sum = 0, result = 0;
     HashMap<Integer, Integer> preSum = new HashMap<>();
-    //preSum.put(0, 1);
+    preSum.put(0, 1);
     for (int i=0; i<nums.length; i++) {
       sum += nums[i];
       if (preSum.containsKey(sum - k)) {
@@ -84,6 +85,29 @@ public class LargestContinousSubArrayPrograms    {
 
     //another way of solving
     findSubarraySum(nums, 5, k);
+  }
+
+  private static int subarraysDivByK() {
+    int A[] = {4,5,0,-2,-3,1};
+    int K = 5;
+    Map<Integer, Integer> preSum = new HashMap();
+    int sum = 0;
+    int result = 0;
+    preSum.put(0, 1);
+    for (int i = 0; i < A.length; i++) {
+      sum += A[i];
+      int remainder = sum % K;
+
+      //handling -ve numbers
+      if (remainder < 0) {
+        remainder += K;
+      }
+
+      result += preSum.getOrDefault(remainder, 0);
+
+      preSum.put(remainder, preSum.getOrDefault(remainder, 0) + 1);
+    }
+    return result;
   }
 
   static int findSubarraySum(int arr[], int n, int sum)
