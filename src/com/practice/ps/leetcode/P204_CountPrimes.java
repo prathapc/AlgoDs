@@ -2,6 +2,12 @@ package com.practice.ps.leetcode;
 
 /**
  * Created by Prathap on 09 Nov, 2019
+ *
+ * Input: 10
+ * Output: 4
+ * Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+ *
+ * https://leetcode.com/problems/count-primes/
  */
 public class P204_CountPrimes {
 

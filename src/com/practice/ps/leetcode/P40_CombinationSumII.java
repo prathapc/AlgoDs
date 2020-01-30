@@ -43,6 +43,7 @@ public class P40_CombinationSumII {
 
         for (int i=index; i<candidates.length; i++) {
             //if two neighbouring elements are same; we should ignore as we don't want duplicates in result
+            //that means first iteration we will get in and for next iterations we check for prev number same or not
             if (i == index || candidates[i] != candidates[i-1]) {
                 temp.add(candidates[i]);
                 combinationSum2(candidates, i+1, target-candidates[i], result, temp);

@@ -1,0 +1,12 @@
+https://medium.com/@RamkrishnaKulka/disjoint-set-union-union-find-the-same-blood-type-e67c51b1d2
+
+Person 1 and Person 2 have the same blood type. Person 2 and Person 4 have the same blood type, and so on. TO solve this problenm
+we can construct a graph and answer all queries but complexty will be O(m*n) considring m persons and n queries.
+
+To solve this efficiently we can use disjoint sets.
+
+"a disjoint set is a data structure where similar elements are kept in a single group"
+
+Two main operations DSU performs on sets are:
+Union (X, Y): merges two specified sets into one combined set.
+Find (X): It finds the representative (or leader) of the set that contains the element X

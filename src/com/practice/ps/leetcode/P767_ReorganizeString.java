@@ -7,6 +7,8 @@ import java.util.*;
  *
  * https://leetcode.com/problems/reorganize-string/
  *
+ * Given a string S, check if the letters can be rearranged so that two characters that are adjacent to each other are not the same.
+ *
  * Input: S = "aab"
  * Output: "aba"
  */

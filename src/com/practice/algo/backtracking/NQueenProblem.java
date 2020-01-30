@@ -9,7 +9,7 @@ public class NQueenProblem {
     int r = 4, c = 4;
     int[][] sol = new int[r][c];
     if (!nQueenUtil(sol, n, 0)) {
-      System.out.print("Solution does not exist");
+      System.out.print("Sol does not exist");
 
     } else {
       Utility.printArray(sol, n, n);

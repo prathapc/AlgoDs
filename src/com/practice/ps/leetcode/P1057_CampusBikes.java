@@ -10,23 +10,29 @@ import java.util.*;
  * https://www.acwing.com/solution/LeetCode/content/4848/
  *
  */
+//TODO
 public class P1057_CampusBikes {
 
     public int[] assignBikes(int[][] workers, int[][] bikes) {
         int N = workers.length, M = bikes.length;
         boolean[] used = new boolean[M];
         List<Pair>[] graph = new List[N];
-        for(int i=0; i<N; i++) graph[i] = new ArrayList<>();
-        for(int i=0; i<N; i++) for(int j=0; j<M; j++) {
-            int[] w = workers[i], b = bikes[j];
-            int dist = Math.abs(w[0]-b[0]) + Math.abs(w[1]-b[1]);
-            graph[i].add(new Pair(dist, i, j, -1));
+        for(int i=0; i<N; i++)
+            graph[i] = new ArrayList<>();
+
+        for(int i=0; i<N; i++) {
+            for(int j=0; j<M; j++) {
+                int[] w = workers[i], b = bikes[j];
+                int dist = Math.abs(w[0]-b[0]) + Math.abs(w[1]-b[1]);
+                graph[i].add(new Pair(dist, i, j, -1));
+            }
         }
 
         for(int i=0; i<N; i++) {
             Collections.sort(graph[i]);
             List<Pair> list = graph[i];
-            for(int j=0; j<list.size(); j++) list.get(j).idx = j;
+            for(int j=0; j<list.size(); j++)
+                list.get(j).idx = j;
         }
 
         PriorityQueue<Pair> heap = new PriorityQueue<>();

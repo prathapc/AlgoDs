@@ -25,7 +25,7 @@ public class KnightsTour_BackTracking {
     int movei=1;
     sol[0][0] = 0;
     if(!solutionUtil(x, y, sol, movei, moveX, moveY)) {
-      System.out.println("Solution does not exist");
+      System.out.println("Sol does not exist");
       return;
     } else {
       Utility.printArray(sol, n, n);

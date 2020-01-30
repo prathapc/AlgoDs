@@ -24,7 +24,7 @@ public class MazePath_BackTracking {
     if(findPathInMazeUtil(maze, sol, 0, 0, moveX, moveY, 1)) {
       Utility.printArray(sol, r, c);
     } else {
-      System.out.print("No Solution exist");
+      System.out.print("No Sol exist");
     }
   }
 
