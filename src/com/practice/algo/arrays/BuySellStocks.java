@@ -9,8 +9,26 @@ public class BuySellStocks {
 
     public static void main(String[] args) throws Exception {
         maxProfitByBuySellStockAnyNoOfTimes();
+        maxProfitByBuySellStockAtMost1Time();
         maxProfitByBuySellStockAtMost2Times();
         maxProfitByBuySellStockAtMostKTimes();
+    }
+
+    private static int maxProfitByBuySellStockAtMost1Time() {
+        int[] prices = {7,1,5,3,6,4};
+        if (prices.length == 0) {
+            return 0;
+        }
+        int maxProfit = 0;
+        int min = prices[0];
+        for (int i=1; i<prices.length; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            } else {
+                maxProfit = Math.max(maxProfit, prices[i]-min);
+            }
+        }
+        return maxProfit;
     }
 
     private static void maxProfitByBuySellStockAnyNoOfTimes() {

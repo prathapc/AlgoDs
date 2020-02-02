@@ -53,8 +53,7 @@ public class SmallestWindowInStringContainingCharsOfOtherString {
       while (count == 0) {
         c = s.charAt(l);
 
-        // If the frequency of character at left pointer is greater or equals to 0,
-        // meaning our left pointer is at a character in t,
+        // If the frequency of character at left pointer is greater or equals to 0, meaning our left pointer is at a character in t,
         // as the two ends of the shortest substring are always characters in t.
         if (map[c] >= 0) {
           // update minLen

@@ -9,8 +9,9 @@ package com.practice.ps.leetcode;
  * Output: [[0,1],[1,0],[3,2],[2,4]]
  * Explanation: The palindromes are ["dcbaabcd","abcddcba","slls","llssssll"]
  */
+//TODO
 public class P336_PalindromePairs {
 
-    //Build a tree in with reverse order of each word given
+    //Build a trie in with reverse order of each word given
     //search each word in trie for match
 }

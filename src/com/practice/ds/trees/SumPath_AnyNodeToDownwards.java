@@ -42,4 +42,22 @@ public class SumPath_AnyNodeToDownwards {
       list.remove(list.size() - 1);
     }
   }
+
+  //count - sum paths from any node to any node in tree ; beats 15%
+  public int pathSum(TreeNode root, int sum) {
+    if (root == null) return 0;
+    return pathSumUtil(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+  }
+
+  private int pathSumUtil(TreeNode node, int sum) {
+    if (node == null) return 0;
+    int count = pathSumUtil(node.left, sum-node.val) + pathSumUtil(node.right, sum-node.val);
+    if (node.val == sum) count++;
+    return count;
+  }
+
+  class TreeNode{
+    TreeNode left, right;
+    int val;
+  }
 }

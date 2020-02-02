@@ -1,10 +1,5 @@
 package com.practice.algo.knapsack;
 
-/**
- * to be solved in DP by constructing a matrix as coins on x-axis and 0 to sum on y-axis
- *
- * similar to rod cut problem.
- */
 public class CoinChangeProblem {
 	
 	//1,2,3 cent coins available; need change for "n" using these coins

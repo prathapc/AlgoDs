@@ -16,39 +16,7 @@ import java.util.List;
  */
 public class SumPath {
 
-  public static void main(String args[]) {
-    Node root = Utility.createSampleTree3();
-    List<Integer> path = new ArrayList<>();
-
-    rootToLeafSum(root, 50, path);
-
-    System.out.println(isRootToLeafSumExist(root, 50));
-
-  }
-
-  private static boolean isRootToLeafSumExist(Node root, int sum) {
-    if (root == null) {
-      return sum == 0;
-    } else {
-      boolean ans = false;
-
-      if (root.getLeft() == null && root.getRight() == null && root.getData() == sum) {
-        return true;
-      }
-
-      if (root.getLeft() != null) {
-        ans = ans || isRootToLeafSumExist(root.getLeft(), sum - root.getData());
-      }
-      if (root.getRight() != null) {
-        ans = ans || isRootToLeafSumExist(root.getRight(), sum - root.getData());
-      }
-
-      return ans;
-    }
-  }
-
-  //solved by me in leetcode [Path Sum]
-  /*public boolean hasPathSum(TreeNode root, int sum) {
+  public boolean hasPathSum(TreeNode root, int sum) {
     if (root == null) {
       return false;
     }
@@ -71,8 +39,12 @@ public class SumPath {
     } else {
       return hasPathSumUtil(root.right, sum-root.right.val);
     }
-  }*/
+  }
 
+  class TreeNode {
+    TreeNode left, right;
+    int val;
+  }
 
 
   private static void rootToLeafSum(Node node, int k, List<Integer> path) {
