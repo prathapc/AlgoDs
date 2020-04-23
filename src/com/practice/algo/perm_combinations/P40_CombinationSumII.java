@@ -1,4 +1,4 @@
-package com.practice.ps.leetcode;
+package com.practice.algo.perm_combinations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,6 @@ public class P40_CombinationSumII {
     }
 
     private static void combinationSum2(int[] candidates, int index, int target, List<List<Integer>> result, List<Integer> temp) {
-
         if (target == 0) {
             result.add(new ArrayList<>(temp));
             return;

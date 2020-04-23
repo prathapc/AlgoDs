@@ -2,12 +2,14 @@ package com.practice.algo.perm_combinations;
 
 /**
  * Given a positive number, find out all combinations of positive numbers that adds upto that number.
- * The program should print only combinations, not permtations. For example, for input 3, either 1, 2 or 2, 1 should be printed.
+ * The program should print only combinations, not permtations.
+ *
+ * For example, for input 3, either 1, 2 or 2, 1 should be printed.
  */
 public class CombinationsAddUptoGivenNumber {
 
   public static void main (String[] args) {
-    findCombinations(5);
+    findCombinations(6);
   }
 
   static void findCombinationsUtil(int arr[], int index, int num, int reducedNum) {

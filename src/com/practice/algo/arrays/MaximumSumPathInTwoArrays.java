@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class MaximumSumPathInTwoArrays {
 
-    private static void maximumSumPathInTwoArrays() {
+    public static void main(String args[]) {
         int a[] = {2, 3, 7, 10, 12};
         int b[] = {1, 5, 7, 8};
         int result = 0, sum1 = 0, sum2 = 0;

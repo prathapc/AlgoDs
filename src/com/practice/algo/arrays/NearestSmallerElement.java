@@ -17,7 +17,7 @@ public class NearestSmallerElement {
         arr.add(34);arr.add(35);arr.add(27);arr.add(42);arr.add(5);arr.add(28);arr.add(39);arr.add(20);arr.add(28);
 
         ArrayList<Integer> result = new ArrayList<>();
-        java.util.Stack<Integer> st = new Stack<>();
+        Stack<Integer> st = new Stack<>();
 
         for(int i=0; i<arr.size(); i++) {
             while(!st.empty()&&st.peek()>=arr.get(i)) {

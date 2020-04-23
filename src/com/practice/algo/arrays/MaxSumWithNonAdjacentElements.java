@@ -6,20 +6,21 @@ import com.practice.ps.Utility;
 public class MaxSumWithNonAdjacentElements {
 
   public static void main(String args[]) {
-    //forPasitiveIntegers();
+    forPasitiveIntegers();
     includingNegativeIntegers();
   }
 
+  //Same as HouseRobber problem
   private static void forPasitiveIntegers() {
     int a[]= {5,5,10,40,50,35,25};
-    int sum1 = a[0];
-    int sum2 = 0;
+    int inclusive = a[0];
+    int exclusive = 0;
     for (int i=1; i<a.length; i++) {
-      int prev = sum1;
-      sum1 = sum2 + a[i];
-      sum2 = Utility.max(prev, sum2);
+      int prevInclusive = inclusive;
+      inclusive = exclusive + a[i];
+      exclusive = Utility.max(prevInclusive, exclusive);
     }
-    System.out.println(Utility.max(sum1, sum2));
+    System.out.println(Utility.max(inclusive, exclusive));
   }
 
   public static void includingNegativeIntegers(){

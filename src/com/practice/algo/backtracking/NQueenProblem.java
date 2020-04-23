@@ -17,7 +17,6 @@ public class NQueenProblem {
   }
 
   private static boolean nQueenUtil(int[][] sol, int n, int col) {
-
     if (col >= n) {
       return true;
     }
@@ -25,13 +24,10 @@ public class NQueenProblem {
     for (int i = 0; i < n; i++) {
       if (isSafe(sol, n, i, col)) {
         sol[i][col] = 1;
-
         if (nQueenUtil(sol, n, col+1)) {
           return true;
-        } else {
-          //backtrack
-          sol[i][col] = 0;
         }
+        sol[i][col] = 0;
       }
     }
     return false;

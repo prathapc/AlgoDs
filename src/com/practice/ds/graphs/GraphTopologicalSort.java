@@ -23,14 +23,18 @@ public class GraphTopologicalSort {
 	}
 	
 	public static void main(String[] args) {
-		GraphTopologicalSort g = new GraphTopologicalSort(6);
+		/*GraphTopologicalSort g = new GraphTopologicalSort(6);
 		g.addEdge(5, 2);
         g.addEdge(5, 0);
         g.addEdge(4, 0);
         g.addEdge(4, 1);
         g.addEdge(2, 3);
-        g.addEdge(3, 1);
-		
+        g.addEdge(3, 1);*/
+
+		GraphTopologicalSort g = new GraphTopologicalSort(3);
+		g.addEdge(0, 1);
+		g.addEdge(1, 2);
+
 		g.topologicalSort(g);
 	}
 

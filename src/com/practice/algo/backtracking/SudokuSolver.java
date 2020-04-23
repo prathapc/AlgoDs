@@ -5,18 +5,14 @@ package com.practice.algo.backtracking;
  */
 public class SudokuSolver {
 
-    public void solveSudoku(char[][] board) {
-        solveSudokuUtil(board);
-    }
-
-    private boolean solveSudokuUtil(char[][] board) {
+    private boolean solveSudoku(char[][] board) {
         for (int i=0; i<9; i++) {
             for (int j=0; j<9; j++) {
                 if (board[i][j] == '.') {
                     for (char num='1'; num<='9'; num++) {
                         if (isValidBoard(board, i, j, num)) {
                             board[i][j] = num;
-                            if (solveSudokuUtil(board)) {
+                            if (solveSudoku(board)) {
                                 return true;
                             }
                             board[i][j] = '.';

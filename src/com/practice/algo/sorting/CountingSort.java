@@ -17,7 +17,7 @@ public class CountingSort {
     //count[] = {1,0,2,0,0,0,1,1,1}
     int count[] = new int[max-min+1];
     for (int i=0; i<a.length; i++) {
-      count[a[i] - min] = count[a[i] - min] + 1;
+      count[a[i] - min]++;
     }
 
     //count[] = {1,1,3,3,3,3,4,5,6}

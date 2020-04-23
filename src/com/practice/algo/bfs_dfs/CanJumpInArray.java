@@ -2,6 +2,12 @@ package com.practice.algo.bfs_dfs;
 
 /**
  * Created by Prathap on 19 Oct, 2019
+ *
+ * https://leetcode.com/problems/jump-game/
+ *
+ * Input: [2,3,1,1,4]
+ * Output: true
+ * Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
  */
 public class CanJumpInArray {
 
@@ -18,13 +24,7 @@ public class CanJumpInArray {
 
     //other solution
     public static void main(String args[]) {
-
-        //Works but memory limit exceeded in leetcode submission:
-        //Filling 2D array with all the possibilities from the element
-        //then checking each COLUMN for a True value
         int[] nums = new int[]{2,3,1,1,4};
-        System.out.println(canJump(nums));
-
         //other standard dfs way of solving
         Boolean[] memo = new Boolean[nums.length];
         memo[nums.length - 1] = true;
@@ -46,31 +46,5 @@ public class CanJumpInArray {
 
         memo[pos] = canReach;
         return canReach;
-    }
-
-    public static boolean canJump(int[] nums) {
-        boolean[][] arr = new boolean[nums.length][nums.length];
-        for (int i=0; i<nums.length; i++) {
-            int element = nums[i];
-            for (int j=i+1; j<nums.length; j++) {
-                if (--element < 0) {
-                    break;
-                }
-                arr[i][j] = true;
-            }
-        }
-
-        for (int j=1; j<nums.length; j++) {
-            boolean doesColHasTrue = false;
-            for (int i=0; i<nums.length; i++) {
-                if (arr[i][j] == true) {
-                    doesColHasTrue = true;
-                }
-            }
-            if (!doesColHasTrue) {
-                return false;
-            }
-        }
-        return true;
     }
 }

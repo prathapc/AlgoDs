@@ -24,12 +24,10 @@ public class KnightsTour_BackTracking {
     int x=0, y=0;
     int movei=1;
     sol[0][0] = 0;
-    if(!solutionUtil(x, y, sol, movei, moveX, moveY)) {
-      System.out.println("Sol does not exist");
-      return;
-    } else {
+    if(solutionUtil(x, y, sol, movei, moveX, moveY)) {
       Utility.printArray(sol, n, n);
-    }
+    } System.out.println("Sol does not exist");
+
   }
 
   public static boolean solutionUtil(int x, int y, int[][] sol, int movei, int[] moveX, int[] moveY) {
@@ -42,11 +40,10 @@ public class KnightsTour_BackTracking {
       nextY = y + moveY[k];
 
       if(isSafe(nextX, nextY, sol)) {
-        sol[nextX][nextY] = movei;
+        sol[nextX][nextY] = movei;  //make decision
         if(solutionUtil(nextX, nextY, sol, movei+1, moveX, moveY))
           return true;
-        else
-          sol[nextX][nextY] = -1; //backtracking
+        sol[nextX][nextY] = -1; //backtracking
       }
     }
     return false;

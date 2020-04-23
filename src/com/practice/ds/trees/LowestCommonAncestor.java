@@ -21,7 +21,6 @@ public class LowestCommonAncestor {
    * We can extend this method to handle all cases by passing two boolean variables v1 and v2. v1 is set as true when n1 is present in tree and v2 is set as true if n2 is present in tree.
    *
    * To handle this case have two static boolean values to track n1, n2 found status. In the end if both booleans are true then return node else return null.
-   *
    */
   private static Node lowestCommonAncestor(Node node, int n1, int n2) {
     if(node != null) {

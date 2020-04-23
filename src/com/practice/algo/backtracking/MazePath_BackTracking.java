@@ -21,11 +21,11 @@ public class MazePath_BackTracking {
     sol[0][0] = 1; //we are starting from this cell
     int[] moveX = {1, 0, 0, -1};
     int[] moveY = {0, 1, -1, 0};
+
     if(findPathInMazeUtil(maze, sol, 0, 0, moveX, moveY, 1)) {
       Utility.printArray(sol, r, c);
-    } else {
-      System.out.print("No Sol exist");
     }
+    System.out.print("No Sol exist");
   }
 
   private static boolean findPathInMazeUtil(int[][] maze, int[][] sol, int x, int y, int[] moveX, int[] moveY, int movei) {
@@ -45,16 +45,16 @@ public class MazePath_BackTracking {
       nextX = x + moveX[k];
       nextY = y + moveY[k];
       if(isValidCell(maze, nextX, nextY)) {
+        //make decision
         sol[nextX][nextY] = 1;
         System.out.println("nextX:"+nextX+"  nextY:"+nextY);
         if(findPathInMazeUtil(maze, sol, nextX, nextY, moveX, moveY, movei+1)) {
           return true;
-        } else {
-          sol[nextX][nextY] = 0;  //backtracking
         }
+        //backtracking
+        sol[nextX][nextY] = 0;
       }
     }
-
     return false;
   }
 

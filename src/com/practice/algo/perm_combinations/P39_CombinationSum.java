@@ -1,4 +1,4 @@
-package com.practice.ps.leetcode;
+package com.practice.algo.perm_combinations;
 
 import java.util.*;
 

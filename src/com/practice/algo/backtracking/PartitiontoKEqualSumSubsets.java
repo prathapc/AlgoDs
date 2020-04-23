@@ -1,5 +1,7 @@
 package com.practice.algo.backtracking;
 
+import java.util.Arrays;
+
 /**
  * Created by Prathap on 16 Jan, 2020
  *
@@ -12,50 +14,40 @@ package com.practice.algo.backtracking;
  */
 public class PartitiontoKEqualSumSubsets {
 
-    public boolean canPartitionKSubsets(int[] nums, int k) {
+    public static boolean canPartitionKSubsets(int[] nums, int k) {
         if(nums==null || nums.length==0)
             return false;
         int n = nums.length;
-        int sumt = 0;
-        for(int i=0; i<n; i++){
-            sumt = sumt + nums[i];
-        }
-        int sumset = sumt/k;
-        if(sumt % k != 0)
+        int totSum = Arrays.stream(nums).sum();
+        int subsetSum = totSum/k;
+        if(totSum % k != 0)
             return false;
 
-        boolean[] visited = new boolean[n];
-        // backtrack for all k sets
-
-        return canPartition(k, nums, 0,0, sumset, visited);
-
+        return canPartition(nums, k, 0,0, subsetSum, new boolean[n]);
     }
 
-    public boolean canPartition(int k, int[] nums, int currsum, int curridx, int sumset, boolean[] visited){
-
+    public static boolean canPartition(int[] nums, int k, int currSum, int currIndex, int subsetSum, boolean[] visited){
         if(k==1)
             return true;
 
-        if(currsum == sumset)
-            return canPartition(k-1, nums, 0,0, sumset, visited);
+        if(currSum == subsetSum)
+            return canPartition(nums, k-1, 0,0, subsetSum, visited);
 
-        // already have a currsum
-        // target is sumset
-        for(int j=curridx; j<nums.length; j++)
-        {
-            if(visited[j])
+        for(int i=currIndex; i<nums.length; i++) {
+            if(visited[i])
                 continue;
-            int nowsum = currsum+nums[j];
-            if(nowsum <= sumset){
-                visited[j] = true;
-                if(canPartition( k, nums, nowsum, j+1,sumset, visited ))
+            if(currSum+nums[i] <= subsetSum){
+                visited[i] = true;
+                if(canPartition(nums, k, currSum+nums[i], i+1, subsetSum, visited))
                     return true;
-                visited[j] = false;
+                visited[i] = false;
             }
         }
-
         return false;
+    }
 
+    public static void main(String args[]) {
+        System.out.println(canPartitionKSubsets(new int[] {4, 3, 2, 3, 5, 2, 1}, 4));
     }
 
 }

@@ -1,13 +1,5 @@
 package com.practice.java;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * Created by prathap on 11/07/17.
  */

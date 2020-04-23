@@ -27,7 +27,7 @@ public class TaskScheduler {
         int cycles = 0;
         while(!maxHeap.isEmpty()) {
             List<Integer> temp = new ArrayList<>();
-            for (int i=0; i<n+1; i++) {
+            for (int i = 0; i <= n; i++) {
                 if (!maxHeap.isEmpty()) {
                     temp.add(maxHeap.remove());
                 }
@@ -39,7 +39,7 @@ public class TaskScheduler {
                 }
             }
 
-            cycles = cycles + (maxHeap.isEmpty() ? temp.size() : n+1);
+            cycles += maxHeap.isEmpty() ? temp.size() : n+1;
         }
 
         return cycles;
