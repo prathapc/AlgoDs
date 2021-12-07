@@ -1,0 +1,48 @@
+Once you've figured out that the question can be modeled as a graph problem,
+you then need to think about the various aspects of a graph i.e.
+
+directed vs undirected
+weighted vs unweighted
+cyclic vs acyclic
+
+These aspects will help define the algorithm that you can consider for solving the problem at hand.
+For example a standard rule of thumb that is followed
+ - for solving shortest path problems
+    - for unweighted graphs we mostly use Breadth-first search [O(V + E)]
+    - for DAGs topology sort [O(V+E)]
+    - for non negative weighted cyclic graph we use Dijkstra's algorithm [O(E + VLogV)]
+    - for negative weights cyclic Bellman Ford's [ O(VE) ]
+      (if graph with "negative weighted cycle" (meaning sum of edges in cycle is negative)then no shortest path exist)
+      (basically, bellman-ford is dynamic programming but optimized for space.
+      We calculate shortest path using atmost 0,1,2.. n-1 edges, each time we use prev stage results with 1D array)
+------------------------------------------------------------------------------------------------------------------
+Disjoint sets:
+~~~~~~~~~~~~~~
+- identify and group elements that are connected into sets by assigning one head for each element in the group
+
+
+
+------------------------------------------------------------------------------------------------------------------
+Good content:-
+https://algs4.cs.princeton.edu/40graphs/
+
+------------------------------------------------------------------------------------------------------------------
+DFS vs BFS
+~~~~~~~~~~
+For finding shortest path BFS is better than DFS, because in BFS as soon as we hit destination
+that's going to be shortest route and no need to find all paths unlike DFS
+------------------------------------------------------------------------------------------------------------------
+
+A spanning tree is a connected subgraph in an undirected graph where all vertices are connected with the min no of edges
+A minimum spanning tree is a spanning tree with the minimum possible total edge weight in a “weighted undirected graph”
+
+two algorithms for constructing a “minimum spanning tree”:
+1. Kruskal’s Algorithm
+2. Prim’s algorithm
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------
+

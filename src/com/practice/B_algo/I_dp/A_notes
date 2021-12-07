@@ -1,0 +1,11 @@
+Dynamic Programming
+-------------------
+- most of recursion & knapsack can be optimised with DP
+
+Two ways to solve:
+~~~~~~~~~~~~~~~~~
+- add hashmap for memorization in recursive solution
+- bottom-up approach by building dp array (1D/2D)
+
+More patterns:
+https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns

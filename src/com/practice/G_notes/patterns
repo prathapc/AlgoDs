@@ -1,0 +1,34 @@
+Problem solving patterns:-
+------------------------
+Arrays:
+~~~~~~~
+- see if given array is sorted or not. If not sorted, check if sorting makes it easy to arrive at solution
+- slow and fast pointers to iterate
+- two pointer with hashmap (sometimes removing from map as well required)
+
+
+Strings:
+~~~~~~~~
+- two pointer with hashmap
+    1. anagram substrings
+
+
+Recursion:
+~~~~~~~~~~
+
+DP:
+~~~
+-
+
+
+- swap backtracking
+    1. permutations
+    2.
+
+- bfs/dfs
+    1.
+
+- backtracking
+    1.
+
+-
