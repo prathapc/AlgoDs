@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.practice.C_ps.Utility;
+import com.practice.B_algo.A_sort_search_math.Utility;
 
 
 public class A_BinarySearchTreePrograms {

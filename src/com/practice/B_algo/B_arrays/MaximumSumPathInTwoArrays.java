@@ -1,6 +1,6 @@
 package com.practice.B_algo.B_arrays;
 
-import com.practice.C_ps.Utility;
+import com.practice.B_algo.A_sort_search_math.Utility;
 
 /**
  * Created by Prathap on 22 Jan, 2020

@@ -1,7 +1,5 @@
 package com.practice.A_ds.F_trees;
 
-import com.practice.C_ps.Utility;
-
 /**
  * Created by prathap on 05/04/18.
  * Updated on Nov 28' 2021

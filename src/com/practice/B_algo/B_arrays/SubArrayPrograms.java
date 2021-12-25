@@ -4,7 +4,7 @@ package com.practice.B_algo.B_arrays;
  * Created by prathap on 02/09/17.
  */
 
-import com.practice.C_ps.Utility;
+import com.practice.B_algo.A_sort_search_math.Utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,6 +70,8 @@ public class SubArrayPrograms {
    * So if we know SUM[0, i - 1] and SUM[0, j], then we can easily get SUM[i, j].
    * To achieve this, we just need to go through the array,
    * calculate the current sum and save number of all seen PreSum to a HashMap
+   *
+   * https://leetcode.com/problems/subarray-sum-equals-k/
    */
   private static void noOfSubArraysWithGivenSum() {
     int nums[] = {10, 3, 2, 4, 1};

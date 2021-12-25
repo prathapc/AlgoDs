@@ -1,0 +1,5 @@
+1. Print 2d array
+Arrays.deepToString(intervals))
+
+2. Sort intervals by start time in asc
+Arrays.sort(intervals, (int[] i1, int[] i2) -> i1[0]-i2[0]);

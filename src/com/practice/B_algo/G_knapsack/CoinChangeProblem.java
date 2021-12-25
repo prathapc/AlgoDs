@@ -1,7 +1,5 @@
 package com.practice.B_algo.G_knapsack;
 
-import com.practice.C_ps.Utility;
-
 /**
  * No of ways given sum can be formed with given coins
  */

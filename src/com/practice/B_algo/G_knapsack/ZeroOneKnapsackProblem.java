@@ -1,6 +1,6 @@
 package com.practice.B_algo.G_knapsack;
 
-import com.practice.C_ps.Utility;
+import com.practice.B_algo.A_sort_search_math.Utility;
 
 /**
  * https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/

@@ -2,7 +2,7 @@ package com.practice.A_ds.F_trees;
 
 import java.util.Scanner;
 
-import com.practice.C_ps.Utility;
+import com.practice.B_algo.A_sort_search_math.Utility;
 
 //Application -> top k small or largest elements
 public class Z_HeapTree {

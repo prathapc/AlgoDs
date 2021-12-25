@@ -24,7 +24,7 @@ public class A_MergeIntervals {
 
     public static int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, (int[] i1, int[] i2) -> i1[0] - i2[0]);
-
+        System.out.println("After sorting: " + Arrays.deepToString(intervals));
         int[][] result = new int[intervals.length][intervals[0].length];
         int[] prev = intervals[0];
         int c = 0;
