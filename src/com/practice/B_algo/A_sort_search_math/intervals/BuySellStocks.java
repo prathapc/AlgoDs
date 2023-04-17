@@ -8,12 +8,13 @@ import java.util.*;
 public class BuySellStocks {
 
     public static void main(String[] args) throws Exception {
-        //maxProfitByBuySellStockAnyNoOfTimes();
-        //maxProfitByBuySellStockAtMost1Time();
+        maxProfitByBuySellStockAtMost1Time();
+        maxProfitByBuySellStockAnyNoOfTimes();
         maxProfitByBuySellStockAtMost2Times();
-        //maxProfitByBuySellStockAtMostKTimes();
+        maxProfitByBuySellStockAtMostKTimes();
     }
 
+    //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
     private static int maxProfitByBuySellStockAtMost1Time() {
         int[] prices = {7,1,5,3,6,4};
         if (prices.length == 0) {
@@ -31,74 +32,19 @@ public class BuySellStocks {
         return maxProfit;
     }
 
+    //https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
     private static void maxProfitByBuySellStockAnyNoOfTimes() {
         int prices[] = {100, 180, 260, 310, 40, 535, 695};
         int n = prices.length;
-        List<Interval> transactions = new ArrayList<>();
-        int i=0;
-        while (i < n-1) {
-            //find local minima
-            while (i < n-1 && prices[i] >= prices[i+1]) {
-                i++;
-            }
-            if (i == n-1) {
-                break;
-            }
-            Interval e = new Interval();
-            e.buy = i++;
-
-            //find local maxima
-            while (i < n && prices[i-1] <= prices[i]) {
-                i++;
-            }
-            e.sell = i-1;
-            transactions.add(e);
-        }
-
-        transactions.forEach(e -> System.out.println(e.buy + ":" + e.sell));
-    }
-
-    static class Interval {
-        int buy;
-        int sell;
-    }
-
-    //https://www.youtube.com/watch?v=oDhu5uGq_ic&t=293s
-    private static void maxProfitByBuySellStockAtMostKTimes() {
-
-        int k = 3;
-        int price[] = {12, 14, 17, 10, 14, 13, 12, 15};
-
-        int n = price.length;
-
-        // table to store results of subproblems
-        // profit[t][i] stores maximum profit
-        // using atmost t transactions up to day
-        // i (including day i)
-        int profit[][] = new int[k + 1][ n + 1];
-
-        // For day 0, you can't earn money
-        // irrespective of how many times you trade
-        for (int i = 0; i <= k; i++)
-            profit[i][0] = 0;
-
-        // profit is 0 if we don't do any
-        // transation (i.e. k =0)
-        for (int j = 0; j <= n; j++)
-            profit[0][j] = 0;
-
-        // fill the table in bottom-up fashion
-        for (int i = 1; i <= k; i++)
-        {
-            int prevDiff = Integer.MIN_VALUE;
-            for (int j = 1; j < n; j++)
-            {
-                prevDiff = Math.max(prevDiff, profit[i - 1][j - 1] - price[j - 1]);
-                profit[i][j] = Math.max(profit[i][j - 1], price[j] + prevDiff);
+        int profit = 0;
+        int currProfit = 0;
+        for(int day = 1; day < prices.length; day++) {
+            currProfit = prices[day] - prices[day-1];
+            if(currProfit > 0) {
+                profit += currProfit;
             }
         }
-
-        System.out.println(profit[k][n - 1]);
+        System.out.println(profit);
     }
 
     private static void maxProfitByBuySellStockAtMost2Times() {
@@ -144,6 +90,45 @@ public class BuySellStocks {
             profit[i] = Math.max(profit[i-1], profit[i] +
                     (price[i]-min_price) );
         }
-        System.out.print(profit[n-1]);
+        System.out.println(profit[n-1]);
     }
+
+    //https://www.youtube.com/watch?v=oDhu5uGq_ic&t=293s
+    private static void maxProfitByBuySellStockAtMostKTimes() {
+        int k = 3;
+        int price[] = {12, 14, 17, 10, 14, 13, 12, 15};
+
+        int n = price.length;
+
+        // table to store results of subproblems
+        // profit[t][i] stores maximum profit
+        // using atmost t transactions up to day
+        // i (including day i)
+        int profit[][] = new int[k + 1][ n + 1];
+
+        // For day 0, you can't earn money
+        // irrespective of how many times you trade
+        for (int i = 0; i <= k; i++)
+            profit[i][0] = 0;
+
+        // profit is 0 if we don't do any
+        // transation (i.e. k =0)
+        for (int j = 0; j <= n; j++)
+            profit[0][j] = 0;
+
+        // fill the table in bottom-up fashion
+        for (int i = 1; i <= k; i++)
+        {
+            int prevDiff = Integer.MIN_VALUE;
+            for (int j = 1; j < n; j++)
+            {
+                prevDiff = Math.max(prevDiff, profit[i - 1][j - 1] - price[j - 1]);
+                profit[i][j] = Math.max(profit[i][j - 1], price[j] + prevDiff);
+            }
+        }
+
+        System.out.println(profit[k][n - 1]);
+    }
+
+
 }

@@ -9,8 +9,8 @@ public class D_CountingSort {
 
   public static void main(String args[]) {
     int a[] = {9,4,10,8,2,4};
-    int min = findMin(a);
-    int max = findMax(a);
+    int min = findMin(a);//2
+    int max = findMax(a);//10
 
     //count[] = {1,0,2,0,0,0,1,1,1}
     int count[] = new int[max-min+1];

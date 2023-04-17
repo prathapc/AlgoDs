@@ -2,6 +2,11 @@ package com.practice.A_ds.C_linkedlist;
 
 import com.practice.B_algo.A_sort_search_math.Utility;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by prathapchowdary on 15/10/21.
  * 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> NULL
@@ -17,6 +22,22 @@ public class B_SwapNodes {
     }
 
     public static ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode cur = head;
+        ListNode newHead = head.next;
+        while (cur != null && cur.next != null) {
+            ListNode tmp = cur;
+            cur = cur.next;
+            tmp.next = cur.next;
+
+            cur.next = tmp;
+            cur = tmp.next;
+            if (cur != null && cur.next != null) tmp.next = cur.next;
+        }
+        return newHead;
+    }
+
+    public static ListNode swapPairs1(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode p1 = dummy;

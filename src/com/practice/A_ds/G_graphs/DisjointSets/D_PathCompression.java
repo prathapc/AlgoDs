@@ -3,45 +3,37 @@ package com.practice.A_ds.G_graphs.DisjointSets;
 /**
  * Created by prathapchowdary on 19/09/21.
  *
- * In QuickUnion, find has wors complexity when its skewed
+ * In QuickUnion, find has worst complexity when its skewed
  * To make it efficient we can store all roots on the pass so that next time we can simply return root of any element
  */
 public class D_PathCompression {
-    private int[] data;
-    private int[] rank;
+    private int[] root;
+
     public D_PathCompression(int size) {
-        data = new int[size];
-        rank = new int[size];
-        for (int i=0; i<size; i++) {
-            data[i] = i;
-            rank[i] = i;
+        root = new int[size];
+        for (int i = 0; i < size; i++) {
+            root[i] = i;
         }
     }
 
+    //O(logN)
     public int find(int x) {
-        if (x == data[x]) {
+        if (x == root[x]) {
             return x;
         }
-        return data[x] = find(data[x]); //this is the optimization; storing prev results like in DP
+        return root[x] = find(root[x]); //this is the optimization; storing prev results like in DP => we are changing root for all elements in the process so that in the subsequent find will be faster
     }
 
+    //O(logN)
     public void union(int x, int y) {
-        //same as QuickUnion but identify height and select root accordingly
         int rootX = find(x);
         int rootY = find(y);
         if (rootX != rootY) {
-            if (rank[rootX] > rank[rootY]) {
-                data[rootY] = rootX;
-            } else if (rank[rootX] < rank[rootY]) {
-                data[rootX] = rootY;
-            } else {
-                //if same select any and increment height
-                data[rootY] = rootX;
-                rank[rootX] += 1;
-            }
+            root[rootY] = rootX;
         }
     }
 
+    //O(logN)
     public boolean isConnected(int x, int y) {
         return find(x) == find(y);
     }

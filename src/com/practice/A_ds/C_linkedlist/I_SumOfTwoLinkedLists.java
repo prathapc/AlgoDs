@@ -3,8 +3,6 @@ package com.practice.A_ds.C_linkedlist;
 /**
  * Created by prathap on 02/09/17.
  */
-
-
 public class I_SumOfTwoLinkedLists {
 
   /**
@@ -72,41 +70,30 @@ public class I_SumOfTwoLinkedLists {
   }
 
   /**
-   * https://leetcode.com/problems/add-two-numbers/submissions/
+   * https://leetcode.com/problems/add-two-numbers/
    *
    * Input: l1 = [2,4,3], l2 = [5,6,4]
    * Output: [7,0,8]
    * Explanation: 342 + 465 = 807.
    */
-  public static Node addTwoNumbers(Node l1, Node l2) {
-    Node result = null, curr = null, prev = null;
+  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode dummy = new ListNode(-1);
+    ListNode curr = dummy;
     int carry = 0;
-    while (l1 != null || l2 != null) {
-      int sum = carry + (l1 != null ? l1.data : 0) + (l2 != null ? l2.data : 0);
+    while (l1 != null || l2 != null || carry != 0) {
+      int num1 = l1 != null ? l1.val : 0;
+      int num2 = l2 != null ? l2.val : 0;
 
-      carry = sum >= 10 ? 1 : 0;
-      sum %= 10;
+      int sum = num1 + num2 + carry;
+      int newNum = sum % 10;
+      carry = sum / 10;
+      curr.next = new ListNode(newNum);
+      curr = curr.next;
 
-      curr = new Node(sum);
-      if (result == null) {
-        result = curr;
-      } else {
-        prev.next = curr;
-      }
-
-      prev = curr;
-
-      if (sum >= 10) {
-        carry = 1;
-      }
       l1 = l1 != null ? l1.next : null;
       l2 = l2 != null ? l2.next : null;
     }
-
-    if (carry > 0) {
-      curr.next = new Node(carry);
-    }
-    return result;
+    return dummy.next;
   }
 
   static void printList(Node node) {
@@ -121,32 +108,11 @@ public class I_SumOfTwoLinkedLists {
   static class Node {
     public int data;
     public Node next;
-    public Node random;
 
     public Node(int data) {
       super();
       this.data = data;
     }
-  }
-
-  public static void main(String args[]) {
-    /*Node node1 = new Node(1);
-    node1.next = new Node(2);
-    node1.next.next = new Node(3);
-
-    Node node2 = new Node(4);
-    node2.next = new Node(5);*/
-
-    Node node1 = new Node(12);
-    node1.next = new Node(4);
-    node1.next.next = new Node(3);
-
-    Node node2 = new Node(5);
-    node2.next = new Node(6);
-    node2.next.next = new Node(4);
-
-    printList(addTwoNumbers(node1, node2));
-
   }
 }
 

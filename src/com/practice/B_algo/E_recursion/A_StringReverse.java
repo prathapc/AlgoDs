@@ -14,7 +14,7 @@ public class A_StringReverse {
         helper(s, 0, s.length - 1);
     }
 
-    //Recursive solution
+    //Recursive solution - O(n) time and space
     public void helper(char[] s, int left, int right) {
         if (left >= right) return;
 

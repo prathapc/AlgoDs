@@ -5,7 +5,7 @@ import com.practice.B_algo.A_sort_search_math.Utility;
 /**
  * Created by prathapchowdary on 11/09/21.
  *
- * https://leetcode.com/problems/reverse-nodes-in-k-group/submissions/
+ * https://leetcode.com/problems/reverse-nodes-in-k-group/
  *
  * Input: head = [1,2,3,4,5], k = 3
  * Output: [3,2,1,4,5]
@@ -13,70 +13,37 @@ import com.practice.B_algo.A_sort_search_math.Utility;
  * Similar to prev problem, but count total nodes first and exit the last batch if no of nodes < k
  */
 public class E_ReverseInGroupsII {
-    public static void main(String args[]) {
-        ListNode head = Utility.createLinkedList();
-        Utility.printLinkedList(head);
-        head = reverseKGroup(head, 3);
-        Utility.printLinkedList(head);
-    }
-
-    public static ListNode reverseKGroup(ListNode head, int k) {
-        ListNode ptr = head;
-        ListNode ktail = null;
-        // Head of the final, modified linked list
-        ListNode new_head = null;
-
-        // Keep going until there are nodes in the list
-        while (ptr != null) {
-            int count = 0;
-            // Start counting nodes from the head
-            ptr = head;
-            // Find the head of the next k nodes
-            while (count < k && ptr != null) {
-                ptr = ptr.next;
-                count += 1;
-            }
-
-            // If we counted k nodes, reverse them
-            if (count == k) {
-
-                // Reverse k nodes and get the new head
-                ListNode revHead = reverseLinkedList(head, k);
-
-                // new_head is the head of the final linked list
-                if (new_head == null)
-                    new_head = revHead;
-
-                // ktail is the tail of the previous block of
-                // reversed k nodes
-                if (ktail != null)
-                    ktail.next = revHead;
-
-                ktail = head;
-                head = ptr;
-            }
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode t = head;
+        int l = 0;
+        while (t != null) {
+            t = t.next;
+            l++;
         }
 
-        // attach the final, possibly un-reversed portion
-        if (ktail != null)
-            ktail.next = head;
+        return reverseKGroupUtil(head, k, l/k, 1);
 
-        return new_head == null ? head : new_head;
     }
 
-    public static ListNode reverseLinkedList(ListNode head, int k) {
-        ListNode new_head = null;
-        ListNode ptr = head;
-
-        while (k > 0) {
-            ListNode next_node = ptr.next;
-
-            ptr.next = new_head;
-            new_head = ptr;
-
-            ptr = next_node;
-            k--;
+    public ListNode reverseKGroupUtil(ListNode head, int k, int l, int cl) {
+        if (cl > l) {
+            return head;
         }
-        return new_head;
+
+        ListNode curr = head, prev = null, next = null;
+        int temp = 0;
+        while (temp < k && curr != null) {
+            next = curr.next;
+            curr.next = prev;
+
+            prev = curr;
+            curr = next;
+
+            temp++;
+        }
+        if (next != null) {
+            head.next = reverseKGroup(next, k);
+        }
+        return prev;
     }
 }

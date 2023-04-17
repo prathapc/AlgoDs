@@ -13,19 +13,13 @@ public class A_RemoveDuplicates {
     }
 
     private static ListNode removeDuplicates(ListNode node) {
-        if(node == null) {
-            return null;
-        }
-        ListNode curr = node, next = curr.next, nextNext = null;
-
-        while(next != null) {
-            if(curr.val == next.val) {
-                nextNext = next.next;
-                curr.next = nextNext;
-                next = nextNext;
+        if (node == null) return null;
+        ListNode curr = node, next = node.next;
+        while (curr != null && curr.next != null) {
+            if (curr.val == curr.next.val) {
+                curr.next = curr.next.next;
             } else {
-                curr = next;
-                next = next.next;
+                curr = curr.next;
             }
         }
         return node;

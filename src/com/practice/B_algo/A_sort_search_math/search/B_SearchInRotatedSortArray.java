@@ -15,7 +15,7 @@ public class B_SearchInRotatedSortArray {
         int hi = a.length - 1;
         while (lo <= hi) {
             //int mid = low + (high - low) / 2
-            int mid = (lo + hi) >>> 1; // avoid overflow, same as mid = (lo + hi) / 2
+            int mid = (lo + hi) >>> 1; // same as mid = (lo + hi) / 2 and avoids overflow
 
             if (a[mid] == key)
                 return mid;

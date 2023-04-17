@@ -3,7 +3,7 @@ package com.practice.B_algo.I_dp;
 /**
  * Created by prathapchowdary on 13/12/21.
  *
- * https://leetcode.com/problems/longest-palindromic-substring
+ * https://leetcode.com/problems/longest-palindromic-substring/
  */
 public class F_LongestPalindromSubstring {
     public String longestPalindrome(String str) {

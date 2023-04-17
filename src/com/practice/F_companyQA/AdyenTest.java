@@ -4,7 +4,6 @@ package com.practice.F_companyQA;
  * Created by Prathap on 12 Jan, 2020
  */
 public class AdyenTest {
-
     /*int A[] = new int[]{1, 1, 3, 3, 4, 5, 5, 9};
         int Y = 3;
         Map<Integer, Integer> nails = new HashMap<>();

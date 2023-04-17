@@ -10,24 +10,21 @@ package com.practice.B_algo.A_sort_search_math.search;
  * Output: 2
  *
  * ALSO "first bad version" is similar problem:
- *  * https://leetcode.com/problems/first-bad-version/submissions/
+ *  * https://leetcode.com/problems/first-bad-version/
  */
 public class C_FindPeakElement {
 
-    public static void main(String args[]) {
-        System.out.println(findPeakElement(new int[]{2,4,1,2,3,4,5}));
+    public int findPeakElement(int[] nums) {
+        return findPeakElement(nums, 0, nums.length-1);
     }
 
-    public static int findPeakElement(int[] nums) {
-        int left = 0, right = nums.length-1;
-        while (left < right) {
-            int mid = left + (right-left)/2;
-            if (nums[mid] < nums[mid+1]) {
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
+    private int findPeakElement(int[] nums, int start, int end) {
+        if (start == end) return start;
+        int mid = start + (end-start)/2;
+        if (nums[mid] < nums[mid+1]) { //peak at right side
+            return findPeakElement(nums, mid+1, end);
+        } else { //peak at left side
+            return findPeakElement(nums, start, mid);
         }
-        return left;
     }
 }

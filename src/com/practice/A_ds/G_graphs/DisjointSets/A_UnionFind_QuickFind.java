@@ -3,7 +3,9 @@ package com.practice.A_ds.G_graphs.DisjointSets;
 /**
  * Created by prathapchowdary on 18/09/21.
  *
- * Quick 'find' solution
+ * 1. array index is corresponding vertex, array value is root
+ * 2. while we do union, if roots are different then we need to apply union -
+ *       traverse array for rootY, then assign rootX to it
  */
 class A_UnionFind_QuickFind {
     private int[] root;
@@ -15,10 +17,12 @@ class A_UnionFind_QuickFind {
         }
     }
 
+    //O(1)
     public int find(int x) {
         return root[x];
     }
 
+    //O(n)
     public void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);

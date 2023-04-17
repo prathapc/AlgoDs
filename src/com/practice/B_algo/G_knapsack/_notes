@@ -1,0 +1,121 @@
+https://leetcode.com/discuss/study-guide/1200320/Thief-with-a-knapsack-a-series-of-crimes.
+------------------------------------------------------------------------------------------
+One of the classical problems of dynamic programming is the 0/1 knapsack problem.
+The thief has a knapsack of given capacity, and he wishes to maximize the profit with the available valuables.
+What should he do?
+
+Though it would be weird if he starts implementing DP at the crime scene. But anyways.
+Keep track of the max profit he can achieve up to a certain weight, and decide whether to pick the next object or not.
+Here is a simple code for the same.
+
+Capacity of Knapsack: W (given)
+Objective: Maximize profit.
+
+int dp[W + 1] = {0};
+for (int i=0; i<n; ++i)
+    for (int j=W; j>=weight[i]; j--)
+        dp[j] = max(dp[j], value[i]+ dp[j - weight[i]]);
+return dp[W];
+dp[j] if he will not pick the ith object, otherwise value[i]+ dp[j-weight[i]]
+
+UPD: Why the inner loop is decremental in the above code?
+Consider this scenario; your knapsack has a capacity of 10kg, the current item i weighs 4kg.
+You are in the inner loop, and you start updating your dp states. You will update dp[4] as you can put this item
+over the 0kg item (i.e., empty), next you update dp[5], and so on. Now you reached dp[8], you will look behind
+and say that we can update this using dp[4], as the weight constraint allows you to. But here's the catch,
+you had already put the 4kg item on the state dp[4], so in essence, you are double-counting the item.
+This can be easily solved using a reverse loop as you'll update dp[8] with dp[4], which hadn't considered the 4kg item.
+A similar concept you'll encounter in the subset sum problems, but in problems like coin change which has an infinite
+supply of each item, an incremental for-loop is used.
+
+Now, let's see how our thief with his knapsack will commit a series of crimes at LeetCode.
+LC416. Partition equal subset sum
+
+Can an array of positive integers be partitioned into two subsets, such that their sums are equal?
+Can our thief pick a subset such that the sum of the subset is half the sum of the whole array?
+
+Capacity of Knapsack: Half the sum of the given array.
+Objective: Achieve a total sum exact as the capacity.
+
+vector<bool> dp(sum+1, false);
+dp[0] = true;
+for (auto num : nums)
+    for (int i=sum; i>0; --i)
+        if (i >= num) dp[i] = dp[i-num] or dp[i];
+return dp[sum];
+dp[i] if the number is not included in the subset, else dp[i-num].
+Handle one edge case :)
+
+LC474. Ones and Zeroes
+~~~~~~~~~~~~~~~~~~~~~~
+Given an array of binary strings strs and two integers m and n. Return the size of the largest subset of strs such that there are at most m 0's and n 1's in the subset.
+Can our thief pick up at most m 0's and n 1's?
+
+Capacity of Knapsack: Limitless
+Objective: Pick up at most m 0's and 1 n's
+
+vector<vector<int>> dp(M+1, vector<int>(N+1, 0));
+for (auto s : strs) {
+    int zero = zeros(s); // a function to count zeroes in a string
+    int one = ones(s); // a function to count ones in a string
+    for (int i=M; i>=zero; --i)
+        for (int j=N; j>=one; --j)
+            dp[i][j] = max(dp[i][j], 1 + dp[i-zero][j-one]);
+}
+return dp[M][N];
+dp[i][j] if the string is not chosen, else dp[i-zero][j-one]
+
+LC343. Integer Break
+
+Given an integer n, break it into the sum of k positive integers, where k >= 2, and maximize the product of those integers. Return the maximum product you can get.
+Can our thief pick k numbers from 1 to n, such that their product is maximized and they sum to n?
+
+Capacity of Knapsack: n
+Objective: Maximize the product of chosen smaller integers
+
+vector<int> dp(n+1, 0);
+dp[0] = 1;
+for (int i=1; i<n; ++i)
+    for (int j=i; j<=n; ++j)
+        dp[j] = max(dp[j], dp[j-i]*i);
+return dp[n];
+dp[j] if the number is not included in the product. dp[j-i]*i if the number is included, multiply with the previous suitable state.
+
+Unbound knapsack
+In this class of problems, every available item type is present in infinite quantity. Iterate over the choices, and put it any number of combinations you wish.
+
+LC518. Coin Change 2
+Given an array of coins and an integer representing a total amount. Return the number of combinations that make up that amount. If impossible, return 0. Each coin is in present infinite quantity.
+The order will not matter in this problem. e.g.
+
+To achieve a sum of 5 using [1,2,5]
+5 = 5
+5 = 2+2+1 // other permutations like (2,1,2) are not included
+5 = 2+1+1+1
+5 = 1+1+1+1+1
+result is 4 ways
+Can our thief pick a total sum equal to the target?
+
+Capacity of Knapsack: target
+Objective: Count the number of ways to achieve the target
+
+vector<int> dp(amount+1, 0);
+dp[0] = 1;
+for (auto coin : coins)
+    for (int i=1; i<=amount; i++)
+        if (coin <= i) dp[i] += dp[i-coin];
+return dp[amount];
+Since every coin can be put in any combination, iterate over coins, and fill every achievable target. This will prevent the recounting of the permutations. Why? Because the definition of our state dp[i] is the number of ways to achieve a sum i using all coins. If we'll first iterate over the sum and next on the coins, we'll include all three permutations viz. (1,2,2), (2,1,2), and (2,2,1) in the solution. Because we are adding dp[i-coin] every time we find a suitable candidate. Alternatively, you can use a 2D dp, where the state dp[i][j], will be the number of ways to get sum j using first i coins. This approach will be independent of the priority of the for-loops.
+
+LC377. Combination Sum IV
+Given an array of distinct integers and a target, return the number of possible combinations that add up to the target.
+
+In this problem, the order matters, unlike Coin Change 2. So, iterate over the target, then the coins (in this case numbers). Else use a 2D dp.
+
+vector<unsigned int> dp(target+1, 0);
+dp[0] = 1;
+for (int i=1; i<= target; ++i)
+    for (auto n : nums)
+        if (i >= n) dp[i] += dp[i - n];
+return dp[target];
+For every problem, pick one example and dry run the code to fill the states.

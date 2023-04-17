@@ -3,52 +3,29 @@ package com.practice.A_ds.F_trees;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Given an integer array nums where the elements are sorted in ascending order,
+ * convert it to a height-balanced binary search tree.
+ *
+ * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ */
 public class M_BstsFromSortedArray {
 
-  public static void main(String args[]) {
-    int n = 3; //if n=5 then assume input array as [1,2,3,4,5]
-    List<Node> bsts = bsts(1,n);
+  public TreeNode sortedArrayToBST(int[] nums) {
+    return sortedArrayToBSTUtil(nums, 0, nums.length-1);
   }
 
-  private static List<Node> bsts(int start, int end) {
-    List<Node> result = new ArrayList<>();
+  private static TreeNode sortedArrayToBSTUtil(int[] nums, int start, int end) {
     if (start > end) {
-      return result;
+      return null;
     }
 
-    for (int i=start; i<end; i++) {
-      List<Node> leftTrees = bsts(start, i-1);
-      List<Node> rightTrees = bsts(i+1, end);
+    int mid = (start+end)/2;
+    TreeNode node = new TreeNode(nums[mid]);
 
-      for (Node leftTree : leftTrees) {
-        for (Node rightTree : rightTrees) {
-          Node root = new Node(i);
-          root.setLeft(leftTree);
-          root.setRight(rightTree);
-          result.add(root);
-        }
-      }
-    }
+    node.left = sortedArrayToBSTUtil(nums, start, mid-1);
+    node.right = sortedArrayToBSTUtil(nums, mid+1, end);
 
-    return result;
+    return node;
   }
-
-  //Not efficient
-  //try dp -> https://medium.com/@aashray/daily-code-1-dynamic-programming-157883622808
-
-  /*
-  int numTrees(int n){
-     vector<int> res(n+1, 0);
-     res[0] = res[1] = 1;
-     int i, j;
-     for(i = 2; i <= n; i++){
-          int sum = 0;
-          for(j = 1; j <= i; j++){
-               sum += res[j - 1] * res[i - j];
-          }
-          res[i] = sum;
-     }
-     return res[n];
-  }
-  */
 }

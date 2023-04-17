@@ -131,16 +131,16 @@ public class WeightedIntervalScheduling {
         System.out.print("The maximum profit is " + findMaxProfit(jobs));
     }
 
-}
+    static class Job {
+        int start, finish, profit;
 
-class Job
-{
-    int start, finish, profit;
-
-    Job(int start, int finish, int profit)
-    {
-        this.start = start;
-        this.finish = finish;
-        this.profit = profit;
+        Job(int start, int finish, int profit)
+        {
+            this.start = start;
+            this.finish = finish;
+            this.profit = profit;
+        }
     }
 }
+
+

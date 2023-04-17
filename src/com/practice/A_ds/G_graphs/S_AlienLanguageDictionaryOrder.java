@@ -3,7 +3,7 @@ package com.practice.A_ds.G_graphs;
 import java.util.*;
 
 /**
- * https://leetcode.com/problems/alien-dictionary/submissions/
+ * https://leetcode.com/problems/alien-dictionary/
  * #alienDictionary #topologySort
  *
  * Input: words = ["wrt","wrf","er","ett","rftt"]
@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class S_AlienLanguageDictionaryOrder {
 
+	//https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
 	public static void main(String[] args) {
 		System.out.println(alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
 	}
@@ -63,7 +64,7 @@ public class S_AlienLanguageDictionaryOrder {
 		if (seen.containsKey(c)) {
 			return seen.get(c); // If this node was grey (false), a cycle was detected.
 		}
-		seen.put(c, false);
+		seen.put(c, false); //if you dont do this or mark as true here only, wrong result for ["z","x","z"] which is "zx" actual is ""
 		for (Character next : reverseAdjList.get(c)) {
 			boolean result = dfs(next);
 			if (!result) return false;
@@ -72,4 +73,8 @@ public class S_AlienLanguageDictionaryOrder {
 		output.append(c);
 		return true;
 	}
+
+	//Time complexity : O(C).
+	//Building the adjacency list has a time complexity of O(C) for the same reason as in Approach 1.
+	//Again, like in Approach 1, we traverse every "edge", but this time we're using depth-first-search.
 }

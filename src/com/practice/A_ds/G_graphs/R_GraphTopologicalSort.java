@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class R_GraphTopologicalSort {
 
+	//https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
 	private void topologicalSort(R_GraphTopologicalSort g) {
 		Stack<Integer> stack = new Stack<>();
 		boolean visited[] = new boolean[v];

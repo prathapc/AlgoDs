@@ -24,14 +24,14 @@ public class A_MergeIntervals {
 
     public static int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, (int[] i1, int[] i2) -> i1[0] - i2[0]);
-        System.out.println("After sorting: " + Arrays.deepToString(intervals));
-        int[][] result = new int[intervals.length][intervals[0].length];
+        int[][] result = new int[intervals.length][2];
         int[] prev = intervals[0];
         int c = 0;
         for (int i=1; i<intervals.length; i++) {
             int[] curr = intervals[i];
-            if (curr[0] <= prev[1]) {
-                prev = new int[]{prev[0], curr[1] > prev[1] ? curr[1] : prev[1]};
+            //(a,b) (c,d) => if (b>=c) then prev = (a, {b,d})
+            if (prev[1] >= curr[0]) {
+                prev = new int[]{prev[0], curr[1]>prev[1]?curr[1]:prev[1]};
             } else {
                 result[c++] = new int[]{prev[0], prev[1]};
                 prev = curr;

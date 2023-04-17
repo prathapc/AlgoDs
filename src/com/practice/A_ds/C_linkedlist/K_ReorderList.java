@@ -4,6 +4,7 @@ import com.practice.B_algo.A_sort_search_math.Utility;
 
 /**
  * Created by prathapchowdary on 16/11/21.
+ *
  * https://leetcode.com/problems/reorder-list/
  *
  * 1 -> 2 -> 3 -> 4 -> 5 -> NULL
@@ -32,7 +33,7 @@ public class K_ReorderList {
         // reverse the second part of the list [Problem 206]
         // convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
         // reverse the second half in-place
-        ListNode prev = null, curr = slow, tmp;
+        ListNode prev = null, curr = slow, tmp = null;
         while (curr != null) {
             tmp = curr.next;
 

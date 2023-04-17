@@ -19,8 +19,8 @@ public class KnightsTour_BackTracking {
         sol[x][y] = -1;
       }
     }
-    int moveX[] = {2, 1, -1, -2, -2, -1, 1, 2};
-    int moveY[] = {1, 2, 2, 1, -1, -2, -2, -1};
+    int moveX[] = {2, 1, -1, -2, -2, -1,  1,  2};
+    int moveY[] = {1, 2,  2,  1, -1, -2, -2, -1};
     int x=0, y=0;
     int movei=1;
     sol[0][0] = 0;

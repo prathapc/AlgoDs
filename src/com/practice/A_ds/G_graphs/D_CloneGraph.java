@@ -7,10 +7,11 @@ import java.util.List;
 
 /**
  * Created by prathapchowdary on 21/11/21.
- * https://leetcode.com/problems/clone-graph/submissions/
+ * https://leetcode.com/problems/clone-graph/
  */
 
 class D_CloneGraph {
+    //bfs
     public Node cloneGraph(Node node) {
         if (node == null) {
             return node;
@@ -32,6 +33,21 @@ class D_CloneGraph {
             }
         }
         return visited.get(node);
+    }
+
+    //dfs
+    public HashMap<Integer, Node> map = new HashMap<>();
+    public Node clone(Node node) {
+        if (node == null) return null;
+
+        if (map.containsKey(node.val))
+            return map.get(node.val);
+
+        Node newNode = new Node(node.val, new ArrayList<>());
+        map.put(newNode.val, newNode);
+        for (Node neighbor : node.neighbors)
+            newNode.neighbors.add(clone(neighbor));
+        return newNode;
     }
 
     class Node {

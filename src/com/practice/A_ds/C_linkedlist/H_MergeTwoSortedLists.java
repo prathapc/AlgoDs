@@ -77,7 +77,6 @@ public class H_MergeTwoSortedLists {
     static class Node {
         public int data;
         public Node next;
-        public Node random;
 
         public Node(int data) {
             super();

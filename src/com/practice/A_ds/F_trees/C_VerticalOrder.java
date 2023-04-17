@@ -4,54 +4,45 @@ package com.practice.A_ds.F_trees;
  * Created by prathapchowdary on 17/09/21.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
- * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+ * https://leetcode.com/problems/binary-tree-vertical-order-traversal/ #facebook
  */
-class Solution {
-    public List<List<Integer>> verticalTraversal(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
+class C_VerticalOrder {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
         if (root == null) return result;
-        Map<Integer, List<Integer>> data = new TreeMap<>();
-        traverseTree(root, data, 0, 0);
-
-        for (Map.Entry<Integer, List<Integer>> entry : data.entrySet()) {
-            List<Integer> l = entry.getValue();
-            //Collections.sort(l);
-            result.add(l);
+        TreeMap<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        LinkedList<Step> temp = new LinkedList<>();
+        temp.add(new Step(root, 0));
+        while (!temp.isEmpty()) {
+            int tempSize = temp.size();
+            while (tempSize > 0) {
+                Step c = temp.removeFirst();
+                TreeNode n = c.node;
+                int col = c.col;
+                if (!map.containsKey(col)) {
+                    map.put(col, new ArrayList<>());
+                }
+                map.get(col).add(n.val);
+                if (n.left != null) temp.add(new Step(n.left, col - 1));
+                if (n.right != null) temp.add(new Step(n.right, col + 1));
+                tempSize--;
+            }
+        }
+        for (Map.Entry<Integer, ArrayList<Integer>> entry : map.entrySet()) {
+            result.add(entry.getValue());
         }
         return result;
     }
 
-    //iteration or we can also solve using bfs (queue)
-    private void traverseTree(TreeNode node, Map<Integer, List<Integer>> data, int x, int y) {
-        if (node != null) {
-            List<Integer> groupElements = data.get(y);
-            if (groupElements == null) {
-                groupElements = new ArrayList<>();
-            }
-            groupElements.add(node.val);
-            data.put(y, groupElements);
-
-            traverseTree(node.left, data, x+1, y-1);
-            traverseTree(node.right, data, x+1, y+1);
-        }
-    }
-
-    private class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
+    class Step {
+        TreeNode node;
+        int col;
+        Step(TreeNode n, int c) {
+            node = n;
+            col = c;
         }
     }
 }

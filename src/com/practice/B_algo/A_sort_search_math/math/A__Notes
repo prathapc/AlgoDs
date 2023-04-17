@@ -1,0 +1,16 @@
+Euler's Number 'e'
+~~~~~~~~~~~~~~~~~~
+In statistics, the symbol e is a mathematical constant approximately equal to 2.71828183.
+Prism switches to scientific notation when the values are very large or very small.
+For example: 2.3e-5, means 2.3 times ten to the minus five power, or 0.000023.
+
+Usage in problem solving:
+Since the answer may be too large, return it modulo 10^9 + 7.
+sol:-
+long result = 0;
+long mod = 1e9+7;
+
+...
+return (int)result%mod;
+==========================================================================================
+

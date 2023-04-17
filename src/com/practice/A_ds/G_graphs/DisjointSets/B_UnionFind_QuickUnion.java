@@ -13,6 +13,7 @@ public class B_UnionFind_QuickUnion {
         }
     }
 
+    //O(n)
     public int find(int x) {
         while (x != data[x]) {
             x = data[x];
@@ -20,6 +21,7 @@ public class B_UnionFind_QuickUnion {
         return x;
     }
 
+    //O(n) only in worst case
     public void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);

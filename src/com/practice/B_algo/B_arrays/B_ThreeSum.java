@@ -24,26 +24,35 @@ public class B_ThreeSum {
         System.out.println(threeSum(new int[]{-1, 0, 1, 2, -1, -4}));
     }
 
+    //Time Complexity: O(n^2)
+    //twoSum is O(n), and we call it n times
+    //Sorting the array takes O(nlogn), so overall complexity is O(nlogn+n^2)
+    //This is asymptotically equivalent to O(n^2)
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
+        // if curr value > 0 then continue looping
         for (int i = 0; i < nums.length && nums[i] <= 0; ++i)
+            // curr and prev numbers are same then continue looping
             if (i == 0 || nums[i - 1] != nums[i]) {
                 twoSum(nums, i, res);
             }
         return res;
     }
 
-    private static void twoSum(int[] nums, int i, List<List<Integer>> res) {
-        var seen = new HashSet<Integer>();
-        for (int j = i + 1; j < nums.length; ++j) {
-            int complement = -nums[i] - nums[j];
-            if (seen.contains(complement)) {
-                res.add(Arrays.asList(nums[i], nums[j], complement));
-                while (j + 1 < nums.length && nums[j] == nums[j + 1])
-                    ++j;
+    static void twoSum(int[] nums, int i, List<List<Integer>> res) {
+        int left = i + 1, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[i] + nums[left] + nums[right];
+            if (sum < 0) {
+                ++left;
+            } else if (sum > 0) {
+                --right;
+            } else {
+                res.add(Arrays.asList(nums[i], nums[left++], nums[right--]));
+                while (left < right && nums[left] == nums[left - 1])
+                    ++left;
             }
-            seen.add(nums[j]);
         }
     }
 }

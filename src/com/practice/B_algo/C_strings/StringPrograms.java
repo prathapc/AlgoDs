@@ -9,13 +9,10 @@ public class StringPrograms {
 	public static void main(String[] args) {
 		//noOfSubstringsStartAndEndWithOne("1100010101"); //efficient way:- count no of 1's and nc2 formula i.e n(n-1)/2
 		//findSubstringsStartAndEndWithOne("1100010101"); // wrong o/p?
-
 		//checkIfStringCanBeRepeatedByTwoPlaces();
 		//romanCharacterToInteger();
 		//decodePatternLookAndSaySequence();// 1 11 21 1211 111221 ?
-		//distinctOccurencesOfSubString();
-		//sherlockStrings();
-		//alphaNumericPalindrom("A man, a plan, a canal: Panama");
+		distinctOccurencesOfSubString();
 	}
 
 	/**
@@ -64,79 +61,6 @@ public class StringPrograms {
 			findSubstringsStartAndEndWithOneUtil(str, start, end - 1, count);
 		}
 		return count;
-	}
-
-	private static int alphaNumericPalindrom(String a) {
-		a = a.toLowerCase();
-		char[] c = a.toCharArray();
-
-		int start = 0, end = c.length-1;
-
-		while(start<end) {
-			int startAsciiValue = (int) c[start];
-			int endAsciiValue = (int) c[end];
-
-			if(!((startAsciiValue >= 48 && startAsciiValue<=57) || (startAsciiValue>= 65 && startAsciiValue<=90) || (startAsciiValue >= 97 && startAsciiValue<= 122))) {
-				start++;
-				continue;
-			}
-
-			if(!((endAsciiValue >= 48 && endAsciiValue<=57) || (endAsciiValue>= 65 && endAsciiValue<=90) || (endAsciiValue >= 97 && endAsciiValue<= 122))) {
-				end--;
-				continue;
-			}
-
-			if(startAsciiValue != endAsciiValue) {
-				return 0;
-			}
-			start++;
-			end--;
-
-		}
-		return 1;
-	}
-
-	//https://github.com/RyanFehr/HackerRank/blob/master/Algorithms/Strings/Sherlock%20and%20Valid%20String/Solution.java
-	//Note:: Output is wrong for "abcccc"
-	private static void sherlockStrings() {
-		Scanner scan = new Scanner(System.in);
-		String watson = scan.nextLine();
-		Map<Character, Integer> countChar = new HashMap<>();
-		Map<Integer, Integer> countCount = new HashMap<>();
-		int length = watson.length();
-		int i;
-		for (i = 0; i < length; i++) {
-			char c = watson.charAt(i);
-			if (countChar.containsKey(c)) {
-				countChar.put(c, countChar.get(c) + 1);
-			} else {
-				countChar.put(c, 1);
-			}
-		}
-
-		for(Map.Entry<Character, Integer> entry : countChar.entrySet()){
-			if(countCount.containsKey(entry.getValue())){
-				countCount.put(entry.getValue(), countCount.get(entry.getValue())+1);
-			}
-			else{
-				countCount.put(entry.getValue(), 1);
-			}
-
-		}
-		if(countCount.size() == 1){
-			System.out.println("YES");
-		}
-		else if(countCount.size() == 2){
-			if(countCount.containsValue(1)){
-				System.out.println("YES");
-			}
-			else{
-				System.out.println("NO");
-			}
-		}
-		else{
-			System.out.println("NO");
-		}
 	}
 
 	/**
@@ -240,8 +164,6 @@ public class StringPrograms {
 		map.put(1000, "M");
 		int[] bases = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
-		List<String> stringNumbers = new ArrayList<>();
-
 		String stringNumber = "";
 		for (int i : bases) {
 			while (number >= i) {
@@ -255,16 +177,12 @@ public class StringPrograms {
 	private static void romanCharacterToInteger() {
 		//String str = "MMCMLXXXV";
 		String str = "CDMX";
-		int result = 0;
-		for(int i=str.length()-1; i>=0; i--) {
-			if(i==str.length()-1) {
-				result += romanCharToInt(str.charAt(i));
+		int result = romanCharToInt(str.charAt(str.length()-1));
+		for(int i=str.length()-2; i>=0; i--) {
+			if(romanCharToInt(str.charAt(i+1)) > romanCharToInt(str.charAt(i))) {
+				result -= romanCharToInt(str.charAt(i));
 			} else {
-				if(romanCharToInt(str.charAt(i+1)) > romanCharToInt(str.charAt(i))) {
-					result -= romanCharToInt(str.charAt(i));
-				} else {
-					result += romanCharToInt(str.charAt(i));
-				}
+				result += romanCharToInt(str.charAt(i));
 			}
 		}
 		System.out.println(result);

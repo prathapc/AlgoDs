@@ -3,8 +3,32 @@ Microservices patterns:
 (http://microservices.io/patterns/data/saga.html)
 1. Database per service
 2. Saga pattern
+   - You have applied the Database per Service pattern. Each service has its own database. Some business transactions, however, span multiple service so you need a mechanism to implement transactions that span services.
+   For example, let’s imagine that you are building an e-commerce store where customers have a credit limit. The application must ensure that a new order will not exceed the customer’s credit limit. Since Orders and Customers are in different databases owned by different services the application cannot simply use a local ACID transaction.
+   - 2PC commit (Commit request (or voting) phase and Commit (or completion) phase) not always an option.
+   - Implement each business transaction that spans multiple services is a saga. A saga is a sequence of local transactions.
+   Each local transaction updates the database and publishes a message or event to trigger the next local transaction in the saga. If a local transaction fails because it violates a business rule then the saga executes a series of compensating transactions that undo the changes that were made by the preceding local transactions.
+
 3. Event sourcing
+   - Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events.
+   Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic.
+   The application reconstructs an entity’s current state by replaying the events.
+   - Applications persist events in an event store, which is a database of events.
+   The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker.
+   It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers.
+   - Some entities, such as a Customer, can have a large number of events. In order to optimize loading, an application can periodically save a snapshot of an entity’s current state. To reconstruct the current state, the application finds the most recent snapshot and the events that have occurred since that snapshot. As a result, there are fewer events to replay.
+
 4. CQRS (command query responsibility segregation)
+   - You have applied the Microservices architecture pattern and the Database per service pattern. As a result, it is no longer straightforward to implement queries that join data from multiple services. Also, if you have applied the Event sourcing pattern then the data is no longer easily queried.
+   - Define a view database, which is a read-only replica that is designed to support that query. The application keeps the replica up to data by subscribing to Domain events published by the service that own the data.
+   - This pattern has the following benefits:
+        * Supports multiple denormalized views that are scalable and performant
+        * Improved separation of concerns = simpler command and query models
+        * Necessary in an event sourced architecture
+   - This pattern has the following drawbacks:
+        * Increased complexity
+        * Potential code duplication
+        * Replication lag/eventually consistent views
 
 S.O.L.I.D
 * S - Single-responsiblity principle

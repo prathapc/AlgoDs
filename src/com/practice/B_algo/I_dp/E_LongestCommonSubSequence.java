@@ -37,7 +37,7 @@ public class E_LongestCommonSubSequence {
 		// otherwise, if the last character of `X` and `Y` don't match
 		return Integer.max(longestCommonSubSequenceLength_recursion(X, Y, m, n - 1),
 				longestCommonSubSequenceLength_recursion(X, Y, m - 1, n));
-	}
+	}//this recursive solution can be optimized with memorization
 
 	private static int longestCommonSubSequenceLength_dp(String str1, String str2) {
 		int[][] dp = new int[str1.length()+1][str2.length()+1];

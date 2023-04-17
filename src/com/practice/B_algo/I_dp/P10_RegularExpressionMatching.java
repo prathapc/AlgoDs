@@ -14,6 +14,12 @@ package com.practice.B_algo.I_dp;
 public class P10_RegularExpressionMatching {
 
     public static void main(String args[]) {
+        char ch = 'z';
+        if (ch > 96) {
+            System.out.println((int)ch);
+        }
+
+
         String s = "mississippi"; //"mississippi" is invalid and "mississppi" is valid
         String p = "mis*is*p*.";
         //String s = "b";

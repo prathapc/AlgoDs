@@ -14,51 +14,52 @@ public class A_StackImplementation {
   }
 
   static class Stack {
-    int len;
-    int top;
+    int capacity;
+    int topIndex;
     int a[];
 
     Stack(int size) {
-      this.len = size;
+      this.capacity = size;
       a = new int[size];
-      top = -1;
+      topIndex = -1;
     }
 
     public int size() {
-      return len;
+      return capacity;
     }
 
     public boolean isEmpty() {
-      return top==-1;
+      return topIndex ==-1;
     }
 
     public boolean isFull() {
-      return top==len-1;
+      return topIndex == capacity -1;
     }
 
     public void push(int i) {
       ensureCapacity();
-      a[++top] = i;
+      a[++topIndex] = i;
     }
 
     public int pop() {
-      return a[--top];
+      return a[--topIndex];
     }
 
     public int peek() {
-      return a[top];
+      return a[topIndex];
     }
 
     private void ensureCapacity() {
-      if(top+1 >= len) {
-        int b[] = new int[len*2];
-        for(int i=0; i<len; i++) {
+      if(topIndex +1 >= capacity) {
+        int b[] = new int[capacity *2];
+        for(int i = 0; i< capacity; i++) {
           b[i] = a[i];
         }
         a = b;
-        len *= 2;
+        capacity *= 2;
       }
     }
   }
+
 }
 

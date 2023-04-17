@@ -242,6 +242,12 @@ public class Utility {
 		return root;
 	}
 
+	/**
+	 * 			  1
+	 * 		2	     	5
+	 * 	3		4	  		6
+	 * @return
+	 */
 	public static Node createSampleTreeBasic() {
 		Node root = new Node(1);
 		Node left = new Node(2);
@@ -255,12 +261,6 @@ public class Utility {
 		return root;
 	}
 
-	/**
-	 * 			  1
-	 * 		2	     	5
-	 * 	3		4	  		6
-	 * @return
-	 */
 	public static Node createSampleSumTree() {
 		Node root = new Node(28);
 		Node left = new Node(11);

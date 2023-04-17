@@ -1,0 +1,12 @@
+1.
+no of subarrays in array:
+[1,2,3,4,5] => no of sub arrays are 1+2+3..n => n(n+1)/2 => 15
+
+2.
+sub arrays with max bounded:
+just keep iterating and incrementing counter if num is less than given max
+
+3.
+most of the problems on array are solved with two pointer approach => keep expanding right pointer
+as far as given conditions are met, otherwise stop and increment left pointer for optmization
+

@@ -28,6 +28,9 @@ public class RodCutProblem {
   public static int minCost(int n, int[] cuts) {
     return helper(cuts, new HashMap<>(), 0, n);
   }
+
+  //Complexity is n^3, where n = number of cuts.
+  //Reason: on each half, we need to traverse through all cuts again. So, total complexity = n ( n*n) = n^3
   private static int helper(int[] cuts, Map<String, Integer> memo, int l, int r) {
 
     int res = Integer.MAX_VALUE;

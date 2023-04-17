@@ -33,6 +33,7 @@ public class C_UnionByRank {
         }
     }
 
+    //O(logN)
     public int find(int x) {
         while (x != data[x]) {
             x = data[x];
@@ -40,6 +41,7 @@ public class C_UnionByRank {
         return x;
     }
 
+    //O(logN)
     public void union(int x, int y) {
         //same as QuickUnion but identify height and select root accordingly
         int rootX = find(x);

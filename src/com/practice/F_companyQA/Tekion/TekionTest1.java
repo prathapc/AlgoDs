@@ -3,6 +3,8 @@ package com.practice.F_companyQA.Tekion;
 //nth element from last of a singly-LL
 public class TekionTest1 {
   public static void main(String[] args) {
+
+    System.out.println(Long.parseLong("400000000000"));
     int n = 2;
     Node head = new Node(4);
 
