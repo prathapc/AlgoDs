@@ -2,6 +2,7 @@ package com.practice.E_java;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class LambdaExample {
 
     //The java compiler is aware of the parameter types so you can skip them as well
     Collections.sort(names, (a, b) -> b.compareTo(a));
+
+
   }
 
 }

@@ -1,6 +1,6 @@
 package com.practice.A_ds.F_trees;
 
-import com.practice.B_algo.A_sort_search_math.Utility;
+import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
 /**
  * Created by prathap on 06/04/18.

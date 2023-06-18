@@ -1,6 +1,6 @@
 package com.practice.A_ds.F_trees;
 
-import com.practice.B_algo.A_sort_search_math.Utility;
+import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
 /**
  * https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/

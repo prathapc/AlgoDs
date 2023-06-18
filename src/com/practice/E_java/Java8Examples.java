@@ -2,6 +2,7 @@ package com.practice.E_java;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
@@ -14,6 +15,15 @@ public class Java8Examples {
     //iterate over string array
     String[] words = new String[]{"i","love","leetcode","i","love","coding"};
     Arrays.stream(words).forEach(System.out::println);
+
+    //get string from list of max length
+    List<String> names = new ArrayList<>();
+    names.add("abc"); names.add("pq"); names.add("wxyz");
+    names.stream().max(Comparator.comparing(String::length)); // gives wxyz
+    names.stream()
+            .mapToInt(String::length)
+            .max()
+            .orElse(0); // gives 4
 
     //predicate
     List<Integer> listOFNumbers = new ArrayList<>();

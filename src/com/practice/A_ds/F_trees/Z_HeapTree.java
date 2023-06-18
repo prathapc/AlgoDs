@@ -2,8 +2,10 @@ package com.practice.A_ds.F_trees;
 
 import java.util.Scanner;
 
-import com.practice.B_algo.A_sort_search_math.Utility;
+import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
+//build/implement heap tree
+//internal working of PriorityQueue<<>
 //Application -> top k small or largest elements
 public class Z_HeapTree {
 

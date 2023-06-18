@@ -6,6 +6,15 @@ public class Util {
 
 	public static void main(String[] args) {
 		// System.out.println(postFixCalc("6 ++ 7 + -- 9 ++ +"));
+		StringBuilder sb = new StringBuilder();
+		String word1 = "abc";
+		String word2 = "pqr";
+		int i = word1.length(), j = word2.length();
+		while (i < word1.length() || j < word2.length()) {
+			if (i < word1.length()) sb.append(word1.charAt(i++));
+			if (j < word2.length()) sb.append(word2.charAt(j++));
+		}
+		System.out.println(sb.toString());
 	}
 
 	public static float postFixCalc(String[] exp) {

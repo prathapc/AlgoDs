@@ -19,9 +19,7 @@ import java.util.List;
  *               6
  */
 public class F_FlattenBinaryTreeToList {
-
-
-    public void flatten_recursion(TreeNode root) {
+    public void flatten(TreeNode root) {
         flattenTree(root);
     }
 
@@ -29,39 +27,14 @@ public class F_FlattenBinaryTreeToList {
         if (node == null) return null;
         if (node.left == null && node.right == null) return node;
 
-        TreeNode leftTail = flattenTree(node.left);
-        TreeNode rightTail = flattenTree(node.right);
+        TreeNode left = flattenTree(node.left);
+        TreeNode right = flattenTree(node.right);
 
-        if (leftTail != null) {
-            leftTail.right = node.right;
+        if (left != null) {
+            left.right = node.right;
             node.right = node.left;
             node.left = null;
         }
-        // We need to return the "rightmost" node after we are done wiring the new connections.
-        return rightTail != null ? rightTail : leftTail;
-    }
-
-    public void flatten(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-
-        TreeNode node = root;
-        while (node != null) {
-            if (node.left != null) {
-                // Find the rightmost node
-                TreeNode rightmost = node.left;
-                while (rightmost.right != null) {
-                    rightmost = rightmost.right;
-                }
-
-                // rewire the connections
-                rightmost.right = node.right;
-                node.right = node.left;
-                node.left = null;
-            }
-            // move on to the right side of the tree
-            node = node.right;
-        }
+        return right != null ? right : left;
     }
 }

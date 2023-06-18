@@ -1,7 +1,5 @@
 package com.practice.A_ds.C_linkedlist;
 
-import com.practice.B_algo.A_sort_search_math.Utility;
-
 /**
  * Created by prathapchowdary on 11/09/21.
  *

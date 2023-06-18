@@ -1,6 +1,8 @@
 package com.practice.A_ds.A_stack;
 
 
+import java.util.Stack;
+
 /**
  * Created by prathap on 13/07/17.
  */
@@ -11,6 +13,7 @@ public class A_StackImplementation {
     stack.push(2);
     stack.push(3);
     stack.pop();
+
   }
 
   static class Stack {

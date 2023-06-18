@@ -1,42 +1,23 @@
 package com.practice.A_ds.F_trees;
 
-import com.practice.B_algo.A_sort_search_math.Utility;
-
-//https://leetcode.com/problems/subtree-of-another-tree/
+/**
+ *
+ * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.
+ *
+ * A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself.
+ *
+ * https://leetcode.com/problems/subtree-of-another-tree/
+ */
 public class K_SubTreeOfAnotherTree {
-
-  public static void main(String args[]) {
-    Node root = Utility.createSampleTree3();
-    Node target = new Node(8);
-    target.setRight(new Node(12));
-    System.out.println(subTree(root, target));
+  public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    if (root == null) return false;
+    if (isSameTree(root, subRoot)) return true;
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
   }
 
-  private static boolean subTree(Node root, Node target) {
-    if (root == null && target == null) {
-      return true;
-    }
-    if (root == null || target == null) {
-      return false;
-    }
-
-    if (checkIfEqual(root, target)){
-      return true;
-    }
-
-    return subTree(root.getLeft(), target.getLeft()) || subTree(root.getRight(), target.getRight());
-  }
-
-  private static boolean checkIfEqual(Node root, Node target) {
-    if (root == null && target == null) {
-      return true;
-    }
-    if (root == null || target == null) {
-      return false;
-    }
-    if (root.getData() == target.getData()) {
-      return checkIfEqual(root.getLeft(), target.getLeft()) && checkIfEqual(root.getRight(), target.getRight());
-    }
-    return false;
+  private boolean isSameTree(TreeNode s, TreeNode t) {
+    if (s == null && t == null) return true;
+    if (s == null || t == null) return false;
+    return (s.val == t.val && isSameTree(s.left, t.left) && isSameTree(s.right, t.right));
   }
 }
