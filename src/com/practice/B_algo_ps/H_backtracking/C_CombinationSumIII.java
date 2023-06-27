@@ -1,7 +1,6 @@
 package com.practice.B_algo_ps.H_backtracking;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by prathapchowdary on 11/12/21.

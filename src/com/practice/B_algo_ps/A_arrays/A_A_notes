@@ -1,5 +1,5 @@
 1.
-no of subarrays in array:
+no of sub arrays in array:
 [1,2,3,4,5] => no of sub arrays are 1+2+3..n => n(n+1)/2 => 15
 
 2.
@@ -9,4 +9,23 @@ just keep iterating and incrementing counter if num is less than given max
 3.
 most of the problems on array are solved with two pointer approach => keep expanding right pointer
 as far as given conditions are met, otherwise stop and increment left pointer for optmization
+
+4. sort an interval
+in asc order => Arrays.sort(intervals, (int[] i1, int[] i2) -> i1[1]-i2[1]);
+Above sort technique fails for integer boundaries ([[-2147483646,-2147483645],[2147483646,2147483647]]) use below instead
+Arrays.sort(points, (a,b) -> Integer.compare(a[1], b[1]));
+
+if start is same sort by end in asc order
+Arrays.sort(points, (int i1[], int i2[]) -> {
+            if (i1[0] == i2[0]) {
+                return i1[1] - i2[1];
+            }
+            return i1[0] - i2[0];
+        });
+
+5. print a 2d array
+Arrays.stream(intervals).map(Arrays::toString).forEach(System.out::print);
+
+6. convert int[] to List<Integer>
+Arrays.stream(arr).boxed().collect(Collectors.toList());
 

@@ -1,6 +1,7 @@
 package com.practice.A_ds.F_trees;
 
 import com.practice.B_algo_ps.K_sort_search_math.Utility;
+import com.sun.source.tree.Tree;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class C_LevelOrder {
   public static void main(String args[]) {
     levelOrder(Utility.createMaxHeapTree());
 
-    //https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/solution/
+    //https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
     zigzagLevelOrder(Utility.createSampleTree());
   }
 
@@ -34,7 +35,32 @@ public class C_LevelOrder {
     }
   }
 
-  private static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+  public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) return result;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    boolean isLeftToRight = true;
+    while (!queue.isEmpty()) {
+      Deque<Integer> currRow = new LinkedList<>();
+      for (int i=queue.size(); i>0; i--) {
+        TreeNode node = queue.poll();
+        if (node.left != null) queue.add(node.left);
+        if (node.right != null) queue.add(node.right);
+
+        if (isLeftToRight) {
+          currRow.addLast(node.val);
+        } else {
+          currRow.addFirst(node.val);
+        }
+      }
+      result.add(new ArrayList<>(currRow));
+      isLeftToRight = !isLeftToRight;
+    }
+    return result;
+  }
+  //other sol - not so elegant
+  private static List<List<Integer>> zigzagLevelOrder1(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
     Queue<TreeNode> queue1 = new LinkedList<>();
     Queue<TreeNode> queue2 = new LinkedList<>();

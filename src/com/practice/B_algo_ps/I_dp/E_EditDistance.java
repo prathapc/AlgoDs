@@ -16,6 +16,8 @@ public class E_EditDistance {
   public static void main(String args[]) {
     String str1 = "sunday";
     String str2 = "saturday";
+    System.out.println(str1.substring(0, str1.length()));
+
     int m = str1.length(), n = str2.length();
 
     //System.out.print(editDistance_recursion(str1, str2, m, n));
@@ -35,6 +37,24 @@ public class E_EditDistance {
         editDistance_recursion(str1, str2, m, n-1),
         editDistance_recursion(str1, str2, m-1, n-1)
     ));
+  }
+
+  private int editDistance_topDownDp(String str1, String str2, int m, int n, int[][] data) {
+    if(m==0) return n;
+    if(n==0) return m;
+
+    if (data[m-1][n-1] != 0) return data[m-1][n-1];
+
+    if(str1.charAt(m-1) == str2.charAt(n-1)) {
+      return editDistance_topDownDp(str1, str2, m-1, n-1, data);
+    }
+
+    int insert = editDistance_topDownDp(str1, str2, m, n-1, data);
+    int remove = editDistance_topDownDp(str1, str2, m-1, n, data);
+    int replace = editDistance_topDownDp(str1, str2, m-1, n-1, data);
+
+    data[m-1][n-1] = 1 + Math.min(insert, Math.min(remove, replace));
+    return data[m-1][n-1];
   }
 
   private static int editDistance_dp(String str1, String str2, int m, int n) {

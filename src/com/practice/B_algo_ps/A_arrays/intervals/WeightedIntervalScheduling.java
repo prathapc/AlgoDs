@@ -1,4 +1,4 @@
-package com.practice.B_algo_ps.K_sort_search_math.intervals;
+package com.practice.B_algo_ps.A_arrays.intervals;
 
 import java.util.Arrays;
 import java.util.Collections;

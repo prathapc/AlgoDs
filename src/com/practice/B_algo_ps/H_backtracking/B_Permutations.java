@@ -1,9 +1,13 @@
 package com.practice.B_algo_ps.H_backtracking;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
- * Created by prathap on 06/01/18. UPdate: 01/12/21
+ * Created by prathap on 06/01/18. Update: 01/12/21
+ *
+ * Input: nums = [1,2,3]
+ * Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  *
  * https://leetcode.com/problems/permutations/
  */
@@ -43,20 +47,13 @@ public class B_Permutations {
   }
 
   public static List<List<Integer>> permute(int[] nums) {
-    // init output list
     List<List<Integer>> output = new LinkedList();
-
-    // convert nums into list since the output is a list of lists
-    ArrayList<Integer> nums_lst = new ArrayList<Integer>();
-    for (int num : nums)
-      nums_lst.add(num);
-
-    int n = nums.length;
-    backtrack(n, nums_lst, output, 0);
+    List<Integer> nums_lst = Arrays.stream(nums).boxed().collect(Collectors.toList());
+    backtrack(nums.length, nums_lst, output, 0);
     return output;
   }
   private static void backtrack(int n,
-                        ArrayList<Integer> nums,
+                        List<Integer> nums,
                         List<List<Integer>> output,
                         int first) {
     // if all integers are used up

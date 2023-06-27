@@ -1,11 +1,6 @@
 package com.practice.A_ds.F_trees;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
@@ -15,7 +10,7 @@ public class D_TreeViews {
 		//leftView(Utility.createSampleTree());
 		//leftView_Recursion(Utility.createSampleTree());
 
-		rightView(Utility.createSampleTree2());
+		rightSideView(TreeNode.deserialize("1,7,0,7,-8,null,null"));
 		topViewOfTree(Utility.createSampleTree2());
 		bottomViewOfTree(Utility.createSampleTree2());
 	}
@@ -181,31 +176,32 @@ public class D_TreeViews {
 		}
 	}
 
-	private static void rightView(Node root) {
-		Queue<Node> q = new LinkedList<Node>();
+	public static List<Integer> rightSideView(TreeNode root) {
+		List<Integer> result = new ArrayList<>();
+		if (root == null) return result;
+		Queue<TreeNode> q = new LinkedList<>();
 		q.add(root);
-		Node prev = root;
 		q.add(null);
 		while (!q.isEmpty()) {
-			Node node = q.poll();
-			if (node == null) {
-				System.out.println(prev.getData());
-				if (q.peek() == null)
-					break;
-				q.add(null);
-			} else {
-				Node left = node.getLeft();
-				if (left != null) {
-					q.add(left);
-				}
-				Node right = node.getRight();
-				if (right != null) {
-					q.add(right);
-				}
-				prev = node;
+			TreeNode ele = q.poll();
+
+			if (ele == null) {
+				continue;
 			}
 
+			if (ele.left != null) {
+				q.add(ele.left);
+			}
+			if (ele.right != null) {
+				q.add(ele.right);
+			}
+
+			if (q.peek() == null) {
+				result.add(ele.val);
+				q.add(null);
+			}
 		}
+		return result;
 	}
 
 	private static void printTree(Node root) {

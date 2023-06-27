@@ -1,4 +1,4 @@
-package com.practice.B_algo_ps.K_sort_search_math.intervals;
+package com.practice.B_algo_ps.A_arrays.intervals;
 
 import java.util.Arrays;
 
@@ -15,7 +15,9 @@ import java.util.Arrays;
 public class A_MergeIntervals {
 
     public static void main(String args[]) {
-        int intervals[][] = new int[][]{{1,3}, {2,6}, {8,10}, {15,18}};
+        int intervals[][] = new int[][]{{1,3}, {2,6}, {8,10}, {15,18}, {2,5}};
+        Arrays.sort(intervals, (int i1[], int i2[]) -> i1[0]-i2[0]);
+        //Arrays.stream(intervals).map(Arrays::toString).forEach(System.out::print);
         merge(intervals);
     }
 

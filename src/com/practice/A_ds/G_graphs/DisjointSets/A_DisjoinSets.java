@@ -29,8 +29,7 @@ class A_DisjoinSets
     }
 
     // Perform Union of two subsets
-    public static void union(int a, int b)
-    {
+    public static void union(int a, int b) {
         // find the root of the sets in which elements `x` and `y` belongs
         int x = find(a);
         int y = find(b);

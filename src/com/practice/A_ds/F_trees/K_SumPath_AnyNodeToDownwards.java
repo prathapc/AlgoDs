@@ -5,9 +5,22 @@ import com.practice.B_algo_ps.K_sort_search_math.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO Bug:- one path getting printed two times
 public class K_SumPath_AnyNodeToDownwards {
 
+  //count - sum paths from any node to any node in tree ; beats 15%
+  public int pathSum(TreeNode root, int sum) {
+    if (root == null) return 0;
+    return pathSumUtil(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+  }
+
+  private int pathSumUtil(TreeNode node, int sum) {
+    if (node == null) return 0;
+    int count = pathSumUtil(node.left, sum-node.val) + pathSumUtil(node.right, sum-node.val);
+    if (node.val == sum) count++;
+    return count;
+  }
+
+  //TODO Bug:- one path getting printed two times
   private static int res = 0;
   public static void main(String args[]) {
     Node root = Utility.createSampleTree3();
@@ -41,23 +54,5 @@ public class K_SumPath_AnyNodeToDownwards {
 
       list.remove(list.size() - 1);
     }
-  }
-
-  //count - sum paths from any node to any node in tree ; beats 15%
-  public int pathSum(TreeNode root, int sum) {
-    if (root == null) return 0;
-    return pathSumUtil(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
-  }
-
-  private int pathSumUtil(TreeNode node, int sum) {
-    if (node == null) return 0;
-    int count = pathSumUtil(node.left, sum-node.val) + pathSumUtil(node.right, sum-node.val);
-    if (node.val == sum) count++;
-    return count;
-  }
-
-  class TreeNode{
-    TreeNode left, right;
-    int val;
   }
 }

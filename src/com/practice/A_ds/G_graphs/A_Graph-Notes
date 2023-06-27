@@ -8,7 +8,7 @@ cyclic vs acyclic
 These aspects will help define the algorithm that you can consider for solving the problem at hand.
 For example a standard rule of thumb that is followed
  - for solving shortest path problems
-    - for unweighted graphs we mostly use Breadth-first search [O(V + E)]
+    - for unweighted graphs we mostly use Breadth-first search [O(V + E)] or DFS
     - for DAGs topology sort [O(V+E)]
     - for non negative weighted cyclic graph we use Dijkstra's algorithm [O(E + VLogV)]
     - for negative weights cyclic Bellman Ford's [ O(VE) ]

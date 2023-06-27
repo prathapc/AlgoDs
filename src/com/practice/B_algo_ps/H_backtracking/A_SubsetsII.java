@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class A_SubsetsII {
     public static void main(String args[]) {
+        System.out.println(6/8);
+        System.out.println(6%8);
         int[] a = {1,2,3};
         System.out.println(subsetsWithOutDuplicates(a));
     }

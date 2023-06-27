@@ -1,5 +1,7 @@
 package com.practice.A_ds.F_trees;
 
+import java.util.Stack;
+
 /**
  * Created by prathapchowdary on 29/04/23.
  *
@@ -16,6 +18,7 @@ package com.practice.A_ds.F_trees;
  * https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/
  */
 public class I_LongestZigZagPath {
+    //recursion - beats 13% (check below using stack which beats 99%:))
     int maxPath = 0;
     public int longestZigZag(TreeNode root) {
         dfs(root, true, 0);
@@ -32,6 +35,52 @@ public class I_LongestZigZagPath {
         } else {
             dfs(node.right, true, steps+1);
             dfs(node.left, false, 1);
+        }
+    }
+
+    //using stack - beats 99%
+    int max = 0;
+    public int longestZigZag1(TreeNode root) {
+        if (root == null) return 0;
+        Stack<Data> stack = new Stack<>();
+        if (root.left != null) {
+            stack.push(new Data(root.left, true, 1));
+        }
+        if (root.right != null) {
+            stack.push(new Data(root.right, false, 1));
+        }
+        while (!stack.isEmpty()) {
+            Data curr = stack.pop();
+            if (curr.depth > max) max = curr.depth;
+            if (curr.isLeft) {
+                if (curr.node.right != null) {
+                    stack.push(new Data(curr.node.right, false, curr.depth+1));
+                }
+                if (curr.node.left != null) {
+                    stack.push(new Data(curr.node.left, true, 1));
+                }
+            }
+
+            if (!curr.isLeft) {
+                if (curr.node.left != null) {
+                    stack.push(new Data(curr.node.left, true, curr.depth+1));
+                }
+                if (curr.node.right != null) {
+                    stack.push(new Data(curr.node.right, false, 1));
+                }
+            }
+        }
+        return max;
+    }
+
+    class Data {
+        TreeNode node;
+        boolean isLeft;
+        int depth;
+        public Data(TreeNode node, boolean isLeft, int depth) {
+            this.node = node;
+            this.isLeft = isLeft;
+            this.depth = depth;
         }
     }
 }
