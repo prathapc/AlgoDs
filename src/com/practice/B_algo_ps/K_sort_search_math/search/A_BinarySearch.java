@@ -10,7 +10,7 @@ public class A_BinarySearch {
 
 	private static void binarySearch(int[] a, int start, int end, int key) {
 		if(start < end) {
-			int mid = (start+end)/2;
+			int mid = (start+end)/2; // start + end >> 1
 			if(a[mid] == key) {
 				System.out.println("key "+key+" found at index "+mid);
 				return; 

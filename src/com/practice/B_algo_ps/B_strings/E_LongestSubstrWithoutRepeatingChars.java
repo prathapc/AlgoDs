@@ -1,7 +1,9 @@
 package com.practice.B_algo_ps.B_strings;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by prathapchowdary on 07/11/21.
@@ -13,26 +15,46 @@ import java.util.Map;
  * Explanation: The answer is "abc", with the length of 3.
  */
 public class E_LongestSubstrWithoutRepeatingChars {
-    public static void main(String args[]) {
-        System.out.println(lengthOfLongestSubstring("abba"));
-    }
 
-    public static int lengthOfLongestSubstring(String s) {
-        int lastDuplicateIndex = 0, result = 0;
-        Map<Character, Integer> map = new HashMap<>();
+    //solved in 10mins; beats 85%
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> charLastIndexSet = new HashSet<>();
+        int result = 0, start = 0;
         for (int i=0; i<s.length(); i++) {
-            if (map.containsKey(s.charAt(i)) && map.get(s.charAt(i)) >= lastDuplicateIndex) {
-                lastDuplicateIndex = map.get(s.charAt(i)) + 1;
+            char currChar = s.charAt(i);
+            if (charLastIndexSet.contains(currChar)) {
+                while (s.charAt(start) != currChar) {
+                    charLastIndexSet.remove(s.charAt(start++));
+                }
+                charLastIndexSet.remove(s.charAt(start++));
             }
-            map.put(s.charAt(i), i);
-            result = Math.max(result, i-lastDuplicateIndex+1);
+            charLastIndexSet.add(currChar);
+            result = Math.max(result, i-start+1);
         }
-
         return result;
     }
-    //take map to store seen characters
-    //lastDuplicateIndex variable to track last duplicate char seen
-    //keep updating variables while moving forward
+
+    public static int lengthOfLongestSubstring_1(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int i=0, j=0, max=0;
+        while (j < s.length()) {
+            map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0) + 1);
+            if (map.size() == j-i+1) {
+                max = Math.max(max, j-i+1);
+            }
+
+            //increment left pointer if duplicate found
+            while (map.size() < j-i+1) {
+                map.put(s.charAt(i), map.get(s.charAt(i))-1);
+                if (map.get(s.charAt(i)) == 0) {
+                    map.remove(s.charAt(i));
+                }
+                i++;
+            }
+            j++;
+        }
+        return max;
+    }
 
     //similar to prev problem - longest substr with atmost k distinct chars
     public int lengthOfLongestSubstring2(String s) {

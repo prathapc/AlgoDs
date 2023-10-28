@@ -3,6 +3,7 @@ package com.practice.B_algo_ps.A_arrays;
 import com.practice.A_ds.C_linkedlist.ListNode;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by prathapchowdary on 24/04/22.
@@ -24,21 +25,20 @@ import java.util.PriorityQueue;
  */
 public class H_MergeKSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for (ListNode root : lists) {
-            while (root != null) {
-                minHeap.add(root.val);
-                root = root.next;
+        Queue<Integer> pq = new PriorityQueue<>();
+        for (ListNode l : lists) {
+            while (l != null) {
+                pq.add(l.val);
+                l = l.next;
             }
         }
 
         ListNode dummy = new ListNode(-1);
-        ListNode head = dummy;
-        while (!minHeap.isEmpty()) {
-            head.next = new ListNode(minHeap.remove());
-            head = head.next;
+        ListNode curr = dummy;
+        while (!pq.isEmpty()) {
+            curr.next = new ListNode(pq.poll());
+            curr = curr.next;
         }
-
         return dummy.next;
     }
 

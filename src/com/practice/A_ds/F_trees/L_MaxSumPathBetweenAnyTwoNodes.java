@@ -3,29 +3,33 @@ package com.practice.A_ds.F_trees;
 import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
 /**
- * https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+ *
+ * A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+ *
+ * The path sum of a path is the sum of the node's values in the path.
+ *
+ * Given the root of a binary tree, return the maximum path sum of any non-empty path.
+ *
+ * https://leetcode.com/problems/binary-tree-maximum-path-sum/
  */
 public class L_MaxSumPathBetweenAnyTwoNodes {
 
-  public static void main(String args[]) {
-    System.out.println(maxPathSum(Utility.createSampleTree(new String[]{"-10","9","20", null, null,"15","7"})));
+  int maxSum = Integer.MIN_VALUE;
+  public int maxPathSum(TreeNode root) {
+    maxPathSumUtil(root);
+    return maxSum;
   }
 
-  public static int maxPathSum(TreeNode root) {
-    int[] result = new int[1];
-    result[0] = Integer.MIN_VALUE;
-    maxPathSumUtil(root, result);
-    return result[0];
-  }
+  private int maxPathSumUtil(TreeNode root) {
+    if (root == null) return 0;
 
-  private static int maxPathSumUtil(TreeNode root, int[] result) {
-    if (root == null)
-      return 0;
+    int leftMax = maxPathSumUtil(root.left);
+    int rightMax = maxPathSumUtil(root.right);
 
-    int l = Math.max(maxPathSumUtil(root.left, result), 0);
-    int r = Math.max(maxPathSumUtil(root.right, result), 0);
-    int maxSubTree = Math.max(root.val, Math.max(l+root.val, r+root.val));
-    result[0] = Math.max(l+r+root.val, result[0]);
-    return maxSubTree;
+    int maxPath = Math.max(root.val, root.val+Math.max(leftMax, rightMax));
+    int completePath = root.val + leftMax + rightMax;
+    maxSum = Math.max(maxSum, Math.max(maxPath, completePath));
+
+    return Math.max(root.val, Math.max(root.val+leftMax, root.val+rightMax));
   }
 }

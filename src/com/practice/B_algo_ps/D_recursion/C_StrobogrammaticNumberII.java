@@ -6,13 +6,15 @@ import java.util.List;
 /**
  * Created by prathapchowdary on 11/06/22.
  *
+ * A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+ *
  * Input: n = 2
  * Output: ["11","69","88","96"]
  *
  * https://leetcode.com/problems/strobogrammatic-number-ii/
  */
 public class C_StrobogrammaticNumberII {
-    public char[][] reversiblePairs = {
+    public static char[][] reversiblePairs = {
             {'0', '0'},
             {'1', '1'},
             {'6', '9'},
@@ -21,7 +23,7 @@ public class C_StrobogrammaticNumberII {
     };
 
     //Time complexity: N*5^(N/2+1}
-    public List<String> generateStroboNumbers(int n, int finalLength) {
+    public static List<String> generateStroboNumbers(int n, int finalLength) {
         if (n == 0) {
             // 0-digit strobogrammatic number is an empty string.
             return new ArrayList<>(List.of(""));
@@ -48,10 +50,12 @@ public class C_StrobogrammaticNumberII {
         return currStroboNums;
     }
 
-    public List<String> findStrobogrammatic(int n) {
+    public static List<String> findStrobogrammatic(int n) {
         return generateStroboNumbers(n, n);
     }
-
+    public static void main(String args[]) {
+        System.out.println(findStrobogrammatic(4));
+    }
     /**
      * Explanation of above solution::
      *

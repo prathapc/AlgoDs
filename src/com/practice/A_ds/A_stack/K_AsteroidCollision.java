@@ -4,44 +4,35 @@ import java.util.Stack;
 
 /**
  * Created by prathapchowdary on 17/06/23.
+ *
+ * Input: asteroids = [5,10,-5]
+ * Output: [5,10]
+ * Explanation: The 10 and -5 collide resulting in 10. The 5 and 10 never collide.
+ *
+ * https://leetcode.com/problems/asteroid-collision/
  */
 public class K_AsteroidCollision {
 
     public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> st = new Stack<Integer>();
-        for (int asteroid : asteroids) {
-            boolean flag = true;
-            while (!st.isEmpty() && (st.peek() > 0 && asteroid < 0)) {
-                // If the top asteroid in the stack is smaller, then it will explode.
-                // Hence pop it from the stack, also continue with the next asteroid in the stack.
-                if (Math.abs(st.peek()) < Math.abs(asteroid)) {
-                    st.pop();
-                    continue;
+        Stack<Integer> s = new Stack<>();
+        for(int i: asteroids){
+            if(i > 0){
+                s.push(i);
+            }else{// i is negative
+                while(!s.isEmpty() && s.peek() > 0 && s.peek() < Math.abs(i)){
+                    s.pop();
                 }
-                // If both asteroids have the same size, then both asteroids will explode.
-                // Pop the asteroid from the stack; also, we won't push the current asteroid to the stack.
-                else if (Math.abs(st.peek()) == Math.abs(asteroid)) {
-                    st.pop();
+                if(s.isEmpty() || s.peek() < 0){
+                    s.push(i);
+                }else if(i + s.peek() == 0){
+                    s.pop(); //equal
                 }
-
-                // If we reach here, the current asteroid will be destroyed
-                // Hence, we should not add it to the stack
-                flag = false;
-                break;
-            }
-
-            if (flag) {
-                st.push(asteroid);
             }
         }
-
-        // Add the asteroids from the stack to the vector in the reverse order.
-        int[] remainingAsteroids = new int[st.size()];
-        for (int i = remainingAsteroids.length - 1; i >= 0; i--) {
-            remainingAsteroids[i] = st.peek();
-            st.pop();
+        int[] res = new int[s.size()];
+        for(int i = res.length - 1; i >= 0; i--){
+            res[i] = s.pop();
         }
-
-        return remainingAsteroids;
+        return res;
     }
 }

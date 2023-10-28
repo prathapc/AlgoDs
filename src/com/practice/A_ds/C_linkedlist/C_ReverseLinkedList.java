@@ -4,6 +4,8 @@ import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
 /**
  * Created by prathap on 05/10/17.
+ *
+ * https://leetcode.com/problems/reverse-linked-list/
  */
 public class C_ReverseLinkedList {
 
@@ -17,16 +19,19 @@ public class C_ReverseLinkedList {
   private static ListNode reverseLinkedList(ListNode head) {
     ListNode prev = null, current = head, next = null;
     while (current != null) {
-      next = current.next;
-      current.next = prev;
+      next = current.next; //preserve next
+
+      current.next = prev; //change pointers / reverse
 
       prev = current;
-      current = next;
+      current = next; //update prev and curr
     }
     return prev;
   }
 
-  //TODO understand
+  //build recursion stack to understand better
+  //maintain level containing head and newHead along with values/data
+  //so that you will know what to change pointer to and what to return
   private static ListNode reverseLinkedList_recursion(ListNode head) {
     if (head == null || head.next == null) {
       return head;

@@ -15,7 +15,7 @@ import java.util.Queue;
  */
 public class E_TopKFrequentElements {
 
-    //overal O(NlogK) complexity - check individual section time complexities below
+    //overall O(NlogK) complexity - check individual section time complexities below
     public int[] topKFrequent(int[] nums, int k) {
 
         //O(N)

@@ -4,24 +4,29 @@ import com.practice.B_algo_ps.K_sort_search_math.Utility;
 
 /**
  * Created by prathapchowdary on 15/10/21.
+ *
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 public class A_RemoveDuplicates {
-    public static void main(String args[]) {
-        ListNode head = Utility.buildLinkedList(new int[]{1,2,3,4,4,5,5,6});
-        Utility.printLinkedList(head);
-        Utility.printLinkedList(removeDuplicates(head));
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+        ListNode node = head, next = head.next;
+        while (next != null) {
+            if (node.val == next.val) {
+                node.next = next.next;
+            } else {
+                node = next;
+            }
+            next = node.next;
+        }
+        return head;
     }
 
-    private static ListNode removeDuplicates(ListNode node) {
-        if (node == null) return null;
-        ListNode curr = node, next = node.next;
-        while (curr != null && curr.next != null) {
-            if (curr.val == curr.next.val) {
-                curr.next = curr.next.next;
-            } else {
-                curr = curr.next;
-            }
-        }
-        return node;
+    //recursive solution
+    public ListNode deleteDuplicates1(ListNode head) {
+        if(head == null || head.next == null) return head;
+        head.next = deleteDuplicates1(head.next);
+        return head.val == head.next.val ? head.next : head;
     }
 }

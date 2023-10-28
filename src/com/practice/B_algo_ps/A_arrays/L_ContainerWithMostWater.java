@@ -23,18 +23,18 @@ public class L_ContainerWithMostWater {
      *
      */
     public int maxArea2(int[] height) {
-        int maxarea = 0;
-        int left = 0;
-        int right = height.length - 1;
-        while (left < right) {
-            int width = right - left;
-            maxarea = Math.max(maxarea, Math.min(height[left], height[right]) * width);
-            if (height[left] <= height[right]) {
-                left++;
+        int maxArea = 0;
+        int start = 0, end = height.length-1;
+        while (start < end) {
+            int currArea = Math.min(height[start], height[end]) * (end-start);
+            maxArea = Math.max(maxArea, currArea);
+
+            if (height[start] <= height[end]) {
+                start++;
             } else {
-                right--;
+                end--;
             }
         }
-        return maxarea;
+        return maxArea;
     }
 }

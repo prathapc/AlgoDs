@@ -5,37 +5,38 @@ import java.util.Queue;
 
 /**
  * Created by prathapchowdary on 18/06/23.
+ *
+ * https://leetcode.com/problems/cousins-in-binary-tree/
  */
 public class E_CousinsInBinaryTree {
-    public boolean isCousins(TreeNode root, int x, int y) {
+    public boolean isCousins(TreeNode root, int A, int B) {
+        if (root == null) return false;
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while(!queue.isEmpty()) {
+        queue.offer(root);
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            int count=0;
-            for(int i=0;i<size;i++) {
-                TreeNode node = queue.poll();
-
-                if (x == node.val || y == node.val) {
-                    count++;
-                }
-
-                if(node.left!=null){
-                    queue.add(node.left);
-                }
-                if(node.right!=null){
-                    queue.add(node.right);
-                }
-
-                if(node.left!=null && node.right!=null){
-                    if((node.left.val == x && node.right.val == y) || (node.left.val == y && node.right.val == x)){
+            boolean isAexist = false;
+            boolean isBexist = false;
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = queue.poll();
+                if (cur.val == A) isAexist = true;
+                if (cur.val == B) isBexist = true;
+                if (cur.left != null && cur.right != null) {
+                    if (cur.left.val == A && cur.right.val == B) {
+                        return false;
+                    }
+                    if (cur.left.val == B && cur.right.val == A) {
                         return false;
                     }
                 }
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
             }
-            if (count > 1) {
-                return true;
-            }
+            if (isAexist && isBexist)  return true;
         }
         return false;
     }

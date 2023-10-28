@@ -25,7 +25,7 @@ class C_OverrideTest {
         a1.displayInfo(); //I am a dog.
 
         Animal a2 = new Animal();
-        a1.displayInfo(); //I am a dog.
+        a2.displayInfo(); //I am an animal.
 
         /**
          * Note: to call super class method you need to use super.displayInfo()

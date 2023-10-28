@@ -20,39 +20,33 @@ public class K_ReorderList {
     }
 
     public static void reorderList(ListNode head) {
-        if (head == null) return;
-
-        // find the middle of linked list [Problem 876]
-        // in 1->2->3->4->5->6 find 4
+        //break into two lists
         ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
+        ListNode l1 = head, l2 = slow.next;
+        slow.next = null;  //this must be set to null; otherwise cycle in output
 
-        // reverse the second part of the list [Problem 206]
-        // convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
-        // reverse the second half in-place
-        ListNode prev = null, curr = slow, tmp = null;
+        //reverse second list
+        ListNode prev = null, curr = l2;
         while (curr != null) {
-            tmp = curr.next;
-
+            ListNode temp = curr.next;
             curr.next = prev;
+
             prev = curr;
-            curr = tmp;
+            curr = temp;
         }
+        l2 = prev;
 
-        // merge two sorted linked lists [Problem 21]
-        // merge 1->2->3->4 and 6->5->4 into 1->6->2->5->3->4
-        ListNode first = head, second = prev;
-        while (second.next != null) {
-            tmp = first.next;
-            first.next = second;
-            first = tmp;
+        //merge two lists
+        while (l2 != null) {
+            ListNode tempL1 = l1.next;
+            l1.next = l2;
 
-            tmp = second.next;
-            second.next = first;
-            second = tmp;
+            l1 = l2;
+            l2 = tempL1;
         }
     }
 

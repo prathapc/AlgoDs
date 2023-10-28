@@ -27,7 +27,7 @@ public class F_MedianInAStreamOfNumbers {
 	 * Now, the minHeap might hold more elements than maxHeap, in that case, we need to balance the size, by removing the lowest element from minHeap and offer it back to maxHeap.
 	 */
 	PriorityQueue<Integer> minHeap = new PriorityQueue<>();;
-	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());;
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
 	public void addNum(int num) {
 		maxHeap.offer(num);
@@ -48,4 +48,36 @@ public class F_MedianInAStreamOfNumbers {
 	 * double param_2 = obj.findMedian();
 	 */
 
+
+	//had written below addNum method at first which was not elegant but beats 65%
+	//where as above solution beats only 35%
+	public void addNum_1(int num) {
+		if (minHeap.isEmpty() && maxHeap.isEmpty()) minHeap.add(num);
+		else if (minHeap.isEmpty() || maxHeap.isEmpty()) {
+			if (minHeap.isEmpty()) minHeap.add(num);
+			else if (maxHeap.isEmpty()) maxHeap.add(num);
+			if (maxHeap.peek() > minHeap.peek()) {
+				int temp = maxHeap.poll();
+				maxHeap.add(minHeap.poll());
+				minHeap.add(temp);
+			}
+		} else {
+			if (num >= minHeap.peek()) {
+				minHeap.add(num);
+				if (minHeap.size()-maxHeap.size() > 1) maxHeap.add(minHeap.poll());
+			} else {
+				maxHeap.add(num);
+				if (maxHeap.size()-minHeap.size() > 1) minHeap.add(maxHeap.poll());
+			}
+		}
+	}
+	public double findMedian_1() {
+		if (minHeap.isEmpty()) return maxHeap.peek();
+		else if (maxHeap.isEmpty()) return minHeap.peek();
+		else {
+			if (minHeap.size() > maxHeap.size()) return minHeap.peek();
+			else if (maxHeap.size() > minHeap.size()) return maxHeap.peek();
+			else return (minHeap.peek() + maxHeap.peek()) / 2.0;
+		}
+	}
 }

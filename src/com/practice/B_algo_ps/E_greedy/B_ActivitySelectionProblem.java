@@ -33,7 +33,7 @@ public class B_ActivitySelectionProblem {
         // start iterating from the second element of
         // vector up to its last element
         for (int i = 1; i < activities.size(); i++) {
-            // if start time of i'th activity is is greater or equal
+            // if start time of i'th activity is greater or equal
             // to the finish time of the last selected activity, it
             // can be included in activities list
             if (activities.get(i).getStart() >= activities.get(k).getFinish())

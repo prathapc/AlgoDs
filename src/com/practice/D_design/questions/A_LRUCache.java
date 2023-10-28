@@ -36,97 +36,71 @@ public class A_LRUCache {
         map.put(key, value);
     }
 
-    //solution with out using LinkedHashMap
-    /*class DLinkedNode {
-        int key;
-        int value;
-        DLinkedNode prev;
-        DLinkedNode next;
-    }
-
-    private void addNode(DLinkedNode node) {
-        //Always add the new node right after head.
-        node.prev = head;
-        node.next = head.next;
-
-        head.next.prev = node;
-        head.next = node;
-    }
-
-    private void removeNode(DLinkedNode node){
-        //Remove an existing node from the linked list.
-        DLinkedNode prev = node.prev;
-        DLinkedNode next = node.next;
-
-        prev.next = next;
-        next.prev = prev;
-    }
-
-    private void moveToHead(DLinkedNode node){
-        //Move certain node in between to the head.
-        removeNode(node);
-        addNode(node);
-    }
-
-    private DLinkedNode popTail() {
-        //Pop the current tail.
-        DLinkedNode res = tail.prev;
-        removeNode(res);
-        return res;
-    }
-
-    private Map<Integer, DLinkedNode> cache = new HashMap<>();
-    private int size;
-    private int capacity;
-    private DLinkedNode head, tail;
+    //solution without using LinkedHashMap
+    /*
+    final Node head = new Node(0, 0);
+    final Node tail = new Node(0, 0);
+    final Map<Integer, Node> map;
+    final int capacity;
 
     public LRUCache(int capacity) {
-        this.size = 0;
         this.capacity = capacity;
-
-        head = new DLinkedNode();
-        // head.prev = null;
-
-        tail = new DLinkedNode();
-        // tail.next = null;
-
+        map = new HashMap(capacity);
         head.next = tail;
         tail.prev = head;
     }
 
     public int get(int key) {
-        DLinkedNode node = cache.get(key);
-        if (node == null) return -1;
-
-        // move the accessed node to the head;
-        moveToHead(node);
-
-        return node.value;
+      int res = -1;
+      if(map.containsKey(key)){
+        Node n = map.get(key);
+        remove(n);
+        insertToHead(n);
+        res = n.value;
+      }
+      return res;
     }
 
     public void put(int key, int value) {
-        DLinkedNode node = cache.get(key);
+      if(map.containsKey(key)){
+        Node n = map.get(key);
+        remove(n);
+        n.value = value;
+        insertToHead(n);
+      } else {
 
-        if(node == null) {
-            DLinkedNode newNode = new DLinkedNode();
-            newNode.key = key;
-            newNode.value = value;
-
-            cache.put(key, newNode);
-            addNode(newNode);
-
-            ++size;
-
-            if(size > capacity) {
-                // pop the tail
-                DLinkedNode tail = popTail();
-                cache.remove(tail.key);
-                --size;
-            }
-        } else {
-            // update the value.
-            node.value = value;
-            moveToHead(node);
+        if(map.size() == capacity){
+           map.remove(tail.prev.key);
+           remove(tail.prev);
         }
-    }*/
+
+        Node n = new Node(key, value);
+        insertToHead(n);
+        map.put(key, n);
+      }
+    }
+
+    private void remove(Node n){
+      n.prev.next = n.next;
+      n.next.prev = n.prev;
+    }
+
+    private void insertToHead(Node n){
+      Node headNext = head.next;
+      head.next = n;
+      headNext.prev = n;
+      n.prev = head;
+      n.next = headNext;
+    }
+
+    class Node{
+      Node prev, next;
+      int key, value;
+      Node(int k, int v){
+        key = k;
+        value = v;
+      }
+    }
+    */
+
 }

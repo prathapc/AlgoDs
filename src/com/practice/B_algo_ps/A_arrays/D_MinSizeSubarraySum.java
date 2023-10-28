@@ -12,7 +12,7 @@ package com.practice.B_algo_ps.A_arrays;
  * Output: 2
  */
 public class D_MinSizeSubarraySum {
-    public int minSubArrayLen(int target, int[] nums) {
+    public static int minSubArrayLen(int target, int[] nums) {
         int left = 0, sum = 0, result = Integer.MAX_VALUE;
         for (int i=0; i<nums.length; i++) {
             sum += nums[i];
@@ -22,5 +22,9 @@ public class D_MinSizeSubarraySum {
             }
         }
         return result == Integer.MAX_VALUE ? 0 : result;
+    }
+
+    public static void main(String args[]) {
+        minSubArrayLen(7, new int[]{2,3,1,2,4,3});
     }
 }

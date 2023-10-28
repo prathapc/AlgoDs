@@ -2,12 +2,17 @@ package com.practice.B_algo_ps.A_arrays.intervals;
 
 /**
  * Created by Prathap on 22 Jan, 2020
+ *
+ * #Array #Greedy #DP
  */
 public class BuySellStocks {
 
     public static void main(String[] args) throws Exception {
+
+        int[] prices = {7,1,5,3,6,4};
+
         //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-        maxProfitByBuySellStockAtMost1Time();
+        maxProfitByBuySellStockAtMost1Time(prices);
 
         //https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
         maxProfitByBuySellStockAnyNoOfTimes();
@@ -23,8 +28,7 @@ public class BuySellStocks {
 
     }
 
-    private static int maxProfitByBuySellStockAtMost1Time() {
-        int[] prices = {7,1,5,3,6,4};
+    private static int maxProfitByBuySellStockAtMost1Time(int[] prices) {
         if (prices.length == 0) {
             return 0;
         }
@@ -40,6 +44,11 @@ public class BuySellStocks {
         return maxProfit;
     }
 
+
+
+
+
+
     private static void maxProfitByBuySellStockAnyNoOfTimes() {
         int prices[] = {100, 180, 260, 310, 40, 535, 695};
         int n = prices.length;
@@ -53,31 +62,18 @@ public class BuySellStocks {
         }
         System.out.println(profit);
     }
-    // DP - top down
-    public int maxProfitByBuySellStockAnyNoOfTimes(int[] prices) {
-        int[][] dp = new int[prices.length][2];
-        for(int i=0; i<prices.length; i++){
-            for(int j=0; j<2; j++){
-                dp[i][j] = -1;
-            }
+    public static  int maxProfitByBuySellStockAnyNoOfTimes1(int[] prices) {
+        int i = 0, buy = 0, sell = 0, profit = 0, n = prices.length - 1;
+        while (i < n) {
+            while (i < n && prices[i + 1] <= prices[i]) i++;
+            buy = prices[i];
+
+            while (i < n && prices[i + 1] > prices[i]) i++;
+            sell = prices[i];
+
+            profit += sell - buy;
         }
-        return helper(0, 1, prices, dp);
-    }
-    public int helper(int i, int buy, int[] prices, int[][] dp){
-        if(i == prices.length) return 0;
-
-        if(dp[i][buy] != -1) return dp[i][buy];
-
-        int buyStock = Integer.MIN_VALUE;
-        int sellStock = Integer.MIN_VALUE;
-
-        if(buy == 1) {
-            buyStock = Math.max(-prices[i] + helper(i+1, 0, prices, dp), helper(i+1, 1, prices, dp));
-        } else {
-            sellStock = Math.max(prices[i] + helper(i+1, 1, prices, dp), helper(i+1, 0, prices, dp));
-        }
-
-        return dp[i][buy] = Math.max(buyStock,sellStock);
+        return profit;
     }
 
 
@@ -87,25 +83,25 @@ public class BuySellStocks {
         Integer[][][] memo = new Integer[2][2][prices.length];
         return getMaxProfit(prices, 0, 0, 0, memo);
     }
-    private static int getMaxProfit(int[] prices, int transactions, int onBuyPosition, int position, Integer[][][] memo) {
+    private static int getMaxProfit(int[] prices, int transactions, int holding, int position, Integer[][][] memo) {
         if (transactions == 2) return 0;
         if (position == prices.length) return 0;
-        if (memo[transactions][onBuyPosition][position] != null) return memo[transactions][onBuyPosition][position];
+        if (memo[transactions][holding][position] != null) return memo[transactions][holding][position];
 
         int profit = 0;
         // when we are at buy position, we can sell, when at sell, we can buy
-        if (onBuyPosition == 1) {
-            int sellProfit = prices[position] + getMaxProfit(prices, transactions + 1, 0, position + 1, memo);
+        if (holding == 1) {
+            int sellProfit = prices[position] + getMaxProfit(prices, transactions + 1, 0, position + 1, memo); //sell
             profit = Math.max(profit, sellProfit);
         } else {
-            int buyProfit = -prices[position] + getMaxProfit(prices, transactions, 1, position + 1, memo);
+            int buyProfit = -prices[position] + getMaxProfit(prices, transactions, 1, position + 1, memo); //buy
             profit = Math.max(profit, buyProfit);
         }
         // nothing
-        int nothing = getMaxProfit(prices, transactions, onBuyPosition, position + 1, memo);
+        int nothing = getMaxProfit(prices, transactions, holding, position + 1, memo);
         profit = Math.max(profit, nothing);
 
-        memo[transactions][onBuyPosition][position] = profit;
+        memo[transactions][holding][position] = profit;
         return profit;
     }
 

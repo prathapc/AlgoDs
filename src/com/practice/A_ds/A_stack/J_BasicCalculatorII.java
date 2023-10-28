@@ -5,8 +5,10 @@ import java.util.Stack;
 /**
  * Created by prathapchowdary on 14/01/22.
  *
- * https://leetcode.com/problems/basic-calculator-ii/
+ * Input: s = "3+2*2"
+ * Output: 7
  *
+ * https://leetcode.com/problems/basic-calculator-ii/
  */
 public class J_BasicCalculatorII {
 
@@ -26,16 +28,13 @@ public class J_BasicCalculatorII {
                 currentNumber = (currentNumber * 10) + (currentChar - '0');
             }
             if (!Character.isDigit(currentChar) && !Character.isWhitespace(currentChar) || i == len - 1) {
-                if (operation == '-') {
+                if (operation == '-') { //order of operation checks is important
                     stack.push(-currentNumber);
-                }
-                else if (operation == '+') {
+                } else if (operation == '+') {
                     stack.push(currentNumber);
-                }
-                else if (operation == '*') {
+                } else if (operation == '*') {
                     stack.push(stack.pop() * currentNumber);
-                }
-                else if (operation == '/') {
+                } else if (operation == '/') {
                     stack.push(stack.pop() / currentNumber);
                 }
                 operation = currentChar;

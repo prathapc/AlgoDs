@@ -22,7 +22,7 @@ import java.util.*;
  *
  */
 public class D_WordLadder {
-    //Note: for finding shortest path we have to use BFS, as DFS will find route but not optimal/shortest
+    //Note: for finding the shortest path we have to use BFS, as DFS will find route but not optimal/shortest
     public static void main(String[] args) {
         String start = "hit";
         String end = "cog";
@@ -31,40 +31,43 @@ public class D_WordLadder {
         System.out.println(ladderLength1(start, end, list));
     }
 
-    //Runtime: 72 ms, faster than 42.21% of Java online submissions for Word Ladder.
+    //Runtime: beats 58.2%
+    //Time Complexity :- BigO(M^2 * N), where M is size of dequeued word & N is size of our word list
+    //Space Complexity :- BigO(M * N) where M is no. of character that we had in our string & N is the size of our wordList.
     public static int ladderLength1(String beginWord, String endWord, List<String> wordList) {
         Set<String> set = new HashSet<>(wordList);
+        if (!set.contains(endWord))
+            return 0;
+
         Queue<String> queue = new LinkedList<>();
         queue.add(beginWord);
-        // COUNT NUMBER OF WORDS TRANSFORMED
-        int count = 1;
+
+        Set<String> visited = new HashSet<>();
+        queue.add(beginWord);
+
+        int changes = 1;
         while (!queue.isEmpty()) {
             int size = queue.size();
-            // FOR ALL WORDS THIS ROUND
             for (int i = 0; i < size; i++) {
-                char[] current = queue.poll().toCharArray();
-                // TRAVERSE CURRENT WORD
-                for (int j = 0; j < current.length; j++) {
-                    char tmp = current[j];
-                    // CHANGE ONE LETTER AT A TIME
-                    for (char c = 'a'; c <= 'z'; c++) {
-                        current[j] = c;
-                        String next = new String(current);
-                        // WHEN NEXT WORD IS IN THE SET
-                        if (set.contains(next)) {
-                            if (next.equals(endWord)) return count + 1;
-                            queue.add(next);
-                            set.remove(next);
+                String word = queue.poll();
+                if (word.equals(endWord))
+                    return changes;
+
+                for (int j = 0; j < word.length(); j++) {
+                    for (int k = 'a'; k <= 'z'; k++) {
+                        char arr[] = word.toCharArray();
+                        arr[j] = (char) k;
+
+                        String str = new String(arr);
+                        if (set.contains(str) && !visited.contains(str)) {
+                            queue.add(str);
+                            visited.add(str);
                         }
                     }
-                    // HAVE TO UNDO FOR NEXT CHANGE OF LETTER
-                    current[j] = tmp;
                 }
             }
-            // THIS ROUND ENDS WITH ONE LETTER CHANGED
-            count++;
+            ++changes;
         }
         return 0;
     }
-
 }

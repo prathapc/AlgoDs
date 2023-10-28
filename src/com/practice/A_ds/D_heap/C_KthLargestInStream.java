@@ -1,5 +1,6 @@
 package com.practice.A_ds.D_heap;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -27,18 +28,18 @@ public class C_KthLargestInStream {
     Queue<Integer> pq = null;
     int k;
     public C_KthLargestInStream(int k, int[] nums) {
-        pq = new PriorityQueue<>((a, b) -> a-b); //default minHeap
+        pq = new PriorityQueue<>();
         for (int i: nums) pq.add(i);
         this.k = k;
 
-        while (pq.size() > k) { //always maintain only top k elements in our minHeap
+        while (pq.size() > k) {
             pq.poll();
         }
     }
 
     public int add(int val) {
         pq.add(val);
-        while (pq.size() > k) { //always maintain only top k elements in our minHeap
+        while (pq.size() > k) {
             pq.poll();
         }
         return pq.peek();

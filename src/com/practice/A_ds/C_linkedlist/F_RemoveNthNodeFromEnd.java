@@ -4,21 +4,35 @@ import java.util.List;
 
 /**
  * Created by prathap on 27/12/17.
+ *
+ * https://leetcode.com/problems/remove-nth-node-from-end-of-list
  */
 public class F_RemoveNthNodeFromEnd {
 
-  public static void main(String args[]) {
-    Node head = new Node(1);
-    head.next = new Node(2);
-    head.next.next = new Node(3);
-    head.next.next.next = new Node(4);
-    head.next.next.next.next = new Node(5);
-    printList(head);
-    Node node = removeNthFromEnd(head, 5);
-    printList(node);
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    int size = size(head);
+    int toRemove = size - n;
+    //if (toRemove == 0) return head.next; //special case of handling removal of first node from beginning
+    ListNode temp = dummy; //observe, we are taking dummy (not head) as temp so that we can delete first node as well
+    while (toRemove-- > 0) {
+      temp = temp.next;
+    }
+    temp.next = temp.next.next;
+    return dummy.next;
   }
 
-  //single pass alogrithm
+  private int size(ListNode node) {
+    int s = 0;
+    while (node != null) {
+      node = node.next;
+      s++;
+    }
+    return s;
+  }
+
+  //another way
   public static ListNode removeNthFromEnd1(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
@@ -34,55 +48,4 @@ public class F_RemoveNthNodeFromEnd {
     return dummy.next;
   }
 
-
-  //two pass algorithm
-  public static Node removeNthFromEnd(Node A, int B) {
-    int len = lengthOfLinkedList(A);
-    int n = len-B;
-    if(n <= 0) {
-      A = A.next;
-      return A;
-    }
-
-    Node temp = A;
-    while(--n > 0) {
-      temp = temp.next;
-    }
-    Node del = temp.next;
-    if(del != null) {
-      if(del.next == null) {
-        temp.next = null;
-      } else {
-        temp.next = del.next;
-      }
-    }
-    return A;
-  }
-
-  private static int lengthOfLinkedList(Node a) {
-    int len = 0;
-    while(a != null) {
-      len++;
-      a = a.next;
-    }
-    return len;
-  }
-
-  static class Node {
-    int val;
-    Node next;
-
-    public Node(int val) {
-      this.val = val;
-    }
-  }
-
-  static void printList(Node node) {
-    while (node != null) {
-      System.out.print(node.val + " -> ");
-      node = node.next;
-    }
-    System.out.print("null");
-    System.out.println();
-  }
 }

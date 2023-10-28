@@ -24,11 +24,14 @@ public class C_CombinationSumII {
 
     public static void main(String args[]) {
         //int candidates[] = {10,1,2,7,6,1,5};
-        int candidates[] = {1,1,2,2,3,3,4,4,5,5,6,6};
-        int target = 7;
+        //int candidates[] = {1,1,2,2,3,3,4,4,5,5,6,6};
+        int candidates[] = {1,2,3};
+        int target = 4;
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
+
         Arrays.sort(candidates);
+
         combinationSum2(candidates, 0, target, result, temp);
         System.out.println(result);
     }
@@ -48,8 +51,13 @@ public class C_CombinationSumII {
             //that means first iteration we will get in and for next iterations we check for prev number same or not
             if (i == index || candidates[i] != candidates[i-1]) {
                 temp.add(candidates[i]);
-                combinationSum2(candidates, i+1, target-candidates[i], result, temp);
-                temp.remove(temp.size()-1);
+                //[[1, 1, 2, 3], [1, 1, 5], [1, 2, 4], [1, 3, 3], [1, 6], [2, 2, 3], [2, 5], [3, 4]]
+                combinationSum2(candidates, i + 1, target - candidates[i], result, temp);
+                temp.remove(temp.size() - 1);
+
+                //if we want to take same number unlimitedly (combinationSumI problem)
+                //[[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 2], [1, 1, 1, 1, 3], [1, 1, 1, 2, 2], [1, 1, 1, 4], [1, 1, 2, 3], [1, 1, 5], [1, 2, 2, 2], [1, 2, 4], [1, 3, 3], [1, 6], [2, 2, 3], [2, 5], [3, 4]]
+                //combinationSum2(candidates, i, target-candidates[i], result, temp);
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.practice.A_ds.C_linkedlist;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,14 +22,15 @@ import java.util.List;
  * https://leetcode.com/problems/number-of-recent-calls/
  */
 public class A_NumberOfRecentCalls {
-    List<Integer> data = null;
+
+    //linear search - beats 10%
+    /*List<Integer> data = null;
     int start,end;
     public A_NumberOfRecentCalls() {
         data = new LinkedList<>();
         start = 0;
         end = 0;
     }
-
     public int ping(int t) {
         data.add(t);
         end++;
@@ -37,5 +39,23 @@ public class A_NumberOfRecentCalls {
             start++;
         }
         return end-start;
+    }*/
+
+    //binary search - beats 98%
+    List<Integer> list = new ArrayList<>();
+    int lowerBound = 0;
+    public A_NumberOfRecentCalls() {}
+    public int ping(int t) {
+        list.add(t);
+        int r = list.size() - 1;
+        int target = t - 3000;
+        while (lowerBound < r) {
+            int m = lowerBound + (r-lowerBound) / 2;
+            if (list.get(m) >= target)
+                r = m;
+            else
+                lowerBound = m + 1;
+        }
+        return list.size() - lowerBound;
     }
 }

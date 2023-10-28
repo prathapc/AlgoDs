@@ -1,0 +1,68 @@
+Assume you are writing the firmware for a network bridge.
+There are N ports each with an unique ID.
+We want to write a class with the get and free methods as shown in the example.
+Let’s start by optimizing for runtime complexity.
+
+Required methods:
+
+get() → Return a currently free port.
+Once a port is returned it is considered busy.
+free(port_id) → Frees the given port.
+Nothing should happen if you free a port which is already free.
+// For example:
+// - N = 3
+// - ports = [0,1,2]
+// - get() → 1
+// - get() → 0
+// - get() → 2
+// - get() → None
+// - free(1) → None
+// - get() → 1
+// - get() → None
+
+I implemented boolean array based solution and set based solution.
+boolean array solution: Time Complexity for get(): O(n) worse case, Space complexity: O(n)
+set solution: Time Complexity for get(): O(1) worse case, Space complexity: O(n)
+
+The interviewer suggests that space complexity of set soution is 8bit * n, and the space compelxity if boolean array solution is 1bit * n. The interviewer suggests the device is space limited and wants me to improve the get() time complexity of boolean array based solution to O(lgn).
+
+Please review my solution:
+
+class PortManager {
+    private boolean[] ports;
+    private int n;
+
+    PortManager(int n) {
+        ports = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            ports[i] = true;
+        }
+        this.n = n;
+    }
+
+    public int get() {
+        int port = helper(0, n - 1);
+        if (port == -1) {
+            return -1;
+        }
+        ports[port] = false;
+        return port;
+    }
+
+    private int helper(int lo, int hi) {
+        if (lo == hi) {
+            return ports[lo] ? lo : -1;
+        }
+        int mid = lo + (hi - lo) / 2;
+        int left = helper(lo, mid);
+        int right = helper(mid + 1, hi);
+        if (left == -1 && right == -1) {
+            return -1;
+        }
+        return left == -1 ? right : left;
+    }
+
+    public void free(int port) {
+        ports[port] = true;
+    }
+}

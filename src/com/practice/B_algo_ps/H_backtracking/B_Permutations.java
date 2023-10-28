@@ -18,16 +18,34 @@ public class B_Permutations {
     System.out.println(permute_bfs(nums));
   }
 
+  //dfs + backtracking
+  static List<List<Integer>> result = new ArrayList<>();
+  public static List<List<Integer>> permute(int[] nums) {
+    List<Integer> nums_lst = Arrays.stream(nums).boxed().collect(Collectors.toList());
+    permute(nums_lst, 0);
+    return result;
+  }
+  private static void permute(List<Integer> nums, int index) {
+    if (index == nums.size()) {
+      result.add(new ArrayList<>(nums));
+      return;
+    }
+    for (int i=index; i<nums.size(); i++) {
+      Collections.swap(nums, i, index);
+      permute(nums, index+1);
+      Collections.swap(nums, i, index);
+    }
+  }
+
+  //bfs + backtracking
   private static List<List<Integer>> permute_bfs(int[] nums) {
     List<List<Integer>> result = new ArrayList<>();
-    //permute(nums, 0, result);
     Queue<Set<Integer>> queue = new LinkedList<>();
     for (int num : nums) {
       Set<Integer> temp = new LinkedHashSet<>();
       temp.add(num);
       queue.add(temp);
     }
-
     while (!queue.isEmpty()) {
       Set<Integer> current = queue.poll();
       if (current.size() == nums.length) {
@@ -44,29 +62,5 @@ public class B_Permutations {
       }
     }
     return result;
-  }
-
-  public static List<List<Integer>> permute(int[] nums) {
-    List<List<Integer>> output = new LinkedList();
-    List<Integer> nums_lst = Arrays.stream(nums).boxed().collect(Collectors.toList());
-    backtrack(nums.length, nums_lst, output, 0);
-    return output;
-  }
-  private static void backtrack(int n,
-                        List<Integer> nums,
-                        List<List<Integer>> output,
-                        int first) {
-    // if all integers are used up
-    if (first == n)
-      output.add(new ArrayList<Integer>(nums));
-    for (int i = first; i < n; i++) {
-      // place i-th integer first
-      // in the current permutation
-      Collections.swap(nums, first, i);
-      // use next integers to complete the permutations
-      backtrack(n, nums, output, first + 1);
-      // backtrack
-      Collections.swap(nums, first, i);
-    }
   }
 }

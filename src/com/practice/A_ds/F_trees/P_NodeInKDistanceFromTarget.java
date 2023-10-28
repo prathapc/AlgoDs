@@ -1,100 +1,84 @@
 package com.practice.A_ds.F_trees;
 
-import com.practice.B_algo_ps.K_sort_search_math.Utility;
+import java.util.*;
 
 /**
- * Created by prathap on 02/09/17.
+ * Created by Prathap on 04 Oct, 2019
  *
- * https://www.geeksforgeeks.org/print-nodes-distance-k-given-node-binary-tree/
+ * All Nodes Distance K in Binary Tree
+ *  This code passes all Leetcode test cases as of Feb. 12th 2019
+ *  Runtime: 3 ms, faster than 64.42% of Java online submissions for All Nodes Distance K in Binary Tree.
+ *  (can't get much faster than that. Asymptotically this is identical to anything even remotely faster)
+ *  The video to explain this code is here: https://www.youtube.com/watch?v=nPtARJ2cYrg
+ *
+ *  https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
  */
 public class P_NodeInKDistanceFromTarget {
-  public static void main(String args[]) {
-    Node root = Utility.createSampleTree3();
-    Node target = root.getLeft().getRight();
-    findNodesInKDistanceFromTarget(root, target, 2);
 
+    public List<Integer> distanceK(TreeNode treeRoot, TreeNode startNode, int targetDistance) {
 
-    Result result = new Result();
-  }
+        Map<TreeNode, TreeNode> nodeToParentMap = new HashMap<>();
+        populateNodeToParentMap(nodeToParentMap, treeRoot, null);
 
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(startNode);
 
-  static class Result {
-    boolean lFound;
-    int distFromRoot;
+        Set<TreeNode> seen = new HashSet();
+        seen.add(startNode);
 
-  }
-  private static void findNodes(Node node, Node target, int k, Result result) {
-    if (node == null) {
-      return;
+        int currentLayer = 0;
+
+        while (!queue.isEmpty()) {
+            if (currentLayer == targetDistance) {
+                return extractLayerFromQueue(queue);
+            }
+
+            int layerSize = queue.size();
+            for (int i = 0; i < layerSize; i++) {
+
+                TreeNode currentNode = queue.poll();
+
+                if (currentNode.left != null && !seen.contains(currentNode.left)) {
+                    seen.add(currentNode.left);
+                    queue.offer(currentNode.left);
+                }
+
+                if (currentNode.right != null && !seen.contains(currentNode.right)) {
+                    seen.add(currentNode.right);
+                    queue.offer(currentNode.right);
+                }
+
+                TreeNode parentOfCurrentNode = nodeToParentMap.get(currentNode);
+                if (parentOfCurrentNode != null && !seen.contains(parentOfCurrentNode)) {
+                    seen.add(parentOfCurrentNode);
+                    queue.offer(parentOfCurrentNode);
+                }
+            }
+            currentLayer++;
+        }
+
+        return new ArrayList<Integer>();
     }
 
-    if (node.getData() == target.getData()) {
-      findKnodesDown(node, k);
-    } else {
+    private void populateNodeToParentMap(Map<TreeNode, TreeNode> nodeToParentMap,
+                                         TreeNode root, TreeNode parent) {
+        if (root == null) {
+            return;
+        }
 
-    }
-  }
+        nodeToParentMap.put(root, parent);
 
-  private static void findKnodesDown(Node node, int k) {
-    if (node == null) {
-      return;
-    }
-    if (k == 0) {
-      System.out.println(node.getData() + " ");
+        populateNodeToParentMap(nodeToParentMap, root.left, root);
+        populateNodeToParentMap(nodeToParentMap, root.right, root);
     }
 
-    findKnodesDown(node.getLeft(), k-1);
-    findKnodesDown(node.getRight(), k-1);
-
-  }
-
-
-  private static int findNodesInKDistanceFromTarget(Node  node, Node target, int k) {
-    if(node == null) {
-      return -1;
+    private List<Integer> extractLayerFromQueue(Queue<TreeNode> queue) {
+        List<Integer> extractedList = new ArrayList();
+        for (TreeNode node: queue) {
+            extractedList.add(node.val);
+        }
+        return extractedList;
     }
-    if(node == target) {
-      findNodesInTargetSubTree(target, k);
-      return 0;
-    }
-
-    int d1 = findNodesInKDistanceFromTarget(node.getLeft(), target, k);
-    int d2 = findNodesInKDistanceFromTarget(node.getRight(), target, k);
-
-    //if target present in left sub tree
-    if(d1 != -1) {
-      //print root if in k distance from target
-      if(d1+1 == k) {
-        System.out.println(node.getData());
-      } else {
-        findNodesInTargetSubTree(node.getRight(), k-d1-2);
-      }
-      return 1+d1;
-    }
-
-    //if target present in right sub tree
-    if(d2 != -1) {
-      //print root if in k distnace from target
-      if(d2+1 == k) {
-        System.out.println(node.getData());
-      } else {
-        findNodesInTargetSubTree(node.getLeft(), k-d2-2);
-      }
-      return 1+d2;
-    }
-    return -1;
-  }
-
-  private static void findNodesInTargetSubTree(Node target, int k) {
-    if(target == null || k < 0) {
-      return;
-    }
-    if(k==0) {
-      System.out.println(target.getData());
-      return;
-    }
-    findNodesInTargetSubTree(target.getLeft(), k-1);
-    findNodesInTargetSubTree(target.getRight(), k-1);
-  }
-
 }
+
+

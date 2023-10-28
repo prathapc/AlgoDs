@@ -1,5 +1,9 @@
 package com.practice.B_algo_ps.I_dp;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * Created by Prathap on 19 Oct, 2019
  *
@@ -14,31 +18,36 @@ package com.practice.B_algo_ps.I_dp;
 public class G_JumpGameI {
 
     //accepted solution beats 100%
-
-    //Once we have our code in the bottom-up state, we can make one final, important observation.
-    //From a given position, when we try to see if we can jump to a GOOD position,
-    //we only ever use one - the first one (see the break statement).
-    //In other words, the left-most one. If we keep track of this left-most GOOD position as a separate variable,
-    //we can avoid searching for it in the array. Not only that, but we can stop using the array altogether.
-    //
-    //Iterating right-to-left, for each position we check if there is a potential jump that reaches a GOOD index (currPosition + nums[currPosition] >= leftmostGoodIndex). If we can reach a GOOD index, then our position is itself GOOD. Also, this new GOOD position will be the new leftmost GOOD index. Iteration continues until the beginning of the array. If first position is a GOOD index then we can reach the last index from the first position.
-    //To illustrate this scenario, we will use the diagram below, for input array nums = [9, 4, 2, 1, 0, 2, 0].
-    //We write G for GOOD, B for BAD and U for UNKNOWN.
-    //Let's assume we have iterated all the way to position 0 and we need to decide if index 0 is GOOD.
-    //Since index 1 was determined to be GOOD, it is enough to jump there and then be sure we can eventually reach index 6.
-    //It does not matter that nums[0] is big enough to jump all the way to the last index. All we need is one way.
-    //Index	0	1	2	3	4	5	6
-    //nums	9	4	2	1	0	2	0
-    //memo	U	G	B	B	B	G	G
-    public boolean canJump1(int[] nums) {
-        int lastPos = nums.length - 1;
-        for (int i = nums.length - 1; i >= 0; i--) {
-            if (i + nums[i] >= lastPos) {
-                lastPos = i;
+    // traverse from end assuming last element is goal post
+    // keep shifting goal post from last to beginning as and when we find we can reach from its predecessor
+    // how do we know we can reach from predecessor? just do index + value at index to know if we reach next
+    public boolean canJump(int[] nums) {
+        int goal = nums.length-1;
+        for (int i=nums.length-2; i>=0; i--) {
+            if (i+nums[i] >= goal) {
+                goal = i;
             }
         }
-        return lastPos == 0;
+        return goal == 0;
     }
+
+    //beats 5%
+    public boolean canJump_dfs_stack(int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(0);
+        Set<Integer> seenIndexes = new HashSet<>();
+        while (!stack.isEmpty()) {
+            int currIndex = stack.pop();
+            if (seenIndexes.contains(currIndex)) continue;
+            if (currIndex >= nums.length-1) return true;
+            for (int i=1; i<=nums[currIndex]; i++) {
+                stack.push(currIndex + i);
+            }
+            seenIndexes.add(currIndex);
+        }
+        return false;
+    }
+
 
     //other solution: beats 22%
     public static void main(String args[]) {
@@ -46,7 +55,6 @@ public class G_JumpGameI {
         //other standard dfs way of solving
         Boolean[] memo = new Boolean[nums.length];
         memo[nums.length - 1] = true;
-
         System.out.println(dfs(0, nums, memo));
     }
 

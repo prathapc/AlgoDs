@@ -5,7 +5,8 @@ import java.util.Map;
 /**
  * Created by prathapchowdary on 17/04/23.
  *
- * The above approach is no better than the linked list approach because the tree it creates can be highly unbalanced; however, we can enhance it in two ways.
+ * The above approach is no better than the linked list approach because the tree it creates
+ * can be highly unbalanced; however, we can enhance it in two ways.
  *
  * 1. The first way, called union by rank, is to always attach the smaller tree to the root of the
  * larger tree. Since it is the depth of the tree that affects the running time, the tree with a

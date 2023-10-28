@@ -9,16 +9,6 @@ import com.practice.B_algo_ps.K_sort_search_math.Utility;
  *
  */
 public class G_LowestCommonAncestor {
-  public static void main(String args[]) {
-
-    //Node root = Utility.createSampleTree3();
-    TreeNode root = Utility.createSampleTree();
-
-    TreeNode p = root.left;
-    TreeNode q = root.right;
-    TreeNode lca = lowestCommonAncestor(root, p, q);
-    System.out.print(lca.val);
-  }
 
   /**
    * [Needs update after param data type changes to TreeNode from int]
@@ -41,5 +31,15 @@ public class G_LowestCommonAncestor {
     } else {
       return r;
     }
+  }
+
+  public static void main(String args[]) {
+    //Node root = Utility.createSampleTree3();
+    TreeNode root = Utility.createSampleTree();
+
+    TreeNode p = root.left;
+    TreeNode q = root.right;
+    TreeNode lca = lowestCommonAncestor(root, p, q);
+    System.out.print(lca.val);
   }
 }

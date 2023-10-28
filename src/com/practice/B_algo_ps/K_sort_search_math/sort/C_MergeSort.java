@@ -11,46 +11,34 @@ public class C_MergeSort {
   public static void main(String args[]) {
     int a[] = {23, 12, 56, 45, 78, 15};
     temp = new int[a.length];
-    System.out.println(Arrays.toString(a));
     mergeSort(a, 0, a.length-1);
     System.out.println(Arrays.toString(a));
   }
-
-  private static void mergeSort(int[] a, int start, int end) {
+  private static void mergeSort(int[] nums, int start, int end) {
     if (start < end) {
-      int mid = (start+end)/2;
-      mergeSort(a, start, mid);
-      mergeSort(a, mid+1, end);
+      int mid = start + (end - start) / 2;
+      mergeSort(nums, start, mid);
+      mergeSort(nums, mid+1, end);
 
-      merge(a, start, mid, end);
+      merge(nums, start, mid, end);
     }
   }
-
-  private static void merge(int a[], int low, int middle, int high) {
-    for (int i = low; i <= high; i++) {
-      temp[i] = a[i];
+  private static void merge(int nums[], int start, int mid, int end) {
+    for (int i=start; i<=end; i++) {
+      temp[i] = nums[i];
     }
-
-    int i = low;
-    int j = middle + 1;
-    int k = low;
-
-    while (i <= middle && j <= high) {
+    int i = start;
+    int j = mid + 1;
+    int k = start;
+    while (i <= mid && j <= end) {
       if (temp[i] <= temp[j]) {
-        a[k] = temp[i];
-        i++;
+        nums[k++] = temp[i++];
       } else {
-        a[k] = temp[j];
-        j++;
+        nums[k++] = temp[j++];
       }
-      k++;
     }
-
-    // Copy the rest of the left side of the array into the target array
-    while (i <= middle) {
-      a[k] = temp[i];
-      k++;
-      i++;
+    while (i <= mid) {
+      nums[k++] = temp[i++];
     }
   }
 

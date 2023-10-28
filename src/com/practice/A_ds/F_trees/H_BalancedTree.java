@@ -8,7 +8,6 @@ package com.practice.A_ds.F_trees;
  * For this problem, a height-balanced binary tree is defined as:
  * a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
  *
- *
  */
 public class H_BalancedTree {
     private boolean result = true;

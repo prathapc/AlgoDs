@@ -16,13 +16,11 @@ public class C_NextPermutation {
         if (nums.length < 2) return;
 
         int i = nums.length-2;
-        while (i>= 0 && nums[i+1] <= nums[i]) i--;
+        while (i>= 0 && nums[i] >= nums[i+1]) i--;
 
         if(i>=0) {
             int j = nums.length-1;
-            while(nums[j] <= nums[i]) {
-                j--;
-            }
+            while(nums[i] >= nums[j]) j--;
             swap(nums, i, j);
         }
 

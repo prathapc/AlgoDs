@@ -13,6 +13,8 @@ import java.util.*;
  * "Combination of letters" means that we don't care about the ordering of individual words formed from digits.
  * (e.g. "ae" and "ea" would be the same combination).
  * But what the problem really wants is all Permutations of letters formed from digits.
+ *
+ * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
  */
 public class B_LetterCombinationsOfPhoneNumber {
     public static List<String> letterCombinations(String digits) {

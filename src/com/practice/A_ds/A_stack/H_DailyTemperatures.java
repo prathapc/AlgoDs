@@ -14,18 +14,39 @@ import java.util.Stack;
  * https://leetcode.com/problems/daily-temperatures/
  */
 public class H_DailyTemperatures {
+
+    // first came up with this then realised no need of int[] instead can simply store index (sol below)
     public int[] dailyTemperatures(int[] temperatures) {
-        int n = temperatures.length;
-        int[] answer = new int[n];
-        Stack<Integer> stack = new Stack<>();
-        for (int currDay = 0; currDay < n; currDay++) {
-            int currentTemp = temperatures[currDay];
-            while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemp) {
-                int prevDay = stack.pop();
-                answer[prevDay] = currDay-prevDay;
+        int[] result = new int[temperatures.length];
+        Stack<int[]> stack = new Stack<>();
+        stack.push(new int[]{0, temperatures[0]});
+        for (int i=0; i<temperatures.length; i++) {
+            while (!stack.isEmpty() && stack.peek()[1] < temperatures[i]) {
+                int[] prev = stack.pop();
+                result[prev[0]] = i - prev[0];
             }
-            stack.push(currDay);
+            stack.push(new int[]{i, temperatures[i]});
         }
-        return answer;
+        while (!stack.isEmpty()) {
+            result[stack.pop()[0]] = 0;
+        }
+        return result;
+    }
+
+    public int[] dailyTemperatures_1(int[] temperatures) {
+        int[] result = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<temperatures.length; i++) {
+            while (!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
+                int prev = stack.pop();
+                result[prev] = i - prev;
+            }
+            stack.push(i);
+        }
+        //no need of below while loop as int array defaults are zero
+        while (!stack.isEmpty()) {
+            result[stack.pop()] = 0;
+        }
+        return result;
     }
 }

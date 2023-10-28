@@ -2,6 +2,13 @@ package com.practice.B_algo_ps.I_dp;
 
 import java.util.*;
 
+/**
+ * Input: nums = [10,9,2,5,3,7,101,18]
+ * Output: 4
+ * Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+ *
+ * https://leetcode.com/problems/longest-increasing-subsequence/
+ */
 public class E_LongestIncreasingSubSequence {
 
 	public static void main(String[] args) {
@@ -11,24 +18,20 @@ public class E_LongestIncreasingSubSequence {
 		lengthOfLIS_binarySearch(a); //O(n*log(n)) same as above approach but with binary search
 	}
 
-	public static int lengthOfLIS_dp(int[] nums) {
-		int[] dp = new int[nums.length];
-		Arrays.fill(dp, 1);
-
-		for (int i = 1; i < nums.length; i++) {
-			for (int j = 0; j < i; j++) {
-				if (nums[i] > nums[j]) {
-					dp[i] = Math.max(dp[i], dp[j] + 1);
+	public int lengthOfLIS_dp(int[] nums) {
+		int result = 1;
+		int[] cache = new int[nums.length];
+		Arrays.fill(cache, 1);
+		for (int i=1; i<nums.length; i++) {
+			for (int j=0; j<i; j++) {
+				if (nums[j] < nums[i]) {
+					//update longest subsequence ending at 'i' by iterating j from 0th index
+					cache[i] = Math.max(cache[i], cache[j] + 1);
+					result = Math.max(result, cache[i]);
 				}
 			}
 		}
-
-		int longest = 0;
-		for (int c: dp) {
-			longest = Math.max(longest, c);
-		}
-
-		return longest;
+		return result;
 	}
 
 	//Approach:It appears the best way to build an increasing subsequence is:

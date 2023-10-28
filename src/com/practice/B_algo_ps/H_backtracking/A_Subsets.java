@@ -18,13 +18,13 @@ public class A_Subsets {
     System.out.println(subsets(nums));
   }
 
+  //dfs
   public static List<List<Integer>> subsets(int[] nums) {
     List<List<Integer>> result = new ArrayList<>();
     if (nums == null) return result;
     generateSubsets(nums, 0, new ArrayList<>(), result);
     return result;
   }
-
   private static void generateSubsets(int[] nums, int index, List<Integer> current, List<List<Integer>> result) {
     result.add(new ArrayList<>(current));
     for (int i=index; i<nums.length; i++) {
@@ -33,6 +33,28 @@ public class A_Subsets {
       current.remove(current.size()-1);
     }
   }
+
+  //bfs
+  public List<List<Integer>> subsets1(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    Queue<List<Integer>> bfs = new LinkedList<>();
+    bfs.add(new ArrayList<>());
+    for (int i=0; i<nums.length; i++) {
+      for (int j = bfs.size(); j>0; j--) {
+        List<Integer> curr = bfs.poll();
+        bfs.offer(curr);
+
+        List<Integer> temp = new ArrayList<>(curr);
+        temp.add(nums[i]);
+        bfs.offer(temp);
+      }
+    }
+    while (!bfs.isEmpty()) {
+      result.add(bfs.poll());
+    }
+    return result;
+  }
+
 }
 
 /**

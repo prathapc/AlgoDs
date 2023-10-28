@@ -20,15 +20,15 @@ import java.util.*;
  */
 public class C_CombinationSum {
 
+    static List<List<Integer>> result = new ArrayList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
-        Arrays.sort(candidates);
-        combinationSum(candidates, 0, target, 0, result, temp);
+        //Arrays.sort(candidates); - unnecessary
+        combinationSum(candidates, 0, target, 0, temp);
         return result;
     }
 
-    private static void combinationSum(int[] candidates, int index, int target, int sum, List<List<Integer>> result, List<Integer> temp) {
+    private static void combinationSum(int[] candidates, int index, int target, int sum, List<Integer> temp) {
         if (sum > target) return;
         if (sum == target) {
             result.add(new ArrayList<>(temp));
@@ -37,7 +37,7 @@ public class C_CombinationSum {
 
         for (int i=index; i<candidates.length; i++) {
             temp.add(candidates[i]);
-            combinationSum(candidates, i, target, sum+candidates[i], result, temp);
+            combinationSum(candidates, i, target, sum+candidates[i], temp);
             temp.remove(temp.size()-1);
         }
     }

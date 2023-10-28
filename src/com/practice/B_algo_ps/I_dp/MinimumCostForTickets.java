@@ -2,11 +2,13 @@ package com.practice.B_algo_ps.I_dp;
 
 /**
  * Created by prathapchowdary on 09/10/21.
- * https://leetcode.com/problems/minimum-cost-for-tickets/
+ *
  * 1, 7, 30 day pass available
  *
  * Input: days = [1,4,6,7,8,20], costs = [2,7,15]
  * Output: 11
+ *
+ * https://leetcode.com/problems/minimum-cost-for-tickets/
  *
  * O(n) solution
  */

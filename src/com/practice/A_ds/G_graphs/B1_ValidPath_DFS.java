@@ -6,12 +6,9 @@ import java.util.*;
  * Created by prathapchowdary on 09/10/21.
  */
 public class B1_ValidPath_DFS {
-    boolean found;
+    boolean found = false;
     public boolean validPath(int n, int[][] edges, int start, int end) {
-        found = false;
-
-        if(start == end)
-            return  true;
+        if(start == end) return true;
 
         boolean[] visited = new boolean[n];
         Map<Integer,List<Integer>> graph = new HashMap<>();
@@ -23,8 +20,10 @@ public class B1_ValidPath_DFS {
             graph.get(edge[0]).add(edge[1]);
             graph.get(edge[1]).add(edge[0]);
         }
+
         //start dfs from start point
         dfs(graph, visited, start, end);
+
         return found;
     }
 

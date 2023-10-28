@@ -5,8 +5,8 @@ import java.util.*;
 /**
  * Created by prathapchowdary on 21/09/21.
  * P: If given tree is valid graph
- * S: build adj list and maintain parent of each node (as its undirected graph and we don't want to end up
- * traversing b/w node and its parent)
+ * S: build adj list and maintain parent of each node (as its undirected graph and we don't want to
+ * end up traversing b/w node and its parent)
  */
 class D_GraphTreeValid_DFS {
     public boolean validTree(int n, int[][] edges) {

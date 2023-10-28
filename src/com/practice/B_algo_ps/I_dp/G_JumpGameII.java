@@ -1,5 +1,9 @@
 package com.practice.B_algo_ps.I_dp;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 /**
  * Created by Prathap on 04 Jan, 2020
  *
@@ -19,59 +23,89 @@ public class G_JumpGameII {
     }
 
     //beats 99.5%
-    public int jump2(int[] nums) {
-        int jumps = 0, currentJumpEnd = 0, farthest = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            // we continuously find the how far we can reach in the current jump
-            farthest = Math.max(farthest, i + nums[i]);
-            // if we have come to the end of the current jump,
-            // we need to make another jump
-            if (i == currentJumpEnd) {
-                jumps++;
-                currentJumpEnd = farthest;
+    //https://www.youtube.com/watch?v=dJ7sWiOoK7g
+    public static int jump(int[] nums) {
+        //build a window
+        //from curr window, build next window start and end (find furthest we can reach in next window)
+        //repeat this process and count steps
+        int l=0, r=0, furthest = 0;
+        int steps = 0;
+        while (r < nums.length-1) {
+            for (int i=l; i<=r; i++) {
+                furthest = Math.max(furthest, i+nums[i]);
             }
+            l = r+1;
+            r = furthest;
+            steps++;
         }
-        return jumps;
+        return steps;
     }
 
-    //beats 99.5%
-    public static int jump(int[] nums) {
-        if(nums.length <= 1) {
-            return 0;
+    //similar to jump-game-i solution using stack but failing for few test cases
+    public int jump2(int[] nums) {
+        int minJumps = Integer.MAX_VALUE;
+        Stack<int[]> stack = new Stack<>();
+        stack.push(new int[]{0, 0});
+        //Set<Integer> seenIndexes = new HashSet<>();
+        Map<Integer, Integer> dp = new HashMap<>();
+        while (!stack.isEmpty()) {
+            int curr[] = stack.pop();
+            if (dp.containsKey(curr[0])) {
+                if (dp.get(curr[0]) < curr[1]) {
+                    continue;
+                }
+                dp.put(curr[0], curr[1]);
+            }
+
+            if (curr[0] >= nums.length-1) {
+                minJumps = Math.min(curr[1], minJumps);
+                continue;
+            }
+
+            for (int i=1; i<=nums[curr[0]]; i++) {
+                stack.push(new int[]{curr[0] + i, curr[1]+1});
+            }
+            dp.put(curr[0], curr[1]);
         }
-        // keep track of the largest ladder you have
-        int ladder = nums[0];
+        return minJumps;
+    }
 
-        // keep track of number of stairs in the current ladder
-        int stair = nums[0];
 
-        int jump = 1;
+    //top down DP
+    public int jump1(int[] nums) {
+        Integer[] memo = new Integer[nums.length];
+        return dp(nums, 0, memo);
+    }
+    public Integer dp(int[] nums, int current, Integer[] memo) {
+        if (current == nums.length - 1) {
+            // Valid endpoint
+            return 0;
+        } else if (current >= nums.length) {
+            // you have gone too far
+            return null;
+        }
 
-        for (int i = 1; i < nums.length; i++) {
-            //if you reach the end of the ladder,
-            //return the number jumps you made so far
-            if (i == nums.length - 1) {
-                return jump;
-            }
+        if (memo[current] != null) {
+            return memo[current];
+        }
 
-            // if you can construct a ladder bigger than the current one, construct it
-            if (nums[i] + i >= ladder) {
-                ladder = nums[i] + i;
-            }
+        Integer min = null;
+        int jumps = nums[current];
 
-            // climb up one stair
-            stair--;
-
-            if (stair == 0) { // if there are no stairs left, make a jump to the next ladder
-                jump++;
-                //length of remaining stairs will be length of ladder minus the step you are on
-                stair = ladder - i;
-                // still no stairs it means we cannot reach the end..
-                if (stair == 0) {
-                    return -1;
+        for (int i = 1; i < jumps + 1; i++) {
+            // take the result of the recursion
+            Integer res = dp(nums, current + i, memo);
+            if (res != null && res >= 0) {
+                if (min == null) {
+                    min = res + 1;
+                } else {
+                    // ensure the minimum recurse result is populated and returned
+                    min = Math.min(min, res + 1);
                 }
             }
         }
-        return jump;
+
+        memo[current] = min;
+        return memo[current];
     }
 }

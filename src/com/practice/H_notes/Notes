@@ -2,6 +2,7 @@
 1. For binary search to find mid, always use "left + (right-left)/2" to avoid overflow
 why? because of the large number. Consider the left and right are both large numbers, it will add up into a even larger number.
 While right-left make it more reasonable
+OR use "left + right >> 1"
 
 2. If you shouldn't use multiplication or division then think of bit operations (<<, >>)
 

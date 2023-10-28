@@ -11,29 +11,76 @@ import java.util.*;
 public class C_LevelOrder {
 
   public static void main(String args[]) {
-    levelOrder(Utility.createMaxHeapTree());
+    //https://leetcode.com/problems/binary-tree-level-order-traversal/
+    levelOrder(Utility.createSampleTree());
+
+    //https://leetcode.com/problems/n-ary-tree-level-order-traversal/
+    nArrayTreeLevelOrder(null);
+
 
     //https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
     zigzagLevelOrder(Utility.createSampleTree());
+
+    //https://leetcode.com/problems/average-of-levels-in-binary-tree/
+    averageOfLevels(Utility.createSampleTree());
   }
 
-  public static void levelOrder(Node root) {
-    Queue<Node> queue = new LinkedList<Node>();
+  public static List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) return result;
+    Queue<TreeNode> bfs = new LinkedList<>();
+    bfs.add(root);
+    while (!bfs.isEmpty()) {
+      int currLevelSize = bfs.size();
+      List<Integer> level = new ArrayList<>();
+      for (int i=0; i<currLevelSize; i++) {
+        TreeNode curr = bfs.poll();
+        level.add(curr.val);
 
-    if (root != null) {
-      queue.add(root);
-    }
-    while (!queue.isEmpty()) {
-      Node node = queue.poll();
-      System.out.print(node.getData() + " ");
-      if (node.getLeft() != null) {
-        queue.add(node.getLeft());
+        if (curr.left != null) bfs.add(curr.left);
+        if (curr.right != null) bfs.add(curr.right);
       }
-      if (node.getRight() != null) {
-        queue.add(node.getRight());
-      }
+      result.add(level);
     }
+    return result;
   }
+
+  //check below Node class for input
+  public static List<List<Integer>> nArrayTreeLevelOrder(Node root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) return result;
+
+    Queue<Node> bfs = new LinkedList<>();
+    bfs.add(root);
+
+    while (!bfs.isEmpty()) {
+      int levelCount = bfs.size();
+      List<Integer> levelNodes = new ArrayList<>();
+      while (levelCount-- > 0) {
+        Node node = bfs.poll();
+        if (node == null) continue;
+        levelNodes.add(node.val);
+        bfs.addAll(node.children);
+      }
+      result.add(levelNodes);
+    }
+    return result;
+  }
+
+  class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+      val = _val;
+    }
+    public Node(int _val, List<Node> _children) {
+      val = _val;
+      children = _children;
+    }
+  };
 
   public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
@@ -59,60 +106,22 @@ public class C_LevelOrder {
     }
     return result;
   }
-  //other sol - not so elegant
-  private static List<List<Integer>> zigzagLevelOrder1(TreeNode root) {
-    List<List<Integer>> result = new ArrayList<>();
-    Queue<TreeNode> queue1 = new LinkedList<>();
-    Queue<TreeNode> queue2 = new LinkedList<>();
-    if (root != null) {
-      queue1.add(root);
-    }
 
-    List<Integer> temp = null;
-    boolean flip = false;
-    while (!queue1.isEmpty() || !queue2.isEmpty()) {
-      temp = new ArrayList<>();
-      while(!queue1.isEmpty()) {
-        TreeNode node = queue1.poll();
-        temp.add(node.val);
-        if (node.left != null) {
-          queue2.add(node.left);
-        }
-        if (node.right != null) {
-          queue2.add(node.right);
-        }
+  public static List<Double> averageOfLevels(TreeNode root) {
+    List<Double> result = new ArrayList<>();
+    if(root == null) return result;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root);
+    while(!q.isEmpty()) {
+      int n = q.size();
+      double sum = 0.0;
+      for(int i = 0; i < n; i++) {
+        TreeNode node = q.poll();
+        sum += node.val;
+        if(node.left != null) q.offer(node.left);
+        if(node.right != null) q.offer(node.right);
       }
-      if (!temp.isEmpty()) {
-        if (flip) {
-          Collections.reverse(temp);
-          flip = false;
-        } else {
-          flip = true;
-        }
-        result.add(temp);
-      }
-
-
-      temp = new ArrayList<>();
-      while(!queue2.isEmpty()) {
-        TreeNode node = queue2.poll();
-        temp.add(node.val);
-        if (node.left != null) {
-          queue1.add(node.left);
-        }
-        if (node.right != null) {
-          queue1.add(node.right);
-        }
-      }
-      if (!temp.isEmpty()) {
-        if (flip) {
-          Collections.reverse(temp);
-          flip = false;
-        } else {
-          flip = true;
-        }
-        result.add(temp);
-      }
+      result.add(sum / n);
     }
     return result;
   }

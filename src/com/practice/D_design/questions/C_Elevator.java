@@ -44,6 +44,7 @@ public class C_Elevator {
     OPEN, CLOSED
   }
 
+  //minHeap and maxHeap priority queues can be used
   public Comparator<Request> upComparator = new Comparator<Request>() {
     public int compare(Request u1, Request u2) {
       return u1.floor.compareTo(u2.floor);
@@ -213,6 +214,5 @@ public class C_Elevator {
       e.printStackTrace();
     }
   }
-
 }
 

@@ -33,7 +33,7 @@ public class H_SimplifyCanonicalDirectoryPath {
         }
 
         StringBuilder result = new StringBuilder();
-        for (String node : stack) {
+        for (String node : stack) { //NOTE: not usual pop from top, instead using iterator from bottom
             result.append("/");
             result.append(node);
         }

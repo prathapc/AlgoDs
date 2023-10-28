@@ -1,7 +1,8 @@
 https://medium.com/@RamkrishnaKulka/disjoint-set-union-union-find-the-same-blood-type-e67c51b1d2
 
-Person 1 and Person 2 have the same blood type. Person 2 and Person 4 have the same blood type, and so on. TO solve this problenm
-we can construct a graph and answer all queries but complexty will be O(m*n) considring m persons and n queries.
+Person 1 and Person 2 have the same blood type. Person 2 and Person 4 have the same blood type, and so on.
+TO solve this problem, we can construct a graph and answer all queries but complexity will be O(m*n)
+considering m persons and n queries.
 
 To solve this efficiently we can use disjoint sets.
 

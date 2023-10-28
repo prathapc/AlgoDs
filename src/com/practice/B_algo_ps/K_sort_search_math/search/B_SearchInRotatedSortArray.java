@@ -10,33 +10,34 @@ package com.practice.B_algo_ps.K_sort_search_math.search;
  */
 public class B_SearchInRotatedSortArray {
 
-    public int search(int[] a, int key) {
-        int lo = 0;
-        int hi = a.length - 1;
-        while (lo <= hi) {
-            //int mid = low + (high - low) / 2
-            int mid = (lo + hi) >>> 1; // same as mid = (lo + hi) / 2 and avoids overflow
-
-            if (a[mid] == key)
-                return mid;
-
-            // the bottom half is sorted
-            if (a[lo] <= a[mid]) {
-                if (a[lo] <= key && key < a[mid]) {
-                    hi = mid - 1;
-                } else {
-                    lo = mid + 1;
-                }
+    public int search(int[] nums, int target) {
+        int targetIndex = -1, start = 0, end = nums.length-1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                targetIndex = mid;
+                break;
             }
-            // the upper half is sorted
-            else {
-                if (a[mid] < key && key <= a[hi]) {
-                    lo = mid + 1;
+            if (nums[start] <= nums[mid]) {
+                //left<->mid is sorted
+                if (nums[start] <= target && nums[mid] >= target) {
+                    //target is at left side
+                    end = mid;
                 } else {
-                    hi = mid - 1;
+                    //target is at right side
+                    start = mid + 1;
+                }
+            } else {
+                //mid<->right is sorted
+                if (nums[mid] <= target && nums[end] >= target) {
+                    //target is at right side
+                    start = mid + 1;
+                } else {
+                    //target is at left side
+                    end = mid;
                 }
             }
         }
-        return -1;
+        return targetIndex;
     }
 }

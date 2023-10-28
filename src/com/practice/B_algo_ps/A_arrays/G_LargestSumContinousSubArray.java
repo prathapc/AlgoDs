@@ -15,7 +15,7 @@ public class G_LargestSumContinousSubArray {
         for(int i=1; i<a.length; i++) {
             tempSum += a[i];
 
-            if(a[i] > tempSum) {
+            if(a[i] > tempSum) { //reset - required sub array to start from current i
                 tempSum = a[i];
             }
 

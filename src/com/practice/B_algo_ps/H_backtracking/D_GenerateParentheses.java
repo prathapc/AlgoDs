@@ -50,9 +50,35 @@ public class D_GenerateParentheses {
         return (balance == 0);
     }
 
+    /**
+     * Keep track of remaining open and close and use them accordingly. Implemented by me.
+     * beats 95% memory 27.5%
+     */
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        generateParenthesis("", n, n, result);
+        return result;
+    }
+    private void generateParenthesis(String current, int open, int close, List<String> result) {
+        if (open == 0 && close == 0) {
+            result.add(current);
+            return;
+        } else if (open == 0) { //if remaining open are zero then use remaining close parenthesis
+            while (close-- > 0) {
+                current += ')';
+            }
+            result.add(current);
+            return;
+        } else if (open == close){ //if remaining oopen and close are equal - use open parenthesis only as using close would be invalid
+            generateParenthesis(current+'(', open-1, close, result);
+        } else { // if we reached here then open must be less than close remaining - use both of them
+            generateParenthesis(current+'(', open-1, close, result);
+            generateParenthesis(current+')', open, close-1, result);
+        }
+    }
 
     /**
-     * Backtracking
+     * Same as above but elegant :
      * Instead of adding '(' or ')' every time as in Approach 1,
      * let's only add them when we know it will remain a valid sequence.
      * We can do this by keeping track of the number of opening and closing brackets we have placed so far.
@@ -61,8 +87,10 @@ public class D_GenerateParentheses {
      * And we can start a closing bracket if it would not exceed the number of opening brackets.
      *
      * O(4^n/sqrt(n))
+     *
+     * beats 95% and memory 100%
      */
-    public List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis3(int n) {
         List<String> result = new ArrayList<>();
         generateParenthesis("", result, 0, 0, n);
         return result;

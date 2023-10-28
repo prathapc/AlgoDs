@@ -37,7 +37,7 @@ public class L_ProductOfArrayExceptSelf {
         productExceptSelf(new int[]{1,2,3,4});
     }
 
-    //with out extra space
+    //without extra space
     public int[] productExceptSelf_1(int[] nums) {
         int n = nums.length;
         int[] res = new int[n];

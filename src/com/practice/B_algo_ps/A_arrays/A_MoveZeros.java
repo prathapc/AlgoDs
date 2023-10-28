@@ -17,12 +17,29 @@ public class A_MoveZeros {
         Utility.printArray(nums);
     }
 
-    public static void moveZeroes(int[] nums) {
+    public static void moveZeroes1(int[] nums) {
         for (int i=0, j=0; j<nums.length; j++) {
             if (nums[j] != 0) {
                 swap(nums, i, j);
                 i++;
             }
+        }
+    }
+
+    //another solution
+    public static void moveZeroes(int[] nums) {
+        if (nums.length == 1) return;
+        int l = 0, r = 1;
+        while (r < nums.length) {
+            if (nums[l] == 0 && nums[r] == 0) {
+                r++;
+                continue;
+            }
+            if (nums[l] == 0 && nums[r] != 0) {
+                swap(nums, l, r);
+            }
+            l++;
+            r++;
         }
     }
 

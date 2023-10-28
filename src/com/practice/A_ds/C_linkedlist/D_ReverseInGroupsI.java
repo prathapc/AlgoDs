@@ -15,7 +15,6 @@ public class D_ReverseInGroupsI {
         head = reverseLinkedListInGroups(head, 3);
         Utility.printLinkedList(head);
     }
-
     private static ListNode reverseLinkedListInGroups(ListNode node, int k) {
         ListNode current = node, prev = null, next = null;
         int temp = 0;
