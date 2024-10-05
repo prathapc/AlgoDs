@@ -372,6 +372,7 @@ public class Utility {
 		node2.next = node3;
 		ListNode node4 = new ListNode(5);
 		node3.next = node4;
+
 		//ListNode node5 = new ListNode(6);
 		//node4.next = node5;
 		//node5.next = null;

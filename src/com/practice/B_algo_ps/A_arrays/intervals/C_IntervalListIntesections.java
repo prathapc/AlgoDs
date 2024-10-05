@@ -6,7 +6,9 @@ import java.util.List;
 /**
  * Created by prathapchowdary on 11/07/22.
  *
- * You are given two lists of closed intervals, firstList and secondList, where firstList[i] = [starti, endi] and secondList[j] = [startj, endj]. Each list of intervals is pairwise disjoint and in sorted order.
+ * You are given two lists of closed intervals, firstList and secondList,
+ * where firstList[i] = [starti, endi] and secondList[j] = [startj, endj].
+ * Each list of intervals is pairwise disjoint and in sorted order.
  *
  * Return the intersection of these two interval lists.
  *

@@ -38,19 +38,19 @@ public class K_SumPath_AnyNodeToDownwards {
 
   private static void pathSumUtil(Node root, int sum, List<Integer> list, int inputSum) {
     if (root != null) {
-      list.add(root.getData());
+      list.add(root.getVal());
 
-      if (root.getData() - sum == 0) {
+      if (root.getVal() - sum == 0) {
         list.forEach(e->System.out.print(e + " "));
         System.out.println("sum:" + sum);
         res++;
       }
 
-      pathSumUtil(root.getLeft(), sum-root.getData(), list, inputSum);
+      pathSumUtil(root.getLeft(), sum-root.getVal(), list, inputSum);
       pathSumUtil(root.getLeft(), inputSum, new ArrayList<>(), inputSum);
 
       pathSumUtil(root.getRight(), inputSum, new ArrayList<>(), inputSum);
-      pathSumUtil(root.getRight(), sum-root.getData(), list, inputSum);
+      pathSumUtil(root.getRight(), sum-root.getVal(), list, inputSum);
 
       list.remove(list.size() - 1);
     }

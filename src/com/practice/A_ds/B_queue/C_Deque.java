@@ -18,6 +18,7 @@ public class C_Deque {
         deque.add(4); // equivalent to addLast() // add in the end
         deque.poll(); // equivalent to pollFirst() //returns null if queue is empty
         deque.pollLast();
+        deque.getLast();
 
         System.out.println(deque);
     }

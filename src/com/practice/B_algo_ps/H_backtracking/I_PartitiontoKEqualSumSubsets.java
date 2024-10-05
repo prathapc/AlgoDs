@@ -10,7 +10,6 @@ import java.util.Arrays;
  * Explanation: It's possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
  *
  * https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
- *
  */
 public class I_PartitiontoKEqualSumSubsets {
 

@@ -11,7 +11,7 @@ import java.util.Map;
  * Output: true
  * Explanation: The array can be partitioned as [1, 5, 5] and [11].
  *
- * https://leetcode.com/problems/partition-equal-subset-sum
+ * https://leetcode.com/problems/partition-equal-subset-sum/
  */
 public class D_PartitionEqualSubsetSum {
 

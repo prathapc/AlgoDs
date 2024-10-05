@@ -11,13 +11,20 @@ package com.practice.A_ds.F_trees;
  * https://leetcode.com/problems/range-sum-of-bst/
  */
 public class K_RangeSumInBst {
-
+    //beats 45%
     public int rangeSumBST(Node root, int L, int R) {
         int sum = 0;
-        if (root.getData() >= L && root.getData() <= R) sum += root.getData();
+        if (root.getVal() >= L && root.getVal() <= R) sum += root.getVal();
         if (root.getLeft() != null) sum += rangeSumBST(root.getLeft(), L, R);
         if (root.getRight() != null) sum += rangeSumBST(root.getRight(), L, R);
         return sum;
     }
 
+    //beats 100%
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if (root == null) return 0;
+        if (root.val > high) return rangeSumBST(root.left, low, high);
+        if (root.val < low) return rangeSumBST(root.right, low, high);
+        return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
+    }
 }

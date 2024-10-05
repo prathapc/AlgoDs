@@ -16,8 +16,30 @@ import java.util.Set;
  */
 public class E_LongestSubstrWithoutRepeatingChars {
 
-    //solved in 10mins; beats 85%
-    public int lengthOfLongestSubstring(String s) {
+    //beats 87%
+    public static int lengthOfLongestSubstring(String s) {
+        if (s.length() == 0) return 0;
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        int result = 0, left = 0, right = 0;
+        while (right < s.length()) {
+            if (map.containsKey(s.charAt(right))) {
+                left = Math.max(left, map.get(s.charAt(right))+1);
+                //left = map.get(s.charAt(right)) + 1; //fails for "abba" expected: 2 but gives 3 as last a is repeated in prev window and not current
+            }
+            map.put(s.charAt(right), right);
+            result = Math.max(result, right-left+1);
+            right++;
+        }
+        return result;
+    }
+
+    public static void main(String args[]) {
+        //lengthOfLongestSubstring("ABCBC");
+        lengthOfLongestSubstring("abba");
+    }
+
+    //solved in 10mins; beats 69%
+    public int lengthOfLongestSubstring1(String s) {
         Set<Character> charLastIndexSet = new HashSet<>();
         int result = 0, start = 0;
         for (int i=0; i<s.length(); i++) {
@@ -33,6 +55,8 @@ public class E_LongestSubstrWithoutRepeatingChars {
         }
         return result;
     }
+
+
 
     public static int lengthOfLongestSubstring_1(String s) {
         Map<Character, Integer> map = new HashMap<>();

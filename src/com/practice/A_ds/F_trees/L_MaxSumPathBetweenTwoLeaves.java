@@ -22,17 +22,17 @@ public class L_MaxSumPathBetweenTwoLeaves {
       return 0;
     }
     if(node.getLeft() == null && node.getRight() == null) {
-      return node.getData();
+      return node.getVal();
     }
 
     int ls = maxSumPathBwLeaves(node.getLeft());
     int rs = maxSumPathBwLeaves(node.getRight());
 
     if(node.getLeft() != null && node.getRight() != null) {
-      result = Math.max(result, ls+rs+node.getData());
+      result = Math.max(result, ls+rs+node.getVal());
 
-      return Math.max(ls, rs)+node.getData();
+      return Math.max(ls, rs)+node.getVal();
     }
-    return node.getLeft() == null ? rs+node.getData() : ls+node.getData();
+    return node.getLeft() == null ? rs+node.getVal() : ls+node.getVal();
   }
 }

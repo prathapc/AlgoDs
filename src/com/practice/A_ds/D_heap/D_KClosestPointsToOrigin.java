@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /**
  * Created by Prathap on 07 Jan, 2020
- * https://leetcode.com/problems/k-closest-points-to-origin
+ * https://leetcode.com/problems/k-closest-points-to-origin/
  */
 public class D_KClosestPointsToOrigin {
 

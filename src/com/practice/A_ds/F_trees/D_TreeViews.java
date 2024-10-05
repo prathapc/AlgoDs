@@ -25,7 +25,7 @@ public class D_TreeViews {
 		if (node == null) {
 			return;
 		}
-		map.put(hd, node.getData());
+		map.put(hd, node.getVal());
 		bottomViewOfTreeUtil(node.getLeft(), map, hd - 1);
 		bottomViewOfTreeUtil(node.getRight(), map, hd + 1);
 	}
@@ -41,7 +41,7 @@ public class D_TreeViews {
 			return;
 		}
 		if (!map.containsKey(hd)) {
-			map.put(hd, node.getData());
+			map.put(hd, node.getVal());
 		}
 		topViewOfTreeUtil(node.getLeft(), map, hd - 1);
 		topViewOfTreeUtil(node.getRight(), map, hd + 1);
@@ -59,7 +59,7 @@ public class D_TreeViews {
 		}
 
 		if (maxLevel < level) {
-			System.out.print(" " + node.getData());
+			System.out.print(" " + node.getVal());
 			maxLevel = level;
 		}
 
@@ -155,7 +155,7 @@ public class D_TreeViews {
 		while (!q.isEmpty()) {
 			Node node = q.poll();
 			if (currentCount == 0) {
-				System.out.print(node.getData() + " ");
+				System.out.print(node.getVal() + " ");
 				currentCount = nextCount;
 				nextCount = 0;
 			}
@@ -209,7 +209,7 @@ public class D_TreeViews {
 			return;
 		}
 		printTree(root.getLeft());
-		System.out.println(root.getData() + " ");
+		System.out.println(root.getVal() + " ");
 		printTree(root.getRight());
 
 	}

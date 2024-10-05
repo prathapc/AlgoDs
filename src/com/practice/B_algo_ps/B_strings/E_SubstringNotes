@@ -1,0 +1,6 @@
+
+
+Count of non-empty substrings is n*(n+1)/2
+If we include empty string also as substring, the count becomes n*(n+1)/2 + 1
+
+Bruteforce - finding all substrings in a string time complexity => O(N*N) or O(N^2)

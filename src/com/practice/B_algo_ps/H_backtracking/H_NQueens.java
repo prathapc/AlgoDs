@@ -6,66 +6,57 @@ import java.util.List;
 //https://leetcode.com/problems/n-queens/
 public class H_NQueens {
 
-  List<List<String>> result = new ArrayList<>();
-  public List<List<String>> solveNQueens(int n) {
-    if (n <= 0) return result;
-    int[][] sol = new int[n][n];
-    nQueenUtil(sol, n, 0);
-    return result;
-  }
-
-  private boolean nQueenUtil(int[][] sol, int n, int col) {
-    if (col >= n) {
-      result.add(resultBuilder(sol));
-    }
-
-    for (int row = 0; row < n; row++) {
-      if (isSafe(sol, n, row, col)) {
-        sol[row][col] = 1;
-        if (nQueenUtil(sol, n, col+1)) {
-          return true;
+    List<List<String>> result;
+    public List<List<String>> solveNQueens(int n) {
+        result = new ArrayList<>();
+        char[][] grid = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = '.';
+            }
         }
-        sol[row][col] = 0;
-      }
+        solveNQueens(grid, 0);
+        return result;
     }
-    return false;
-  }
 
-  private boolean isSafe(int board[][], int n, int row, int col) {
-    int i, j;
-
-    /* Check this row on left side */
-    for (i = 0; i < col; i++)
-      if (board[row][i] == 1)
-        return false;
-
-    /* Check upper diagonal on left side */
-    for (i=row, j=col; i>=0 && j>=0; i--, j--)
-      if (board[i][j] == 1)
-        return false;
-
-    /* Check upper diagonal on right side */
-    for (i=row, j=col; j>=0 && i<n; i++, j--)
-      if (board[i][j] == 1)
-        return false;
-
-    return true;
-  }
-
-  private List<String> resultBuilder(int[][] board) {
-    int n = board.length;
-    List<String> list = new ArrayList<>();
-    for (int i = 0; i < n; i++) {
-      String rString = "";
-      for (int j = 0; j < n; j++) {
-        if (board[i][j] == 1) {
-          rString += "Q";
-        } else {
-          rString += ".";
+    private void solveNQueens(char[][] grid, int r) {
+        if (r == grid.length) {
+            result.add(buildResult(grid));
+            return;
         }
-      }
-      list.add(rString);
+        for (int c = 0; c < grid.length; c++) {
+            if (isSafe(grid, r, c)) {
+                grid[r][c] = 'Q';
+                solveNQueens(grid, r + 1);
+                grid[r][c] = '.';
+            }
+        }
     }
-    return list;
-  }
+
+    private boolean isSafe(char[][] grid, int r, int c) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+              if (i == r && j == c) {
+                continue;
+              }
+                //same column (row already being traversed and no need to check)
+              if (grid[i][j] == 'Q' && j == c) {
+                return false;
+              }
+                //same diagonal
+              if (grid[i][j] == 'Q' && Math.abs(i - r) == Math.abs(j - c)) {
+                return false;
+              }
+            }
+        }
+        return true;
+    }
+
+    private List<String> buildResult(char[][] grid) {
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < grid.length; i++) {
+            res.add(new String(grid[i]));
+        }
+        return res;
+    }
 }

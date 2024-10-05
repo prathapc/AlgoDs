@@ -52,6 +52,10 @@ class A_DisjoinSets
         makeSet(universe);
         printSets(universe);
 
+        union(1,2);
+        union(1,3);
+        union(3,4);
+
         union(4, 3);        // 4 and 3 are in the same set
         printSets(universe);
 

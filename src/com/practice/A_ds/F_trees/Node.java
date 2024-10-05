@@ -1,18 +1,18 @@
 package com.practice.A_ds.F_trees;
 
 public class Node {
-	public int data;
+	public int val;
 	public Node left, right;
 	
-	public Node(int data) {
-		this.data = data;
+	public Node(int val) {
+		this.val = val;
 	}
 	
-	public int getData() {
-		return data;
+	public int getVal() {
+		return val;
 	}
-	public void setData(int data) {
-		this.data = data;
+	public void setVal(int val) {
+		this.val = val;
 	}
 	
 	public Node getLeft() {

@@ -18,9 +18,9 @@ public class K_PathFromRoot {
   private static void printPathFromRoot(Node node, List<Integer> data, int k) {
     if(node != null) {
 
-      data.add(node.getData());
+      data.add(node.getVal());
 
-      if(node.getData() == k) {
+      if(node.getVal() == k) {
         data.forEach(System.out::println);
       }
 
@@ -38,8 +38,8 @@ public class K_PathFromRoot {
     if(node.getData() == k) {
       data.forEach(System.out::println);
     }*/
-    if(node.getData() == k) {
-      System.out.println(node.getData());
+    if(node.getVal() == k) {
+      System.out.println(node.getVal());
       return true;
     }
 
@@ -47,7 +47,7 @@ public class K_PathFromRoot {
     boolean rightFound = printPathFromRoot1(node.getRight(), data, k);
 
     if(leftFound||rightFound) {
-      System.out.println(node.getData());
+      System.out.println(node.getVal());
     }
 
     return leftFound||rightFound;

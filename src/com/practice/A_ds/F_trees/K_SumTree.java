@@ -29,10 +29,10 @@ public class K_SumTree {
 
     ls += tempLs;
     rs += tempRs;
-    if ((node.getLeft() != null || node.getRight() != null) && node.getData() != ls + rs) {
+    if ((node.getLeft() != null || node.getRight() != null) && node.getVal() != ls + rs) {
       isSumTree = false;
     }
 
-    return ls + rs + node.getData();
+    return ls + rs + node.getVal();
   }
 }

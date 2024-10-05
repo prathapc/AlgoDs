@@ -20,11 +20,11 @@ import java.util.*;
 public class C_TaskScheduler {
 
     public static void main(String args[]) {
-        char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
+        //char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
+        char[] tasks = {'A','A','A','A','A','A','B','C','D','E','F','G'};
         int n = 2;
         System.out.println(leastInterval(tasks, n));
     }
-
     public static int leastInterval(char[] tasks, int n) {
         Map<Character, Integer> tasksCountMap = new HashMap<>();
         for(char c: tasks) {
@@ -43,7 +43,7 @@ public class C_TaskScheduler {
                 }
             }
 
-            //add back elements in temp list to heap if thier count is greater than zero
+            //add back elements in temp list to heap if the count is greater than zero
             for (int i: temp) {
                 if (--i > 0) {
                     maxHeap.add(i);
@@ -51,10 +51,13 @@ public class C_TaskScheduler {
             }
 
             //if heap is empty append temp list size to result and restart the process
-            //if heap not empty, that means add n+1 (min idle time) to result by ignoring temp element and restart the process
-            cycles += maxHeap.isEmpty() ? temp.size() : n+1;
+            //else add n+1 (min idle time) to result by ignoring temp element and restart the process
+            if (!maxHeap.isEmpty()) {
+                cycles += n+1;
+            } else {
+                cycles += temp.size();
+            }
         }
-
         return cycles;
     }
 }

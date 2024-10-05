@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by prathapchowdary on 16/11/21.
  *
- * https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters
+ * https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters (premium)
  *
  * Input: s = "eceba", k = 2
  * Output: 3
@@ -15,14 +15,14 @@ import java.util.Map;
 public class E_LongestSubstrWithAtmostKDistinctChars {
 
     private static int lengthOfLongestSubstringKDistinct(String s, int k) {
-        Map<Character,Integer> map = new HashMap<>();
-        int count = 0;    // this value could be optimized by map.size()
+        Map<Character,Integer> charFrequency = new HashMap<>();
+        int count = 0;    // this value could be optimized by charFrequency.size()
         int maxLen = 0;
 
         for (int left = 0, right = 0; right < s.length(); right++) {
             char cRight = s.charAt(right);
-            map.put(cRight, map.getOrDefault(cRight, 0) + 1);
-            if (map.get(cRight) == 1) {
+            charFrequency.put(cRight, charFrequency.getOrDefault(cRight, 0) + 1);
+            if (charFrequency.get(cRight) == 1) {
                 count++;
             }
 
@@ -31,8 +31,8 @@ public class E_LongestSubstrWithAtmostKDistinctChars {
             // So we should move the sliding window's left bound.
             while (count > k) {
                 char cLeft = s.charAt(left);
-                map.put(cLeft, map.get(cLeft) - 1);
-                if (map.get(cLeft) == 0) {
+                charFrequency.put(cLeft, charFrequency.get(cLeft) - 1);
+                if (charFrequency.get(cLeft) == 0) {
                     count--;
                 }
                 left++;

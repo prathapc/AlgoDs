@@ -171,6 +171,9 @@ Array to List:
 List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
 List<Integer> integers = Arrays.asList(nums);
 
+convert int[] to List<Integer>
+Arrays.stream(arr).boxed().collect(Collectors.toList());
+
 List to Set:
 Set<Integer> set = new HashSet<>(list);
 
@@ -247,25 +250,32 @@ tricks:-
    we first check if the rightmost significant bit is the set bit using bit & 1. 
    If not, we keep shifting left and checking until we find the bit that makes our AND operation yield 1
 
+5. Count set bits
+    Similar to above, find all set bits in given number. num & 1 gives 1 if right most bit is 1, then 
+    we right shift to check other positions. BTW rightshift by one is division by 2.
+    while (n > 0) {
+        count += n & 1;
+        n >>= 1;
+    }
+        
 How to represent -ve number?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Typically -ve integer gets stored in 2's compliment form. That means very first bit is used to represent the sign.
-0 means +ve and 1 means -ve.
-remaining bits filled with 2's compliment
+Typically -ve integer gets stored in 2's compliment form. That means very first bit is used to 
+represent the sign. 0 means +ve and 1 means -ve. remaining bits filled with 2's compliment
 
-Ex: 18 and -18
+Ex1: (~(450)+1) gives -450
 
-18 -> 0010010
+Ex2: 18 and -18
+
+18 -> 00010010
 
 find ~ of the number
 
-  1101101
+  11101101
 
 add +1 for the outcome
 
   1101110
-
-add 1 to the most significant position
 
 so -18 => 11101110
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

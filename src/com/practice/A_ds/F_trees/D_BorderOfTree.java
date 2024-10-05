@@ -11,7 +11,7 @@ public class D_BorderOfTree {
     Node root = Utility.createSampleTree3();
 
     if (root != null) {
-      System.out.print(root.getData() + " ");
+      System.out.print(root.getVal() + " ");
       leftView(root.getLeft());
       printLeaves(root.getLeft());
       printLeaves(root.getRight());
@@ -24,7 +24,7 @@ public class D_BorderOfTree {
     if (node != null) {
       printLeaves(node.getLeft());
       if (node.getLeft() == null && node.getRight() == null) {
-        System.out.print(node.getData() + " ");
+        System.out.print(node.getVal() + " ");
       }
       printLeaves(node.getRight());
     }
@@ -39,10 +39,10 @@ public class D_BorderOfTree {
     }
     if (node.getRight() != null) {
       rightView(node.getRight());
-      System.out.print(node.getData() + " ");
+      System.out.print(node.getVal() + " ");
     } else if(node.getLeft() != null) {
       rightView(node.getLeft());
-      System.out.print(node.getData() + " ");
+      System.out.print(node.getVal() + " ");
     } else {
       //leaf node, do nothing
     }
@@ -53,10 +53,10 @@ public class D_BorderOfTree {
       return;
     }
     if (node.getLeft() != null) {
-      System.out.print(node.getData() + " ");
+      System.out.print(node.getVal() + " ");
       leftView(node.getLeft());
     } else if (node.getRight() != null){
-      System.out.print(node.getData() + " ");
+      System.out.print(node.getVal() + " ");
       leftView(node.getRight());
     } else {
       //leaf node, do nothing

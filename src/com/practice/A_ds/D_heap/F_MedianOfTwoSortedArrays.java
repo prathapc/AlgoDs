@@ -36,51 +36,36 @@ public class F_MedianOfTwoSortedArrays {
     }
 
     //another solution - beats 11% - good for stream input numbers
-    static Queue<Integer> maxHeap = new PriorityQueue<>((i1, i2) -> i2-i1);
-    static Queue<Integer> minHeap = new PriorityQueue<>();
-    public static double findMedianSortedArrays1(int[] nums1, int[] nums2) {
-        if (nums1.length < nums2.length) {
-            return findMedianSortedArrays1(nums2, nums1);
-        }
-
-        addToHeap(nums1);
-        addToHeap(nums2);
-
-        if (maxHeap.isEmpty() && minHeap.isEmpty()) {
-            return 0d;
-        } else if (maxHeap.isEmpty()) {
-            return (double) minHeap.peek();
-        } else if (minHeap.isEmpty()) {
-            return (double) maxHeap.peek();
+    Queue<Integer> maxHeap = null;
+    Queue<Integer> minHeap = null;
+    public double findMedianSortedArrays1(int[] nums1, int[] nums2) {
+        maxHeap = new PriorityQueue<>((a, b) -> b-a);
+        minHeap = new PriorityQueue<>();
+        if (nums1.length > 0) addToHeap(nums1);
+        if (nums2.length > 0) addToHeap(nums2);
+        if (maxHeap.isEmpty() || minHeap.isEmpty()) {
+            return maxHeap.isEmpty() ? 1.0*minHeap.poll() : 1.0*maxHeap.poll();
         } else {
-            if (minHeap.size() > maxHeap.size()) return minHeap.peek();
-            else if (maxHeap.size() > minHeap.size()) return maxHeap.peek();
-            else return (minHeap.peek() + maxHeap.peek())/2.0d;
+            if (maxHeap.size() == minHeap.size()) return (maxHeap.poll() + minHeap.poll()) / 2.0;
+            else if (maxHeap.size() > minHeap.size()) return 1.0*maxHeap.poll();
+            else return 1.0*minHeap.poll();
         }
     }
-    private static void addToHeap(int[] nums) {
-        for (int i : nums) {
-            if (maxHeap.isEmpty()) { //starting element (min element) should go to maxheap; order is important
-                maxHeap.offer(i);
-            } else if (minHeap.isEmpty()) {
-                minHeap.offer(i);
-            } else {
-                if (i >= minHeap.peek()) {
-                    if (minHeap.size() > maxHeap.size()) {
-                        minHeap.offer(i);
-                        maxHeap.offer(minHeap.poll());
-                    } else {
-                        minHeap.offer(i);
-                    }
-                } else {
-                    if (maxHeap.size() > minHeap.size()) {
-                        maxHeap.offer(i);
-                        minHeap.offer(maxHeap.poll());
-                    } else {
-                        maxHeap.offer(i);
-                    }
-                }
+
+    private void addToHeap(int[] nums) {
+        for (int i=0; i<nums.length; i++) {
+            if (maxHeap.isEmpty()) {
+                maxHeap.offer(nums[i]);
+                continue;
             }
+            if (maxHeap.peek() < nums[i]) {
+                minHeap.offer(nums[i]);
+                if (minHeap.size()-maxHeap.size() > 1) maxHeap.offer(minHeap.poll());
+            } else {
+                maxHeap.offer(nums[i]);
+                if (maxHeap.size()-minHeap.size() > 1) minHeap.offer(maxHeap.poll());
+            }
+
         }
     }
 }

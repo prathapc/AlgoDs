@@ -14,22 +14,20 @@ import com.practice.B_algo_ps.K_sort_search_math.Utility;
  */
 public class L_MaxSumPathBetweenAnyTwoNodes {
 
-  int maxSum = Integer.MIN_VALUE;
+  int result = Integer.MIN_VALUE;
   public int maxPathSum(TreeNode root) {
     maxPathSumUtil(root);
-    return maxSum;
+    return result;
   }
-
   private int maxPathSumUtil(TreeNode root) {
     if (root == null) return 0;
+    int l = maxPathSumUtil(root.left);
+    int r = maxPathSumUtil(root.right);
 
-    int leftMax = maxPathSumUtil(root.left);
-    int rightMax = maxPathSumUtil(root.right);
+    int maxWithOrWithoutRoot = Math.max(Math.max(l+root.val, r+root.val), root.val);
 
-    int maxPath = Math.max(root.val, root.val+Math.max(leftMax, rightMax));
-    int completePath = root.val + leftMax + rightMax;
-    maxSum = Math.max(maxSum, Math.max(maxPath, completePath));
+    result = Math.max(result, Math.max(maxWithOrWithoutRoot, l+r+root.val));
 
-    return Math.max(root.val, Math.max(root.val+leftMax, root.val+rightMax));
+    return maxWithOrWithoutRoot;
   }
 }

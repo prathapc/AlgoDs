@@ -9,6 +9,16 @@ import java.util.Arrays;
  */
 public class N_MeetingRoomsII {
 
+    //https://leetcode.com/problems/meeting-rooms/
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (int[] i, int[] j) -> i[0] - j[0]);
+        for (int i=1; i<intervals.length; i++) {
+            if (intervals[i][0] < intervals[i-1][1]) return false;
+        }
+        return true;
+    }
+
+    //https://leetcode.com/problems/meeting-rooms-ii/
     public int minMeetingRooms(int[][] intervals) {
         int[] starts = new int[intervals.length];
         int[] ends = new int[intervals.length];
@@ -29,14 +39,8 @@ public class N_MeetingRoomsII {
         return rooms;
     }
 
-    //https://leetcode.com/problems/meeting-rooms/
-    public boolean canAttendMeetings(int[][] intervals) {
-        Arrays.sort(intervals, (int[] i, int[] j) -> i[0] - j[0]);
-        for (int i=1; i<intervals.length; i++) {
-            if (intervals[i][0] < intervals[i-1][1]) return false;
-        }
-        return true;
-    }
+    //https://leetcode.com/problems/meeting-rooms-iii/
+
 
     //https://leetcode.com/discuss/interview-question/613816/Google-or-Onsite-or-Meeting-Rooms-3
     //Sol: we can use either of above two problem solutions to solve this

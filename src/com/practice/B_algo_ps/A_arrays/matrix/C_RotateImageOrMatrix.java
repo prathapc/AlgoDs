@@ -23,20 +23,29 @@ package com.practice.B_algo_ps.A_arrays.matrix;
 public class C_RotateImageOrMatrix {
 
     public void rotate(int[][] matrix) {
-        int s = 0, e = matrix.length - 1;
-        while(s < e){
-            int[] temp = matrix[s];
-            matrix[s] = matrix[e];
-            matrix[e] = temp;
-            s++; e--;
-        }
+        int l = 0;
+        int r = matrix.length - 1;
+        while ( l < r ) {
+            for(int i = 0; i < r - l; i++) {
+                int top = l;
+                int bottom = r;
+                //save the topleft
+                int topLeft = matrix[top][l + i];
 
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = i+1; j < matrix[i].length; j++){
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+                //move bottom left into top left
+                matrix[top][l + i] = matrix[bottom - i][l];
+
+                // move bottom right into bottom left
+                matrix[bottom - i][l] = matrix[bottom][r - i];
+
+                // move top right into bottom right
+                matrix[bottom][r - i] = matrix[top + i][r];
+
+                // move top left into top right
+                matrix[top + i][r] = topLeft;
             }
+            l++;
+            r--;
         }
     }
 }

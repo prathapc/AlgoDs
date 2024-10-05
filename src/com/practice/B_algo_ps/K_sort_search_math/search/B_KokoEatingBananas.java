@@ -13,7 +13,43 @@ import java.util.Arrays;
  * https://leetcode.com/problems/koko-eating-bananas/
  */
 public class B_KokoEatingBananas {
+
+    static int minSpeed = Integer.MAX_VALUE;
     public int minEatingSpeed(int[] piles, int h) {
+        //int min = Arrays.stream(piles).min().getAsInt();
+        //starting iteration from min instead of 1 misses out on many test cases
+        int min = 1;
+        int max = Arrays.stream(piles).max().getAsInt();
+        minEatingSpeed(piles, min, max, h);
+        return minSpeed;
+    }
+    private void minEatingSpeed(int[] piles, int min, int max, int h) {
+        if (min > max) return;
+        int mid = min + (max - min) / 2;
+        int temp = 0;
+        for (int pile : piles) {
+            /*if (pile <= mid) temp++;
+            else {
+                temp += pile/mid;
+                if (pile % mid > 0) temp++;
+            }*/
+            //above commented code fails for test case [805306368,805306368,805306368] and h=1000000000
+            //instead use ceil function
+            temp += Math.ceil((double) pile / mid);
+        }
+
+        if (temp <= h) {
+            minSpeed = Math.min(minSpeed, mid);
+            minEatingSpeed(piles, min, mid-1, h);
+        } else {
+            minEatingSpeed(piles, mid+1, max, h);
+        }
+    }
+
+
+
+    //elegant version (same approach though)
+    public int minEatingSpeed1(int[] piles, int h) {
         int left = 1, right = 1;
         for (int pile : piles) {
             right = Math.max(right, pile);

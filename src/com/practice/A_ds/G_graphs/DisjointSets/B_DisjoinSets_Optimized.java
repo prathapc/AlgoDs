@@ -40,10 +40,14 @@ class B_DisjoinSets_Optimized
     // Find the root of the set in which element `k` belongs
     public static int find(int k) {
         // if `k` is not the root
-        if (parent.get(k) != k) {
+        if (parent.get(k) == k) return k;
+        int p = find(parent.get(k));
+        parent.put(k, p);
+        //parent.put(k, find(parent.get(k)));
+        /*if (parent.get(k) != k) {
             // path compression
             parent.put(k, find(parent.get(k)));
-        }
+        }*/
         return parent.get(k);
     }
 
@@ -62,11 +66,9 @@ class B_DisjoinSets_Optimized
         // Always attach a smaller depth tree under the root of the deeper tree.
         if (rank.get(x) > rank.get(y)) {
             parent.put(y, x);
-        }
-        else if (rank.get(x) < rank.get(y)) {
+        } else if (rank.get(x) < rank.get(y)) {
             parent.put(x, y);
-        }
-        else {
+        } else { // if ranks are the same
             parent.put(x, y);
             rank.put(y, rank.get(y) + 1);
         }

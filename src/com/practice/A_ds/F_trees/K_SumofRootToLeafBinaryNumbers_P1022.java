@@ -17,7 +17,7 @@ public class K_SumofRootToLeafBinaryNumbers_P1022 {
     private void sumRootToLeafUtil(Node node, int sum){
         if(node == null) return;
 
-        sum = sum*2+node.getData();
+        sum = sum*2+node.getVal();
         if(node.getLeft() == null && node.getRight() == null){
             result += sum;
             return;

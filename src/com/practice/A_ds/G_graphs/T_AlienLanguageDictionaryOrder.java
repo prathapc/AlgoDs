@@ -64,7 +64,7 @@ public class T_AlienLanguageDictionaryOrder {
 		if (seen.containsKey(c)) {
 			return seen.get(c); // If this node was grey (false), a cycle was detected.
 		}
-		seen.put(c, false); //if you dont do this or mark as true here only, wrong result for ["z","x","z"] which is "zx" actual is ""
+		seen.put(c, false); //if you don't do this or mark as true here only, wrong result for ["z","x","z"] which is "zx" actual is ""
 		for (Character next : reverseAdjList.get(c)) {
 			boolean result = dfs(next);
 			if (!result) return false;

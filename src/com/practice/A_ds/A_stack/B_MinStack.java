@@ -16,67 +16,28 @@ import java.util.Stack;
  */
 public class B_MinStack {
 
-    private Node head;
-
-    public void push(int x) {
-        if (head == null)
-            head = new Node(x, x, null);
-        else
-            head = new Node(x, Math.min(x, head.min), head);
-    }
-
-    public void pop() {
-        head = head.next;
-    }
-
-    public int top() {
-        return head.val;
-    }
-
-    public int getMin() {
-        return head.min;
-    }
-
-    private class Node {
-        int val;
-        int min;
-        Node next;
-
-        private Node(int val, int min, Node next) {
-            this.val = val;
-            this.min = min;
-            this.next = next;
-        }
-    }
-
-    /* ANOTHER WAY:
-     private Stack<Integer> stack;
-    private Stack<Integer> minStack = new Stack<>();
-
-    public MinStack() {
+    Stack<int[]> stack = null;
+    public B_MinStack() {
         stack = new Stack<>();
     }
 
     public void push(int val) {
-        if(minStack.isEmpty() || minStack.peek() >= val){
-            minStack.push(val);
+        if (!stack.isEmpty() && stack.peek()[1] < val) {
+            stack.push(new int[]{val, stack.peek()[1]});
+        } else {
+            stack.push(new int[]{val, val});
         }
-        stack.push(val);
     }
 
     public void pop() {
-        if(stack.peek().equals(minStack.peek())){
-            minStack.pop();
-        }
         stack.pop();
     }
 
     public int top() {
-        return stack.peek();
+        return stack.peek()[0];
     }
 
     public int getMin() {
-        return minStack.peek();
+        return stack.peek()[1];
     }
-     */
 }

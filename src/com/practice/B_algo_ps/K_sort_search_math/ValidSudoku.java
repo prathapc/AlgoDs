@@ -1,6 +1,8 @@
 package com.practice.B_algo_ps.K_sort_search_math;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -11,62 +13,31 @@ import java.util.Set;
 public class ValidSudoku {
 
     public boolean isValidSudoku(char[][] board) {
-        Set<Character> rowSet = null;
-        Set<Character> colSet = null;
+        int r = board.length, c = board[0].length;
+        Map<Integer, Set<Integer>> rowMap = new HashMap<>();
+        Map<Integer, Set<Integer>> colMap = new HashMap<>();
+        Map<String, Set<Integer>> gridMap = new HashMap<>();
+        for (int i=0; i<r; i++){
+            for (int j=0;j<c; j++) {
+                if (board[i][j] == '.') continue;
+                int curr = board[i][j] - '0';
 
-        for (int i = 0; i < 9; i++) {
-            rowSet = new HashSet<>();
-            colSet = new HashSet<>();
-            for (int j = 0; j < 9; j++) {
-                char r = board[i][j];
-                char c = board[j][i];
-                if (r != '.'){
-                    if (rowSet.contains(r)){
-                        return false;
-                    } else {
-                        rowSet.add(r);
-                    }
-                }
-                if (c != '.'){
-                    if (colSet.contains(c)){
-                        return false;
-                    } else {
-                        colSet.add(c);
-                    }
-                }
+                //validate row
+                rowMap.putIfAbsent(i, new HashSet<>());
+                if (!rowMap.get(i).add(curr)) return false;
+
+                //validate col
+                colMap.putIfAbsent(j, new HashSet<>());
+                if (!colMap.get(j).add(curr)) return false;
+
+                //validate box
+                int ri = (i / 3) * 3;
+                int cj = (j / 3) * 3;
+                String gridKey = ri + "_" + cj;
+                gridMap.putIfAbsent(gridKey, new HashSet<>());
+                if (!gridMap.get(gridKey).add(curr)) return false;
             }
         }
-
-        //for block - loop controls advance by 3 each time to jump through the boxes
-        for (int i = 0; i < 9; i = i + 3) {
-            for (int j = 0; j < 9; j = j + 3) {
-                if (!checkBlock(i, j, board)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    public boolean checkBlock(int idxI, int idxJ, char[][] board) {
-        Set<Character> blockSet = new HashSet<>();
-        int rows = idxI + 3;
-        int cols = idxJ + 3;
-        for (int i = idxI; i < rows; i++) {
-            for (int j = idxJ; j < cols; j++) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-
-                if (blockSet.contains(board[i][j])) {
-                    return false;
-                }
-
-                blockSet.add(board[i][j]);
-            }
-        }
-
         return true;
     }
 }

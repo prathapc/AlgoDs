@@ -1,5 +1,7 @@
 package com.practice.A_ds.C_linkedlist;
 
+import com.practice.B_algo_ps.K_sort_search_math.Utility;
+
 /**
  * Created by prathapchowdary on 11/09/21.
  *
@@ -11,6 +13,74 @@ package com.practice.A_ds.C_linkedlist;
  * Similar to prev problem, but count total nodes first and exit the last batch if no of nodes < k
  */
 public class E_ReverseInGroupsII {
+    public static void main(String args[]) {
+        ListNode head = Utility.createLinkedList();
+        Utility.printLinkedList(head);
+        //head = reverseLinkedListInGroups(head, 3);
+        head = reverseKGroup(head, 3);
+        Utility.printLinkedList(head);
+    }
+    //simple recursive solution - same as previous except that we return
+    public static ListNode reverseKGroup(ListNode curr, int k) {
+        if (curr == null) return curr;
+        ListNode temp = curr;
+        int count = 0;
+        while (count < k) {
+            //this is only difference compared to prev problem; if group not having enough elements then don't reverse
+            if (temp == null) return curr;
+            temp = temp.next;
+            count++;
+        }
+
+        ListNode pre = reverseKGroup(temp, k);
+        while (count > 0) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+            count--;
+        }
+        return pre;
+    }
+
+
+    //another recursive qpproach
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        int n = getLength(head);
+        int groups = n/k;
+        return reverseKGroups1(head, k, groups, 1);
+    }
+
+    private ListNode reverseKGroups1(ListNode node, int k, int groups, int currGroup) {
+        if (currGroup > groups) {
+            return node;
+        }
+        int temp = 0;
+        ListNode prev = null, curr = node, next = null;
+        while (curr != null && temp++ < k) {
+            next = curr.next;
+            curr.next = prev;
+
+            prev = curr;
+            curr = next;
+        }
+        if (next != null) {
+            node.next = reverseKGroup1(next, k);
+        }
+        return prev;
+    }
+
+    private int getLength(ListNode node) {
+        int l = 0;
+        while (node != null) {
+            node = node.next;
+            l++;
+        }
+        return l;
+    }
+
+
+
 
     //non-recursive
     public ListNode reverseKGroup_1(ListNode head, int k) {
@@ -52,41 +122,5 @@ public class E_ReverseInGroupsII {
         }
         return dummy.next;
 
-    }
-
-
-
-    public ListNode reverseKGroup(ListNode head, int k) {
-        int n = getLength(head);
-        int groups = n/k;
-        return reverseKGroups(head, k, groups, 1);
-    }
-
-    private ListNode reverseKGroups(ListNode node, int k, int groups, int currGroup) {
-        if (currGroup > groups) {
-            return node;
-        }
-        int temp = 0;
-        ListNode prev = null, curr = node, next = null;
-        while (curr != null && temp++ < k) {
-            next = curr.next;
-            curr.next = prev;
-
-            prev = curr;
-            curr = next;
-        }
-        if (next != null) {
-            node.next = reverseKGroup(next, k);
-        }
-        return prev;
-    }
-
-    private int getLength(ListNode node) {
-        int l = 0;
-        while (node != null) {
-            node = node.next;
-            l++;
-        }
-        return l;
     }
 }

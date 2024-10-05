@@ -19,24 +19,53 @@ public class C_CoinChange {
     //recursion with memo
     public int coinChange(int[] coins, int amount) {
         Map<Integer, Integer> dp = new HashMap<>();
-        return coinChangeUtil(coins, amount, dp);
+        return coinChange(coins, amount, dp);
     }
-
-    private int coinChangeUtil(int[] coins, int remain, Map<Integer, Integer> dp) {
-        if (remain == 0) return 0; //returning 0 is better so that input case having 0 amount as well works
+    private int coinChange(int[] coins, int remain, Map<Integer, Integer> dp) {
+        if (remain == 0) return 0;
         if (remain < 0) return -1;
 
         if (dp.containsKey(remain)) {
             return dp.get(remain);
         }
-        int minCount = Integer.MAX_VALUE;
+
+        int minCount = -1;
         for (int coin : coins) {
-            int count = coinChangeUtil(coins, remain-coin, dp);
-            if (count >= 0 && count < minCount) minCount = 1 + count;
+            int count = coinChange(coins, remain-coin, dp);
+            if (count >= 0) {
+                minCount = minCount<0?count+1:Math.min(count+1, minCount);
+            }
         }
-        dp.put(remain, (minCount == Integer.MAX_VALUE) ? -1 : minCount);
+        dp.put(remain, minCount);
         return dp.get(remain);
     }
+
+    //bfs solution
+    public int coinChange_bfs(int[] coins, int amount) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(0);
+        int cs = 0;
+        boolean[] vstd = new boolean[amount+1];
+        while(!q.isEmpty()) {
+            int n = q.size();
+            for(int i=0;i<n;i++) {
+                int sum = q.poll();
+                if(sum==amount) {
+                    return cs;
+                }
+                if(sum>amount || vstd[sum]) {
+                    continue;
+                }
+                vstd[sum]=true;
+                for(int coin:coins) {
+                    q.add(sum+coin);
+                }
+            }
+            cs++;
+        }
+        return -1;
+    }
+
 
     //Another method: bottom up DP
     public int coinChangeDP(int[] coins, int amount) {
