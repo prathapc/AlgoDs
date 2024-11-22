@@ -1,4 +1,4 @@
-package com.practice.D_design.questions.deliveryfleetapp.models;
+package com.practice.D_design.lld.deliveryfleetapp.models;
 
 import java.util.ArrayList;
 import java.util.List;

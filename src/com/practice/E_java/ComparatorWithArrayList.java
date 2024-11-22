@@ -27,5 +27,18 @@ public class ComparatorWithArrayList {
 
         //sort by end time
         Collections.sort(intervals, Comparator.comparing(i -> i.end));
+        System.out.print(intervals.toString());
+
+        List<String> names = new ArrayList<>();
+        names.add("a");
+        names.add("abc");
+        names.add("ac");
+        Collections.sort(names, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.length() - o2.length();
+            }
+        });
+        System.out.print(names);
     }
 }

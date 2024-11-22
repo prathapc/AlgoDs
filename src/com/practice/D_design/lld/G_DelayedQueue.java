@@ -1,13 +1,10 @@
-package com.practice.D_design.questions;
+package com.practice.D_design.lld;
 
-import java.util.concurrent.DelayQueue;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.PriorityQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
 /**
  * Created by prathapchowdary on 18/11/23.
  */

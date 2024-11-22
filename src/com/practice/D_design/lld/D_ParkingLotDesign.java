@@ -1,4 +1,4 @@
-package com.practice.D_design.questions;
+package com.practice.D_design.lld;
 
 /*
 

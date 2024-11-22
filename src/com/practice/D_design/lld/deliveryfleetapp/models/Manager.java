@@ -1,6 +1,6 @@
-package com.practice.D_design.questions.deliveryfleetapp.models;
+package com.practice.D_design.lld.deliveryfleetapp.models;
 
-import com.practice.D_design.questions.deliveryfleetapp.enums.EmployeePosition;
+import com.practice.D_design.lld.deliveryfleetapp.enums.EmployeePosition;
 
 import java.util.ArrayList;
 import java.util.List;

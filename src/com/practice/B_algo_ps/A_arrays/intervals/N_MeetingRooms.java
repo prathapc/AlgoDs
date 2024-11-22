@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * https://leetcode.com/problems/meeting-rooms-ii/
  */
-public class N_MeetingRoomsII {
+public class N_MeetingRooms {
 
     //https://leetcode.com/problems/meeting-rooms/
     public boolean canAttendMeetings(int[][] intervals) {
@@ -43,6 +43,12 @@ public class N_MeetingRoomsII {
 
 
     //https://leetcode.com/discuss/interview-question/613816/Google-or-Onsite-or-Meeting-Rooms-3
+    //Given a list of intervals calendar and a number of available conference rooms. For each query,
+    // return true if the meeting can be added to the calendar successfully without causing a conflict,
+    // otherwise false. A conference room can only hold one meeting at a time.
+    //Input: calendar = [[1, 2], [4, 5], [8, 10]], rooms = 1, queries = [[2, 3], [3, 4]]
+    //Output: [true, true]
+
     //Sol: we can use either of above two problem solutions to solve this
     //OR another optimized solution below
     public boolean[] canAddMeetingToCalender(int[][] calendar, int rooms, int[][] queries) {
